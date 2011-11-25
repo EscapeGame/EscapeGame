@@ -2453,12 +2453,12 @@
 <XPD:ATTR name="Name" type="string">moveVisibleMonsters</XPD:ATTR>
 <XPD:REF name="Owner">i0dnpApr9E2o66MOwhKm1wAA</XPD:REF>
 <XPD:ATTR name="#Parameters" type="integer">2</XPD:ATTR>
-<XPD:OBJ name="Parameters[0]" type="UMLParameter" guid="703Ep/beDUGyMX02kh3UXwAA">
+<XPD:OBJ name="Parameters[0]" type="UMLParameter" guid="kD5oE+mzHU6FacIVozz5rQAA">
 <XPD:ATTR name="Name" type="string">playerX</XPD:ATTR>
 <XPD:ATTR name="TypeExpression" type="string">int</XPD:ATTR>
 <XPD:REF name="BehavioralFeature">3M+V/iFXNEeenZK1+EfbowAA</XPD:REF>
 </XPD:OBJ>
-<XPD:OBJ name="Parameters[1]" type="UMLParameter" guid="MOTOhZewbkuEZky11it2XAAA">
+<XPD:OBJ name="Parameters[1]" type="UMLParameter" guid="8WXV7AxjckqEvskh7W7xHwAA">
 <XPD:ATTR name="Name" type="string">playerY</XPD:ATTR>
 <XPD:ATTR name="TypeExpression" type="string">int</XPD:ATTR>
 <XPD:REF name="BehavioralFeature">3M+V/iFXNEeenZK1+EfbowAA</XPD:REF>
