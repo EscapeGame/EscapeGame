@@ -59,7 +59,6 @@ public class Map implements ILosBoard
 		if (contains(x, y) && !obstacles[x][y])
 		{
 			visited[x][y] = true;
-			moveVisibleMonsters(x, y);
 		}
 	}
 	
