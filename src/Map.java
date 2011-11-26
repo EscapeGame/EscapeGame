@@ -163,7 +163,7 @@ public class Map implements ILosBoard
 	 * @param playerY
 	 * @param playerT player's tile
 	 */
-	public void display(Tile playerT) 
+	public void display(int payerX, int PlayerY, Tile playerT) 
 	{
 		for (int j = 0; j < height; j++) 
 		{
