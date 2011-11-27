@@ -25,7 +25,19 @@ public class Monster
 	
 	
 	//constructor
-	//public Monster(World world, char )
+	//public Monster(World world, String...)
+	public Monster(String name, char symbol, int hp, int maxHp, Color mcolor, int visionRadius, int attackValue, int defffenseValue)
+	{
+		this.name = name;
+		this.symbol = symbol;
+		this.hp = hp;
+		this.maxHp= maxHp;
+		this.mcolor = mcolor;
+		this.visionRadius = 6;   //radius = 6;
+		this.attackValue = attackValue;
+		this.deffenseValue = deffenseValue;
+		
+	}
 	
 	//stats
 	public char getSymbol(){return symbol;}
