@@ -1,10 +1,9 @@
-
 public class Player {
 	
 	public Player(){
 		
 	}
-	
+	//String hp, should it be int since you'll be adding hp later on when u lvl up 
 	public Player(String hp, int strength, int intelligence, int dexterity,
 			int mana) {
 		this.hp = hp;
