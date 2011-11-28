@@ -3,7 +3,7 @@ import java.awt.Color;
 
 public class Monster 
 {
-  //some kindah world e.g 3d dimentional world
+	//some kindah world e.g 3d dimentional world
 	
 	public int x; //coordinate
 	public int y;
@@ -40,13 +40,20 @@ public class Monster
 	}
 	
 	//stats
+	public String getName(){return name;}
 	public char getSymbol(){return symbol;}
 	public int  getHp(){return hp;}
 	public int getMaxHp(){return maxHp;}
 	public Color getMcolor(){return mcolor;}
 	
+	
+	
 	//vision
-	public int visionRadius(){return visionRadius;}
+	public int getVisionRadius(){return visionRadius;}
+	public void modifyVisionRadius(int value)
+	{
+		visionRadius += value;
+	}
 	
 	//attack
 	public int getAttackValue(){return attackValue;}
