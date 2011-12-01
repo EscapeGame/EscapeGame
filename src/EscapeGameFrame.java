@@ -21,7 +21,11 @@ public class EscapeGameFrame extends JFrame
 	    
 	    panel.addKeyListener(new GameController(map, p));
 	    this.add(panel);
+	    //MapPanel panel = new MapPanel(map, p);
 	    map.addObserver(panel);
+	    this.addKeyListener(new GameController(map, p));
+	    this.add(panel);
+	    
 	}
 
 	

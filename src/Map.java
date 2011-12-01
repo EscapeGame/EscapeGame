@@ -68,7 +68,7 @@ public class Map extends Observable implements ILosBoard
 				obstacles[x][y] = true;
 			}
 		}
-		location = new Point2I(1, 1);
+		location = new Point2I(10, 10);
 	}
 	
 	/**
@@ -92,11 +92,16 @@ public class Map extends Observable implements ILosBoard
 	 */
 	public void visit(int x, int y) 
 	{
-		if (contains(x, y) && !obstacles[x][y])
+		if (contains(x, y))
 		{
 			visited[x][y] = true;
+			MapObject o = getMapObject(x, y);
+			if (o != null && o instanceof MobileObject)
+			{
+				((MobileObject) o).setVisible(true);
+			}
+			changed();
 		}
-		changed();
 	}
 	
 	/**
@@ -155,7 +160,6 @@ public class Map extends Observable implements ILosBoard
 	 */
 	public ArrayList<Point2I> findPath(Point2I p1, Point2I p2)
 	{
-		//TODO
 		return null;
 	}
 
@@ -172,6 +176,7 @@ public class Map extends Observable implements ILosBoard
 	
 	private void changed()
 	{
+
 		setChanged();
 		notifyObservers();
 		clearChanged();
