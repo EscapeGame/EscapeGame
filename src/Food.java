@@ -18,6 +18,16 @@ public class Food extends ConsumableItem
     private int intelligence;
     private int dexterity;
     
+     public Food(String name, String description, int numItem, char symbol, int hp, int mana, int strength, int intelligence, int dexterity) 
+    {
+        super(name, description, numItem, symbol);
+        this.hp = hp;
+        this.mana = mana;
+        this.strength = strength;
+        this.intelligence = intelligence;
+        this.dexterity = dexterity;
+    }
+    
     public int getStrength()
     {
         return strength;

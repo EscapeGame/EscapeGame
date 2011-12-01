@@ -12,8 +12,15 @@ public class ConsumableItem implements Item
     private String name;
     private String description;
     private int numItem;
+    private char symbol;
 
-   
+    public ConsumableItem(String name, String description, int numItem, char symbol) 
+    {
+        this.name = name;
+        this.description = description;
+        this.numItem = numItem;
+        this.symbol = symbol;
+    }
     
     @Override
     public String getName() 
@@ -51,6 +58,11 @@ public class ConsumableItem implements Item
     public void displayItem()
     {
         System.out.println("Name = " + name + " ,Number Item = " + numItem);
+    }
+    @Override
+    public String toString()
+    {
+        return "Name = " + getName() + " number item = " + getNumberItem();
     }
     
 }
