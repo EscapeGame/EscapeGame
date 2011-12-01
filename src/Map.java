@@ -90,16 +90,16 @@ public class Map implements ILosBoard
 	 */
 	public void visit(int x, int y) 
 	{
-		if (contains(x, y) && !obstacles[x][y])
+		if (contains(x, y))
 		{
 			visited[x][y] = true;
+			MapObject o = getMapObject(x, y);
+			if (o != null && o instanceof MobileObject)
+			{
+				((MobileObject) o).setVisible(true);
+			}
 		}
 		notifyListeners();
-	}
-	
-	public void visitFieldOfView(ILosBoard b, int x, int y, int distance) 
-	{
-		
 	}
 	
 	/**
@@ -158,7 +158,6 @@ public class Map implements ILosBoard
 	 */
 	public ArrayList<Point2I> findPath(Point2I p1, Point2I p2)
 	{
-		//TODO
 		return null;
 	}
 	
