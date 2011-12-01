@@ -9,9 +9,12 @@ public class AttackAction implements Action {
 	}
 	
 	@Override
-	public void execute()
+	public String execute()
 	{
 		// from player's stats/equipment, and monster's stats, determine outcome of action
+		monster.setHp(monster.getHp() - player.getStrength());
+		return "You hit " + monster.getName() + " for " + player.getStrength() + "HP!"
+				+ " The " + monster.getName() + " has " + monster.getHp() + "HP remaining.";
 	}
 	
 	public String toString() {

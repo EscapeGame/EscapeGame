@@ -48,7 +48,9 @@ public class Monster extends MobileObject
 	public int getMaxHp(){return maxHp;}
 	public Color getMcolor(){return mcolor;}
 	
-	
+	public void setHp(int hp) {
+		this.hp = hp;
+	}
 	
 	//vision
 	public int getVisionRadius(){return visionRadius;}

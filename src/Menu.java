@@ -14,7 +14,7 @@ public class Menu extends JPanel implements KeyListener {
 	
 	public Menu(ArrayList<?> choices) 
 	{
-	      setSize(200, 200);
+	      setPreferredSize(new Dimension(200, 200));
 	      setLayout(new GridLayout(10, 1));
 	      add(new JLabel("Choose a skill."));
 	      

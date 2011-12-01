@@ -1,7 +1,7 @@
 
 public interface Action {
 	
-	public void execute();
+	public String execute();
 	
 	@Override
 	public String toString();

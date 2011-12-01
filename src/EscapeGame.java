@@ -28,7 +28,7 @@ public class EscapeGame
 			mapObjects.add(m);
 			mapObjects.add(item);
 		}
-		player = new Player();
+		player = new Player(200, 4, 2, 5, 3);
 		map = new Map(FRAME_WIDTH / TILE_SIZE, FRAME_HEIGHT / TILE_SIZE, inventory, mapObjects);
 		//player.setLocation(2, 2);
 		EscapeGameFrame frame = new EscapeGameFrame(FRAME_WIDTH, FRAME_HEIGHT, map, player);
