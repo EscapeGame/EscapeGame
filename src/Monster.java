@@ -1,7 +1,7 @@
 import java.awt.Color;
 
 
-public class Monster 
+public class Monster extends MobileObject
 {
 	//some kindah world e.g 3d dimentional world
 	
@@ -15,6 +15,7 @@ public class Monster
 	private int hp;      //monster HitPoints
 	private int maxHp;   //monster maxHp
 	private Color mcolor;//monster color
+	private int exp;
 	
 	//vision
 	private int visionRadius;
@@ -26,7 +27,7 @@ public class Monster
 	
 	//constructor
 	//public Monster(World world, String...)
-	public Monster(String name, char symbol, int hp, int maxHp, Color mcolor, int visionRadius, int attackValue, int defffenseValue)
+	public Monster(String name, char symbol, int hp, int maxHp, Color mcolor, int visionRadius, int attackValue, int defffenseValue, int exp)
 	{
 		this.name = name;
 		this.symbol = symbol;
@@ -36,6 +37,7 @@ public class Monster
 		this.visionRadius = 6;   //radius = 6;
 		this.attackValue = attackValue;
 		this.deffenseValue = deffenseValue;
+		this.exp = exp;
 		
 	}
 	
@@ -67,6 +69,18 @@ public class Monster
 	public void modifyDeffenseValue(int addDeffense)
 	{
 		deffenseValue += addDeffense;
+	}
+	
+	public int getExp(){return exp;}
+	public void modifyExp(int addExp)
+	{
+		exp += addExp;
+	}
+
+	@Override
+	public CharTile getTile() 
+	{
+		return
 	}
 	
 }
