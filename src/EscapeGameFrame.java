@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -16,7 +17,8 @@ public class EscapeGameFrame extends JFrame
 	{
 		setSize(w, h);
 	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	    MapPanel panel = new MapPanel(map, p);
+	    MapPanel panel = new MapPanel(map, p); 
+	    
 	    panel.addKeyListener(new GameController(map, p));
 	    this.add(panel);
 	    map.addObserver(panel);

@@ -7,7 +7,7 @@ public class test {
 		ArrayList<Action> actions = new ArrayList<Action>();
 		actions.add(new SkillAction("Power Attack"));
 		actions.add(new SkillAction("Double Attack"));
-		ActionMenu am = new ActionMenu(actions);
+		Menu am = new Menu(actions);
 		am.setVisible(true);
 	}
 }

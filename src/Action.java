@@ -3,6 +3,7 @@ public interface Action {
 	
 	public void execute();
 	
-	public String getName();
+	@Override
+	public String toString();
 
 }

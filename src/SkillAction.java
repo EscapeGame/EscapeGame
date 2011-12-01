@@ -13,7 +13,7 @@ public class SkillAction implements Action {
 	}
 
 	@Override
-	public String getName() {
+	public String toString() {
 		return name;
 	}
 

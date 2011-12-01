@@ -7,21 +7,20 @@ import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 // Popup menu.
-public class ActionMenu extends JFrame implements KeyListener {
+public class Menu extends JPanel implements KeyListener {
 	
-	public ActionMenu(ArrayList<Action> actions) 
+	public Menu(ArrayList<?> choices) 
 	{
 	      setSize(200, 200);
-	      setLocationRelativeTo(null);
-	      setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	      setLayout(new GridLayout(10, 1));
 	      add(new JLabel("Choose a skill."));
 	      
-	      for(int i = 0; i < actions.size(); i++)
+	      for(int i = 0; i < choices.size(); i++)
 	      {
-	    	  add(new JLabel("[" + (i+1) +  "] " + actions.get(i).getName()));
+	    	  add(new JLabel("[" + (i+1) +  "] " + choices.get(i).toString()));
 	      }
 	}
 

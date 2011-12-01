@@ -24,8 +24,8 @@ public class EscapeGame
 		for (int i = 0; i < 30; i++)
 		{
 			Armor item = new Armor("Badass Armor", "Very spiky and awesome", 1, 'E', 100, 100, 100, 100, 100);
-			//Monster m = new Monster();
-			//mapObjects.add(m);
+			Monster m = new Monster("Red Dragon", 'D', 2000, 5000, Color.RED, 6, 200, 250, 10000);
+			mapObjects.add(m);
 			mapObjects.add(item);
 		}
 		player = new Player();

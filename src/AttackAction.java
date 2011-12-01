@@ -14,7 +14,7 @@ public class AttackAction implements Action {
 		// from player's stats/equipment, and monster's stats, determine outcome of action
 	}
 	
-	public String getName() {
+	public String toString() {
 		return name;
 	}
 
