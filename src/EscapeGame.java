@@ -23,7 +23,7 @@ public class EscapeGame
 		ArrayList<MapObject> mapObjects = new ArrayList<MapObject>();
 		for (int i = 0; i < 30; i++)
 		{
-			Armor item = new Armor("Badass Armor", "Very spiky and awesome", 'E', 1, 100, 100, 100, 100, 100);
+			Armor item = new Armor("Badass Armor", "Very spiky and awesome", 1, 'E', 100, 100, 100, 100, 100);
 			//Monster m = new Monster();
 			//mapObjects.add(m);
 			mapObjects.add(item);
