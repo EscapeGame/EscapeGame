@@ -1,19 +1,30 @@
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Shape;
+import java.awt.font.FontRenderContext;
+import java.awt.font.TextLayout;
+import java.awt.geom.AffineTransform;
+
+import javax.swing.Icon;
 
 import rlforj.ui.ascii.CharVisual;
 
-
-public class CharTile extends CharVisual implements Tile
+/**
+ * Class that represents a tile
+ * @author Tatiana Braginets
+ *
+ */
+public class CharTile extends CharVisual
 {
 
 	public CharTile(char disp, Color col) 
 	{
 		super(disp, col);
 	}
-
-	public void display() 
-	{
-		System.out.print(this.darker());	
-	}
+	
+	public static final int TILE_SIZE = 10;
 
 }

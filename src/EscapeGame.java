@@ -17,20 +17,27 @@ public class EscapeGame
 	 */
 	public static void main(String[] args) 
 	{
+		Player player;
+		Map map;
 		Inventory inventory = new Inventory();
-		// TODO add items to inventory
-		ArrayList<Monster> monsters = new ArrayList<Monster>();
-		// TODO add monsters to array
-		map = new Map(MAP_WIDTH, MAP_HEIGHT, inventory, monsters);
+		ArrayList<MapObject> mapObjects = new ArrayList<MapObject>();
+		for (int i = 0; i < 30; i++)
+		{
+			Item item = new Item();
+			Monster m = new Monster();
+			mapObjects.add(m);
+			mapObjects.add(item);
+		}
 		player = new Player();
-		pController = new PlayerController(map);
-		map.display(0, 0, player.getTile());
+		map = new Map(FRAME_WIDTH / TILE_SIZE, FRAME_HEIGHT / TILE_SIZE, inventory, mapObjects);
+		player.setLocation(2, 2);
+		EscapeGameFrame frame = new EscapeGameFrame(FRAME_WIDTH, FRAME_HEIGHT, map, player);
+		frame.setVisible(true);
+
 	}
 	
-	private static Player player;
-	private static Map map;
-	private static PlayerController pController;
-	public static final int MAP_WIDTH = 100;
-	public static final int MAP_HEIGHT = 100;
+	public static final int FRAME_WIDTH = 800;
+	public static final int FRAME_HEIGHT = 800;
+	public static final int TILE_SIZE = 12;
 
 }
