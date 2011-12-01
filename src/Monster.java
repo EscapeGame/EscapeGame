@@ -80,7 +80,7 @@ public class Monster extends MobileObject
 	@Override
 	public CharTile getTile() 
 	{
-		return
+		return new CharTile('D', Color.RED);
 	}
 	
 }
