@@ -1,3 +1,5 @@
+import java.awt.Color;
+
 public class Player {
 	
 	public Player(){
@@ -18,7 +20,7 @@ public class Player {
 	private int intelligence;
 	private int dexterity;
 	private int mana;
-	
+	private CharTile tile;
 	
 	public int getHp() {
 		return hp;
@@ -50,5 +52,12 @@ public class Player {
 	public void setMana(int mana) {
 		this.mana = mana;
 	}
+	public CharTile getTile() {
+		return new CharTile('@', Color.RED);
+	}
+	public void setTile(CharTile tile) {
+		this.tile = tile;
+	}
+	
 
 }

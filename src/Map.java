@@ -6,6 +6,7 @@ import java.awt.event.KeyListener;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Observable;
 import java.util.Random;
 
 import javax.swing.JComponent;
@@ -22,7 +23,7 @@ import rlforj.math.Point2I;
  * @author Tatiana Braginets
  *
  */
-public class Map implements ILosBoard
+public class Map extends Observable implements ILosBoard
 {
 	/**
 	 * Constructs an empty map.
@@ -67,6 +68,7 @@ public class Map implements ILosBoard
 				obstacles[x][y] = true;
 			}
 		}
+		location = new Point2I(1, 1);
 	}
 	
 	/**
@@ -99,7 +101,6 @@ public class Map implements ILosBoard
 				((MobileObject) o).setVisible(true);
 			}
 		}
-		notifyListeners();
 	}
 	
 	/**
@@ -134,7 +135,7 @@ public class Map implements ILosBoard
 		objectsList.add(o);
 		objectsLocations.put(new Point2I(x, y), o);
 		if (o != null)
-			notifyListeners();
+			changed();
 	}
 	
 	/**
@@ -148,7 +149,7 @@ public class Map implements ILosBoard
 		objectsList.remove(o);
 		objectsLocations.put(new Point2I(x, y), null);
 		if (o != null)
-			notifyListeners();
+			changed();
 	}
 	/**
 	 * Finds shortest path between 2 points
@@ -160,32 +161,30 @@ public class Map implements ILosBoard
 	{
 		return null;
 	}
+
+	public Point2I getPlayerLocation() 
+	{
+		return location;
+	}
 	
-	/**
-    	Attach a listener to the Map
-    	@param c the listener
-	 */
-	public void attach(ChangeListener c)
+	public void setPlayerLocation(Point2I p) 
 	{
-		listeners.add(c);
+		location = p;
+		changed();
 	}
-
-	/**
-    	Notify listeners that map has changed
-	 */
-	private void notifyListeners()
+	
+	private void changed()
 	{
-		for (ChangeListener l : listeners)
-		{
-			l.stateChanged(new ChangeEvent(this));
-		}
+		setChanged();
+		notifyObservers();
+		clearChanged();
 	}
-
+	
+	Point2I location;
 	private int width, height;
 	private boolean[][] visited;
 	private boolean[][] obstacles;
 	HashMap<Point2I, MapObject> objectsLocations;
 	ArrayList<MapObject> objectsList;
-	ArrayList<ChangeListener> listeners;
 	
 }
