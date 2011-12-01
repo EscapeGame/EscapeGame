@@ -23,14 +23,14 @@ public class EscapeGame
 		ArrayList<MapObject> mapObjects = new ArrayList<MapObject>();
 		for (int i = 0; i < 30; i++)
 		{
-			Item item = new Item();
-			Monster m = new Monster();
-			mapObjects.add(m);
+			Armor item = new Armor("Badass Armor", "Very spiky and awesome", 'E', 1, 100, 100, 100, 100, 100);
+			//Monster m = new Monster();
+			//mapObjects.add(m);
 			mapObjects.add(item);
 		}
 		player = new Player();
 		map = new Map(FRAME_WIDTH / TILE_SIZE, FRAME_HEIGHT / TILE_SIZE, inventory, mapObjects);
-		player.setLocation(2, 2);
+		//player.setLocation(2, 2);
 		EscapeGameFrame frame = new EscapeGameFrame(FRAME_WIDTH, FRAME_HEIGHT, map, player);
 		frame.setVisible(true);
 

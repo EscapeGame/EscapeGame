@@ -1,3 +1,5 @@
+import java.awt.Color;
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -7,7 +9,7 @@
  *
  * @author Thanh Au
  */
-public class EquippableItem implements Item
+public class EquippableItem implements Item, MapObject
 {
     private String name;
     private String description;
@@ -75,5 +77,9 @@ public class EquippableItem implements Item
     {
         System.out.println("Name = " + name + " ,Number Item = " + numItem);
     }
+
+	public CharTile getTile() {
+		return new CharTile(symbol, Color.PINK);
+	}
     
 }

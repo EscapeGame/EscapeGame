@@ -33,8 +33,8 @@ public class MapPanel extends JPanel
     		  {
     			  // do nothing
     		  }
-    		  if (player.getLocation().getX() == i 
-    				  && player.getLocation().getY() == j)
+    		  if (map.getPlayerLocation().getX() == i 
+    				  && map.getPlayerLocation().getY() == j)
     			  tile = player.getTile();
     		  else if (map.visited(i,j) && map.isObstacle(i, j))
     		  {
@@ -66,6 +66,7 @@ public class MapPanel extends JPanel
 	
 	private Map map;
 	Player player;
+	//GameController controller;
 	public static final CharTile floor = new CharTile('.', Color.WHITE);
 	public static final CharTile wall = new CharTile('#', Color.WHITE);
 }

@@ -18,7 +18,7 @@ public class Player {
 	private int intelligence;
 	private int dexterity;
 	private int mana;
-	
+	private CharTile tile;
 	
 	public String getHp() {
 		return hp;
@@ -50,5 +50,12 @@ public class Player {
 	public void setMana(int mana) {
 		this.mana = mana;
 	}
+	public CharTile getTile() {
+		return tile;
+	}
+	public void setTile(CharTile tile) {
+		this.tile = tile;
+	}
+	
 
 }

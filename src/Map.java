@@ -67,6 +67,7 @@ public class Map implements ILosBoard
 				obstacles[x][y] = true;
 			}
 		}
+		location = new Point2I(1, 1);
 	}
 	
 	/**
@@ -95,11 +96,6 @@ public class Map implements ILosBoard
 			visited[x][y] = true;
 		}
 		notifyListeners();
-	}
-	
-	public void visitFieldOfView(ILosBoard b, int x, int y, int distance) 
-	{
-		
 	}
 	
 	/**
@@ -181,7 +177,19 @@ public class Map implements ILosBoard
 			l.stateChanged(new ChangeEvent(this));
 		}
 	}
-
+	
+	public Point2I getPlayerLocation() 
+	{
+		return location;
+	}
+	
+	public void setPlayerLocation(Point2I p) 
+	{
+		location = p;
+	}
+	
+	
+	Point2I location;
 	private int width, height;
 	private boolean[][] visited;
 	private boolean[][] obstacles;

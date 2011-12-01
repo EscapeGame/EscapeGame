@@ -1,3 +1,5 @@
+import java.awt.Color;
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -7,7 +9,7 @@
  *
  * @author Thanh Au
  */
-public class Armor extends EquippableItem
+public class Armor extends EquippableItem 
 {
     private String name;
     private String description;
@@ -69,5 +71,8 @@ public class Armor extends EquippableItem
     {
         this.mana = mana;
     }
+
+
+
     
 }
