@@ -18,7 +18,7 @@ public class Armor extends EquippableItem
     private int intelligence;
     private int dexterity;
 
-    public Armor(String name, String description,char symbol, int numItem, int hp, int mana, int strength, int intelligence, int dexterity) 
+    public Armor(String name, String description, int numItem, char symbol, int hp, int mana, int strength, int intelligence, int dexterity) 
     {
         super(name, description, numItem, symbol);
         this.hp = hp;
@@ -69,5 +69,24 @@ public class Armor extends EquippableItem
     {
         this.mana = mana;
     }
+    public void display ()
+    {
+        System.out.println("Name = " + getName() + " number item = " + getNumberItem());
+    }
+    public void displayFullInformation()
+    {
+        System.out.println("Name = " + getName());
+        System.out.println("Decription" + getDescription());
+        System.out.println("Hp = " + getHP() + " Mana = " + getMana() + " Str = " 
+                + getStrength() + " Dex = " + getDexterity() + " Int = " + getIntelligence());
+    }
+    /*
+    @Override
+    public String toString()
+    {
+        return "Name = " + getName() + " number item = " + getNumberItem();
+    }
+     * 
+     */
     
 }

@@ -75,5 +75,10 @@ public class EquippableItem implements Item
     {
         System.out.println("Name = " + name + " ,Number Item = " + numItem);
     }
+    @Override
+    public String toString()
+    {
+        return "Name = " + getName() + " number item = " + getNumberItem();
+    }
     
 }

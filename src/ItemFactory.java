@@ -10,7 +10,11 @@
 public class ItemFactory {
     
     
-        Weapon sword1 = new Weapon("Rusty sword", "", 0, 0, 0, 1, 0, 0);
+        Weapon sword1 = new Weapon("Rusty sword", "", 'i',0, 0, 0, 1, 0, 0);
+        Weapon sword2 = new Weapon("Good sword", "", 'i', 0, 0, 0, 5, 0, 0);
+        Weapon sword3 = new Weapon("Excalabur", "", 'i', 0, 0, 0, 5, 0, 0);
+        
+        
     
     
 }

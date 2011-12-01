@@ -7,12 +7,23 @@
  *
  * @author Thanh Au
  */
-public class Potion {
+public class Potion extends ConsumableItem
+{
     private String name;
     private String description;
     private int numItem;
     private int hp;
     private int mana;
+
+    public Potion(String name, String description, int numItem,char symbol, int hp, int mana) {
+        super(name, description, numItem, symbol);
+        
+        this.hp = hp;
+        this.mana = mana;
+    }
+    
+
+   
     
     
     
