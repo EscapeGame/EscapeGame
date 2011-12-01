@@ -68,7 +68,7 @@ public class Map extends Observable implements ILosBoard
 				obstacles[x][y] = true;
 			}
 		}
-		location = new Point2I(1, 1);
+		location = new Point2I(10, 10);
 	}
 	
 	/**
@@ -100,6 +100,7 @@ public class Map extends Observable implements ILosBoard
 			{
 				((MobileObject) o).setVisible(true);
 			}
+			changed();
 		}
 	}
 	
@@ -175,6 +176,7 @@ public class Map extends Observable implements ILosBoard
 	
 	private void changed()
 	{
+
 		setChanged();
 		notifyObservers();
 		clearChanged();

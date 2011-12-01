@@ -19,7 +19,7 @@ public class MapPanel extends JPanel implements Observer
 		this.setBackground(Color.BLACK);
 		this.map = map;
 		player = p;
-	    requestFocus(true);
+	    //requestFocus(true);
 	}
 	
 	public void paintComponent(Graphics g)
@@ -59,8 +59,10 @@ public class MapPanel extends JPanel implements Observer
 	
 	public void update(Observable map, Object o) 
 	{
+		
 		repaint();
 	}
+	
 	private Map map;
 	Player player;
 	//GameController controller;
