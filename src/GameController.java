@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import rlforj.los.IFovAlgorithm;
 import rlforj.los.ILosBoard;
+import rlforj.math.Point2I;
 
 public class GameController implements IFovAlgorithm, KeyListener  {
 
@@ -50,7 +51,10 @@ public class GameController implements IFovAlgorithm, KeyListener  {
 		// TODO Auto-generated method stub
 		int key = e.getKeyCode();
 		if(key == KeyEvent.VK_KP_UP || key == KeyEvent.VK_KP_DOWN) {
-			visitFieldOfView(map, (int) map.getPlayerLocation().getX(), (int) map.getPlayerLocation().getY(), 9);
+			int x = (int) map.getPlayerLocation().getX();
+			int y = (int) map.getPlayerLocation().getY();
+			visitFieldOfView(map, x, y, 9);
+			map.setPlayerLocation(new Point2I(++x, ++y));
 		}
 	}
 }

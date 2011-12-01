@@ -16,9 +16,10 @@ public class EscapeGameFrame extends JFrame
 	{
 		setSize(w, h);
 	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	    JPanel panel = new MapPanel(map, p);
+	    MapPanel panel = new MapPanel(map, p);
 	    panel.addKeyListener(new GameController(map, p));
 	    this.add(panel);
+	    map.addObserver(panel);
 	}
 
 	

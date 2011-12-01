@@ -1,3 +1,5 @@
+import java.awt.Color;
+
 public class Player {
 	
 	public Player(){
@@ -51,7 +53,7 @@ public class Player {
 		this.mana = mana;
 	}
 	public CharTile getTile() {
-		return tile;
+		return new CharTile('@', Color.RED);
 	}
 	public void setTile(CharTile tile) {
 		this.tile = tile;

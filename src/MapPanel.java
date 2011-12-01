@@ -2,13 +2,15 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GridBagLayout;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.event.ChangeEvent;
 
 
-public class MapPanel extends JPanel
+public class MapPanel extends JPanel implements Observer
 {
 
 	public MapPanel(Map map, Player p)
@@ -55,18 +57,14 @@ public class MapPanel extends JPanel
       }
 	}
 	
-	/**
-    	Called when the data in the model is changed.
-    	@param e the event representing the change
-	 */
-	public void stateChanged(ChangeEvent e)
+	public void update(Observable map, Object o) 
 	{
 		repaint();
 	}
-	
 	private Map map;
 	Player player;
 	//GameController controller;
 	public static final CharTile floor = new CharTile('.', Color.WHITE);
 	public static final CharTile wall = new CharTile('#', Color.WHITE);
+
 }
