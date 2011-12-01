@@ -78,8 +78,14 @@ public class EquippableItem implements Item, MapObject
         System.out.println("Name = " + name + " ,Number Item = " + numItem);
     }
 
-	public CharTile getTile() {
-		return new CharTile(symbol, Color.PINK);
-	}
+    public CharTile getTile() {
+	return new CharTile(symbol, Color.PINK);
+    }
+
+    @Override
+    public String toString()
+    {
+        return "Name = " + getName() + " number item = " + getNumberItem();
+    }
     
 }

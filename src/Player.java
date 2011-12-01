@@ -4,7 +4,7 @@ public class Player {
 		
 	}
 	//String hp, should it be int since you'll be adding hp later on when u lvl up 
-	public Player(String hp, int strength, int intelligence, int dexterity,
+	public Player(int hp, int strength, int intelligence, int dexterity,
 			int mana) {
 		this.hp = hp;
 		this.strength = strength;
@@ -13,17 +13,17 @@ public class Player {
 		this.mana = mana;
 	}
 	
-	private String hp;
+	private int hp;
 	private int strength;
 	private int intelligence;
 	private int dexterity;
 	private int mana;
 	private CharTile tile;
 	
-	public String getHp() {
+	public int getHp() {
 		return hp;
 	}
-	public void setHp(String hp) {
+	public void setHp(int hp) {
 		this.hp = hp;
 	}
 	public int getStrength() {
