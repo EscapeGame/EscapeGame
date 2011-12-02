@@ -84,7 +84,9 @@ public class Map extends Observable implements ILosBoard
 	 */
 	public boolean isObstacle(int x, int y) 
 	{
-		return obstacles[x][y];
+		if (contains(x, y))
+			return obstacles[x][y];
+		return true;
 	}
 
 	/**
@@ -112,7 +114,9 @@ public class Map extends Observable implements ILosBoard
 	 */
 	public boolean visited(int x, int y)
 	{
-		return visited[x][y];
+		if (contains(x, y))
+			return visited[x][y];
+		return false;
 	}
 	
 	/**
