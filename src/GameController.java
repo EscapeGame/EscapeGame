@@ -81,7 +81,6 @@ public class GameController implements KeyListener  {
 						&&  (map.getMapObject(i, j) instanceof Monster) 
 						&& view.existsLineOfSight(map, x, y, i, j, true))
 				{
-					Monster m = (Monster) map.removeObject(i, j);
 					List<Point2I> path = view.getProjectPath();
 					int nextX = path.get(path.size() - 1).x;
 					int nextY = path.get(path.size() - 1).y;
@@ -90,7 +89,10 @@ public class GameController implements KeyListener  {
 						//TODO attack player
 					}
 					else
+					{
+						Monster m = (Monster) map.removeObject(i, j);
 						map.placeMapObject(nextX, nextY, m);
+					}
 					
 				}
 			}
