@@ -50,11 +50,11 @@ public class Map extends Observable implements ILosBoard
 		
 		// set player's location
 		pLocation = new Point2I(2, 2);
-		for (int i = (int) pLocation.getX() - 5; i < 10; i++)
+		/*for (int i = (int) pLocation.getX() - 5; i < 10; i++)
 			for (int j = (int) pLocation.getX() - 5; j < 10; j++)
 			{
 				visit(i, j);
-			}
+			}*/
 		
 		
 		// create walls
@@ -154,7 +154,7 @@ public class Map extends Observable implements ILosBoard
 	 */
 	public void placeMapObject(int x, int y, MapObject o)
 	{
-		if (!contains(x,y) && o == null)
+		if (!contains(x,y) || o == null)
 			return;
 		objectsList.add(o);
 		objectsLocations.put(new Point2I(x, y), o);
@@ -176,19 +176,17 @@ public class Map extends Observable implements ILosBoard
 		objectsList.remove(o);
 		objectsLocations.put(new Point2I(x, y), null);
 		if (o != null)
-			changed();
+		{
+			obstacles[x][y] = false;
+			changed();	
+		}
 		return o;
 	}
-	/**
-	 * Finds shortest path between 2 points
-	 * @param p1
-	 * @param p2
-	 * @return
-	 */
+	/*
 	public ArrayList<Point2I> findPath(Point2I p1, Point2I p2)
 	{
 		return null;
-	}
+	}*/
 
 	public Point2I getPlayerLocation() 
 	{
