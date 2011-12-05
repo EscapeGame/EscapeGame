@@ -1,3 +1,6 @@
+
+import java.awt.Color;
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -7,7 +10,7 @@
  *
  * @author Thanh Au
  */
-public class ConsumableItem implements Item
+public class ConsumableItem implements Item,MapObject
 {
     private String name;
     private String description;
@@ -63,6 +66,9 @@ public class ConsumableItem implements Item
     public String toString()
     {
         return "Name = " + getName() + " number item = " + getNumberItem();
+    }
+    public CharTile getTile() {
+	return new CharTile(symbol, Color.PINK);
     }
     
 }

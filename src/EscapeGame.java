@@ -28,8 +28,8 @@ public class EscapeGame
 			mapObjects.add(m);
 			mapObjects.add(item);
 		}
-		player = new Player(200, 4, 2, 5, 3);
-		map = new Map(FRAME_WIDTH / TILE_SIZE, FRAME_HEIGHT / TILE_SIZE, inventory, mapObjects);
+		player = new Player();
+		map = new Map(FRAME_WIDTH / TILE_SIZE - 2, FRAME_HEIGHT / TILE_SIZE - 2, inventory, mapObjects);
 		//player.setLocation(2, 2);
 		EscapeGameFrame frame = new EscapeGameFrame(FRAME_WIDTH, FRAME_HEIGHT, map, player);
 		frame.setVisible(true);
@@ -38,6 +38,6 @@ public class EscapeGame
 	
 	public static final int FRAME_WIDTH = 800;
 	public static final int FRAME_HEIGHT = 800;
-	public static final int TILE_SIZE = 12;
+	public static final int TILE_SIZE = 10;
 
 }
