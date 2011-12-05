@@ -1,3 +1,5 @@
+import java.util.Observable;
+
 import rlforj.math.Point2I;
 
 /**
@@ -5,7 +7,7 @@ import rlforj.math.Point2I;
  * @author Tatiana Braginets
  *
  */
-public abstract class MobileObject implements MapObject
+public abstract class MobileObject extends Observable implements MapObject
 {
 	
 	public MobileObject()
@@ -35,6 +37,15 @@ public abstract class MobileObject implements MapObject
 	{
 		x = x2;
 		y = y2;	
+	}
+	
+	public void checkStatus()
+	{
+		if(hasChanged()) 
+		{
+			notifyObservers();
+			clearChanged();
+		}
 	}
 	
 	private int x;

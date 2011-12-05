@@ -1,14 +1,8 @@
-import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.JFrame;
-
-import rlforj.los.IFovAlgorithm;
-import rlforj.los.ILosBoard;
 import rlforj.los.PrecisePermissive;
 import rlforj.math.Point2I;
 
@@ -44,12 +38,17 @@ public class GameController implements KeyListener  {
 			break;
 		case KeyEvent.VK_DOWN:
 			++y;
+			player.setHp(player.getHp() - 1);
 			break;
 		case KeyEvent.VK_LEFT:
 			--x;
 			break;
 		case KeyEvent.VK_RIGHT:
 			++x;
+			break;
+		case KeyEvent.VK_ESCAPE:
+			/* removes menu if it exists */
+			frame.removeMenu();
 			break;
 		}
 		if(!map.isObstacle(x, y)) {
@@ -60,8 +59,9 @@ public class GameController implements KeyListener  {
 		}
 		else if(map.getMapObject(x, y) instanceof Monster) {
 			Monster monster = (Monster) map.getMapObject(x, y);
-			AttackAction attack = new AttackAction(player, monster);
-			attack.execute();
+			frame.printMonsterStatus(monster);
+			AttackAction attack = new AttackAction("attack", player.getAttack());
+			frame.printMessage(attack.execute(player, monster));
 		}
 		else if(map.getMapObject(x, y) instanceof Item) {
 			// TODO
@@ -69,6 +69,7 @@ public class GameController implements KeyListener  {
 		else {
 			moveVisibleMonsters(x, y, DISTANCE);
 		}
+		player.checkStatus();
 	}
 
 	private void moveVisibleMonsters(int x, int y, int distance)
@@ -105,15 +106,12 @@ public class GameController implements KeyListener  {
 	public void keyTyped(KeyEvent e) {
 		char key = e.getKeyChar();
 		switch(key) {
-		case 's':
-			ArrayList<SkillAction> skills = new ArrayList<SkillAction>();
-			skills.add(new SkillAction("Underwater basket weaving"));
-			skills.add(new SkillAction("Super strong attack"));
-			skills.add(new SkillAction("Indomitable will"));
-			Menu menu = new Menu(skills);
-			frame.add(menu);
+		case 's': // Skill menu
+			frame.removeMenu(); // only one menu at a time
+			frame.addMenu(player.getSkillMenu());
 			break;
 		}
+		player.checkStatus();
 	}
 	
 	private PrecisePermissive view;

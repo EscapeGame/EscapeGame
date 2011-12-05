@@ -26,6 +26,8 @@ public class Monster extends MobileObject
 	
 	
 	//constructor
+	public Monster() {}
+	
 	//public Monster(World world, String...)
 	public Monster(String name, char symbol, int hp, int maxHp, Color mcolor, int visionRadius, int attackValue, int defffenseValue, int exp)
 	{

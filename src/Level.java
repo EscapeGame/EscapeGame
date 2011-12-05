@@ -1,33 +1,33 @@
 
 public class Level {
 	
-	public Level(int experience, int hp, int attack, int defense, int strength,
-			int intelligence, int dexterity, int mana) {
+	public Level(int experience, int maxHp, int attack, int defense, int strength,
+			int intelligence, int dexterity, int maxMana) {
 		super();
-		this.hp = hp;
+		this.maxHp = maxHp;
 		this.attack = attack;
 		this.defense = defense;
 		this.strength = strength;
 		this.intelligence = intelligence;
 		this.dexterity = dexterity;
-		this.mana = mana;
+		this.maxMana = maxMana;
 		this.experience = experience;
 	}
 	
-	private int hp;
+	private int maxHp;
 	private int attack;
 	private int defense;
 	private int strength;
 	private int intelligence;
 	private int dexterity;
-	private int mana;
+	private int maxMana;
 	private int experience;
 	
-	public int getHp() {
-		return hp;
+	public int getMaxHp() {
+		return maxHp;
 	}
-	public void setHp(int hp) {
-		this.hp = hp;
+	public void setMaxHp(int maxHp) {
+		this.maxHp = maxHp;
 	}
 	public int getAttack() {
 		return attack;
@@ -59,11 +59,11 @@ public class Level {
 	public void setDexterity(int dexterity) {
 		this.dexterity = dexterity;
 	}
-	public int getMana() {
-		return mana;
+	public int getMaxMana() {
+		return maxMana;
 	}
-	public void setMana(int mana) {
-		this.mana = mana;
+	public void setMaxMana(int maxMana) {
+		this.maxMana = maxMana;
 	}
 	public int getExperience() {
 		return experience;
