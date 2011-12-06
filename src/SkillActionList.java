@@ -9,8 +9,10 @@ public class SkillActionList extends ArrayList<SkillAction> {
 		this.player = player;
 		
 		// Add default skills
-		addAction(SkillActionType.FIREBALL);
-		addAction(SkillActionType.HEALING);
+		addAction(SkillType.DOUBLE_ATTACK);
+		addAction(SkillType.FIREBALL);
+		addAction(SkillType.HEALING);
+		addAction(SkillType.INC_STRENGTH);
 	}
 	
 	public Menu getMenu() {
@@ -22,11 +24,11 @@ public class SkillActionList extends ArrayList<SkillAction> {
 		this.menu = menu;
 	}
 	
-	public void removeAction(SkillActionType type) {
+	public void removeAction(SkillType type) {
 		remove(type.getAction(player));
 	}
 
-	public void addAction(SkillActionType type) {
+	public void addAction(SkillType type) {
 		add(type.getAction(player));
 	}
 	

@@ -5,6 +5,7 @@ import java.util.Observable;
 public class Player extends MobileObject {
 	
 	public Player(){
+		gainLevel();
 		skillList = new SkillActionList(this);
 		this.tile = new CharTile('@', Color.RED);
 	}
@@ -23,6 +24,8 @@ public class Player extends MobileObject {
 	private CharTile tile;
 	private Inventory inventory;
 	private SkillActionList skillList;
+	private int skillCounter = 0; // for self-cast skills with duration
+	private SelfAction revertSkill = null; // action to revert self-cast skill
 	private Level[] levels = {new Level(0, 10, 10, 10, 10, 10, 10, 10), 
 			new Level(100, 20, 20, 20, 20, 20, 20, 20)};
 	
@@ -211,6 +214,35 @@ public class Player extends MobileObject {
 	
 	public Menu getSkillMenu() {
 		return skillList.getMenu();
+	}
+
+	public int getSkillCounter() {
+		return skillCounter;
+	}
+
+	public void setSkillCounter(int skillCounter) {
+		this.skillCounter = skillCounter;
+	}
+
+	public void incrementSkillCounter() {
+		skillCounter++;
+	}
+
+	public void decrementSkillCounter() {
+		if(skillCounter > 0)
+			skillCounter--;
+		if(skillCounter == 0 && revertSkill != null) {
+			revertSkill.execute(this);
+			revertSkill = null;
+		}
+	}
+
+	public SelfAction getRevertSkill() {
+		return revertSkill;
+	}
+
+	public void setRevertSkill(SelfAction revertSkill) {
+		this.revertSkill = revertSkill;
 	}
 	
 }

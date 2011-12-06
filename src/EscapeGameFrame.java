@@ -73,6 +73,11 @@ public class EscapeGameFrame extends JFrame
 			menu = null;
 		}
 	}
+	
+	public StatusBar getStatusBar()
+	{
+		return statusBar;
+	}
 
 	private MessageBar messageBar;
 	private StatusBar statusBar;

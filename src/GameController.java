@@ -1,3 +1,4 @@
+import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
@@ -29,11 +30,10 @@ public class GameController implements KeyListener  {
 	
 	@Override
 	public void keyPressed(KeyEvent e) {
+		frame.printMessage("");
 		int key = e.getKeyCode();
 		int x = (int) map.getPlayerLocation().getX();
 		int y = (int) map.getPlayerLocation().getY();
-		int oldX = x;
-		int oldY = y;
 		switch(key) {
 		case KeyEvent.VK_UP:
 			--y;
@@ -47,10 +47,6 @@ public class GameController implements KeyListener  {
 		case KeyEvent.VK_RIGHT:
 			++x;
 			break;
-		case KeyEvent.VK_ESCAPE:
-			/* removes menu if it exists */
-			frame.removeMenu();
-			break;
 		}
 		if(!map.isObstacle(x, y)) {
 			//visitFieldOfView(map, x, y, 9);
@@ -60,7 +56,7 @@ public class GameController implements KeyListener  {
 		}
 		else if(map.getMapObject(x, y) instanceof Monster) {
 			monster = (Monster) map.getMapObject(x, y);
-			AttackAction attack = new AttackAction("Slash", -player.getAttack(), "hp", "You slash your weapon, inflicting");
+			AttackAction attack = (AttackAction) SkillType.MELEE.getAction(player);
 			frame.printMessage(attack.execute(player, monster));
 			frame.printMonsterStatus(monster);
 			moveVisibleMonsters(x, y, DISTANCE);
@@ -72,6 +68,7 @@ public class GameController implements KeyListener  {
 			moveVisibleMonsters(x, y, DISTANCE);
 		}
 		player.checkStatus();
+		player.decrementSkillCounter();
 	}
 
 	private void moveVisibleMonsters(int x, int y, int distance)
@@ -87,8 +84,10 @@ public class GameController implements KeyListener  {
 					List<Point2I> path = view.getProjectPath();
 					int nextX = path.get(path.size() - 1).x;
 					int nextY = path.get(path.size() - 1).y;
-					if (nextX == map.getPlayerLocation().x && nextY == map.getPlayerLocation().y)
-					{}
+					if (nextX == map.getPlayerLocation().x && nextY == map.getPlayerLocation().y) 
+					{
+						
+					}
 					else
 					{
 						Monster m = (Monster) map.removeObject(i, j);
@@ -106,31 +105,64 @@ public class GameController implements KeyListener  {
 	public void keyTyped(KeyEvent e) {
 
 		char key = e.getKeyChar();
-		switch(key) {
-		/*case 's': // Skill menu
-			frame.removeMenu(); // only one menu at a time
-			menu = player.getSkillMenu();
-			frame.addMenu(menu);
-			break;*/
-		case '2':
-			SelfAction skill = (SelfAction) player.getSkill(1);
-			frame.printMessage(skill.execute(player));
-			break;
-		}
-		/*Object obj = menu.getChoice(); 
-		if(obj != null) {
-			System.out.println("hi");
-			if(obj instanceof AttackAction) {
-				AttackAction action = (AttackAction) obj;
-				action.execute(player, monster);
+		int index = Integer.parseInt((new Character(key)).toString());
+		if(index >= 1 && index <= 9) {
+			SkillAction skill = (SkillAction) player.getSkill(index - 1);
+			if(skill instanceof AttackAction) {
+				final AttackAction attack = (AttackAction) skill;
+				if(attack.getRange() == RangeType.CLOSE_ALL) {
+					int x = (int) map.getPlayerLocation().getX();
+					int y = (int) map.getPlayerLocation().getY();
+					for(int i = x - 1; i <= x + 1; i++)
+						for(int j = y - 1; j <= y + 1; j++)
+							if(map.contains(i, j) && map.isObstacle(i, j) && (map.getMapObject(i, j) != null) 
+								&& (map.getMapObject(i, j) instanceof Monster)) {
+								Monster monster = (Monster) map.getMapObject(i, j);
+								monster.addObserver(frame.getStatusBar());
+								attack.execute(player, monster);
+							}
+					frame.printMessage(attack.getMessage());
+				}
+				else { // RangeType.CLOSE_SINGLE
+					frame.printMessage("Choose a direction.");
+					frame.removeKeyListener(this);
+					frame.addKeyListener(new KeyAdapter() {
+						@Override
+						public void keyPressed(KeyEvent e) {
+							int x = (int) map.getPlayerLocation().getX();
+							int y = (int) map.getPlayerLocation().getY();
+							int direction = e.getKeyCode();
+							switch(direction) {
+								case KeyEvent.VK_UP:
+									--y;
+									break;
+								case KeyEvent.VK_DOWN:
+									++y;
+									break;
+								case KeyEvent.VK_LEFT:
+									--x;
+									break;
+								case KeyEvent.VK_RIGHT:
+									++x;
+									break;
+							}
+							if(map.contains(x, y) && map.isObstacle(x, y) && (map.getMapObject(x, y) != null) 
+								&& (map.getMapObject(x, y) instanceof Monster)) {
+								Monster monster = (Monster) map.getMapObject(x, y);
+								monster.addObserver(frame.getStatusBar());
+								frame.printMessage(attack.execute(player, monster));
+								frame.removeKeyListener(this);
+							}
+						}
+					});
+					frame.addKeyListener(this);
+				}
 			}
-			else if(obj instanceof SelfAction) {
-				System.out.println("hi");
-				SelfAction action = (SelfAction) obj;
-				action.execute(player);
+			else if(skill instanceof SelfAction) {
+				SelfAction self = (SelfAction) skill;
+				frame.printMessage(self.execute(player));
 			}
-		}*/
-			
+		}			
 		player.checkStatus();
 	}
 	

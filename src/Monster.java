@@ -90,4 +90,13 @@ public class Monster extends MobileObject
 		return new CharTile('D', Color.RED);
 	}
 	
+	@Override
+	public void checkStatus()
+	{
+		if(hasChanged()) 
+		{
+			notifyObservers(this);
+			clearChanged();
+		}
+	}
 }

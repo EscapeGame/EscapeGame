@@ -61,6 +61,8 @@ public class StatusBar extends JPanel implements Observer {
 		
 		if(mobile instanceof Player)
 			printPlayerStatus();
+		if(mobile instanceof Monster)
+			printMonsterStatus((Monster) o);
 	}
 	
 	Player player;
