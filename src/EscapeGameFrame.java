@@ -1,6 +1,7 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
+import java.awt.FlowLayout;
 
 import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
@@ -16,7 +17,7 @@ public class EscapeGameFrame extends JFrame
 
 	public EscapeGameFrame(int w, int h, Map map, Player p)
 	{
-		setSize(w + STATUS_WIDTH, h + MESSAGE_HEIGHT);
+		setSize(w + (2 * STATUS_WIDTH), h + MESSAGE_HEIGHT);
 	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    getContentPane().setBackground(Color.BLACK);
 	    
@@ -24,14 +25,13 @@ public class EscapeGameFrame extends JFrame
 	    MapPanel panel = new MapPanel(map, p);
 	    panel.setSize(w, h);
 	    map.addObserver(panel);
-	    
+	   
 	    /* Create LayeredPane - allows popup menus to overlay map */
 	    pane = new JLayeredPane();
-	    pane.add(panel, JLayeredPane.DEFAULT_LAYER);
-	    pane.setSize(w, h);
-	    
-	    /* Default menu is null */
-	    menu = null;
+	    pane.setLayout(new FlowLayout(FlowLayout.LEFT));
+	    //pane.add(panel, JLayeredPane.DEFAULT_LAYER);
+	    pane.add(p.getSkillMenu());
+	    pane.setSize(STATUS_WIDTH, h);
 	    
 	    /* Create MessageBar - display status messages */
 	    messageBar = new MessageBar(w, MESSAGE_HEIGHT, "Welcome to EscapeGame!");
@@ -43,7 +43,8 @@ public class EscapeGameFrame extends JFrame
 	    // Add panel and bars to frame's BorderLayout
 	    this.add(messageBar, BorderLayout.NORTH);
 		this.add(statusBar, BorderLayout.WEST);
-		this.add(pane, BorderLayout.CENTER);
+		this.add(panel, BorderLayout.CENTER);
+		this.add(pane, BorderLayout.EAST);
 		
 		// Add controller
 	    this.addKeyListener(new GameController(map, p, this));

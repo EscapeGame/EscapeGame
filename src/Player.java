@@ -197,6 +197,10 @@ public class Player extends MobileObject {
 		skillList.add(s);
 	}
 	
+	public SkillAction getSkill(int index) {
+		return skillList.get(index);
+	}
+	
 	public void removeSkill(SkillAction s) {
 		skillList.remove(s);
 	}

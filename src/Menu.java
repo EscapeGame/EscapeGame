@@ -13,14 +13,14 @@ import javax.swing.JPanel;
 import javax.swing.border.Border;
 
 // Popup menu.
-public class Menu extends JPanel implements KeyListener {
+public class Menu extends JPanel {
 	
 	public Menu(ArrayList<?> choices) 
 	{
-		this.choice = null;
-		this.choices = choices;
+		/*this.choice = null;
+		this.choices = choices;*/
 		
-	      setSize(200, 200);
+	      setSize(500, 500);
 	      setBackground(Color.BLACK);
 	      setLayout(new GridLayout(10, 1));
 	      setBorder(BorderFactory.createLineBorder(Color.WHITE));
@@ -36,7 +36,7 @@ public class Menu extends JPanel implements KeyListener {
 	      }
 	}
 
-	@Override
+	/*@Override
 	public void keyPressed(KeyEvent e) {}
 
 	@Override
@@ -46,7 +46,9 @@ public class Menu extends JPanel implements KeyListener {
 	public void keyTyped(KeyEvent e) {
 		char key = e.getKeyChar();
 		int index = Integer.parseInt((new Character(key)).toString());
+		System.out.println(index);
 		setChoice(choices.get(index));
+		
 	}
 	
 	public Object getChoice() {
@@ -58,5 +60,5 @@ public class Menu extends JPanel implements KeyListener {
 	}
 
 	private ArrayList<?> choices;
-	private Object choice;
+	private Object choice;*/
 }

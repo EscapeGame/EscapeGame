@@ -19,8 +19,9 @@ public abstract class SkillAction implements Action {
 		try {
 			// search for target's field name = statName and invoke its setter (uses beans)
 			for(PropertyDescriptor pd : Introspector.getBeanInfo(target.getClass()).getPropertyDescriptors())
-				if(pd.getWriteMethod() != null && targetStat.equals(pd.getName()))
+				if(pd.getWriteMethod() != null && targetStat.equals(pd.getName())) {
 					pd.getWriteMethod().invoke(target, (Integer) pd.getReadMethod().invoke(target) + amount);
+				}
 		} catch (IllegalAccessException e) {
 			e.printStackTrace();
 		} catch (IllegalArgumentException e) {

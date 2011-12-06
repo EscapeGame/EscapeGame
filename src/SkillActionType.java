@@ -3,7 +3,7 @@ public enum SkillActionType {
 	FIREBALL {
 		public SkillAction getAction(Player player) {
 			int amount = -player.getIntelligence() * 5;
-			return new AttackAction("Fireball", amount, "hp", "You hurl a fiery ball of flame at ");
+			return new AttackAction("Really huge fireball", amount, "hp", "You hurl a fiery ball of flame at ");
 		}
 	},
 	

@@ -88,9 +88,7 @@ public class GameController implements KeyListener  {
 					int nextX = path.get(path.size() - 1).x;
 					int nextY = path.get(path.size() - 1).y;
 					if (nextX == map.getPlayerLocation().x && nextY == map.getPlayerLocation().y)
-					{
-						//TODO attack player
-					}
+					{}
 					else
 					{
 						Monster m = (Monster) map.removeObject(i, j);
@@ -109,14 +107,19 @@ public class GameController implements KeyListener  {
 
 		char key = e.getKeyChar();
 		switch(key) {
-		case 's': // Skill menu
+		/*case 's': // Skill menu
 			frame.removeMenu(); // only one menu at a time
 			menu = player.getSkillMenu();
 			frame.addMenu(menu);
+			break;*/
+		case '2':
+			SelfAction skill = (SelfAction) player.getSkill(1);
+			frame.printMessage(skill.execute(player));
 			break;
 		}
-		Object obj = menu.getChoice(); 
+		/*Object obj = menu.getChoice(); 
 		if(obj != null) {
+			System.out.println("hi");
 			if(obj instanceof AttackAction) {
 				AttackAction action = (AttackAction) obj;
 				action.execute(player, monster);
@@ -126,7 +129,7 @@ public class GameController implements KeyListener  {
 				SelfAction action = (SelfAction) obj;
 				action.execute(player);
 			}
-		}
+		}*/
 			
 		player.checkStatus();
 	}
