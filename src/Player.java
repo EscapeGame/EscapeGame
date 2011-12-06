@@ -5,7 +5,6 @@ import java.util.Observable;
 public class Player extends MobileObject {
 	
 	public Player(){
-		gainLevel(levels[0]);
 		skillList = new SkillActionList(this);
 		this.tile = new CharTile('@', Color.RED);
 	}
@@ -27,18 +26,22 @@ public class Player extends MobileObject {
 	private Level[] levels = {new Level(0, 10, 10, 10, 10, 10, 10, 10), 
 			new Level(100, 20, 20, 20, 20, 20, 20, 20)};
 	
-	public void gainLevel(Level level){
-		this.maxHp += level.getMaxHp();
+	public void gainLevel(){
+		this.maxHp += levels[level].getMaxHp();
 		this.hp = this.maxHp;
-		this.attack += level.getAttack();
-		this.defense += level.getDefense();
-		this.strength += level.getStrength();
-		this.intelligence += level.getIntelligence();
-		this.dexterity += level.getDexterity();
-		this.maxMana += level.getMaxMana();
+		this.attack += levels[level].getAttack();
+		this.defense += levels[level].getDefense();
+		this.strength += levels[level].getStrength();
+		this.intelligence += levels[level].getIntelligence();
+		this.dexterity += levels[level].getDexterity();
+		this.maxMana += levels[level].getMaxMana();
 		this.mana = this.maxMana;
 		this.experience = 0;
 		this.level++;
+	}
+	
+	public boolean isReadyForNextLevel(){
+		return experience >= levels[level].getExperience(); 
 	}
 
 
