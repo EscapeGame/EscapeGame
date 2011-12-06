@@ -6,7 +6,6 @@ public class Player extends MobileObject {
 	
 	public Player(){
 		gainLevel();
-		gainLevel();
 		skillList = new SkillActionList(this);
 		this.tile = new CharTile('@', Color.RED);
 		inventory = new Inventory();
@@ -31,7 +30,7 @@ public class Player extends MobileObject {
 	private Level[] levels = {new Level(0, 10, 10, 10, 10, 10, 10, 10), 
 			new Level(100, 20, 20, 20, 20, 20, 20, 20)};
 	
-	public void gainLevel(){
+	private void gainLevel(){
 		this.maxHp += levels[level].getMaxHp();
 		this.hp = this.maxHp;
 		this.attack += levels[level].getAttack();
@@ -43,6 +42,11 @@ public class Player extends MobileObject {
 		this.mana = this.maxMana;
 		this.experience = 0;
 		this.level++;
+	}
+	
+	public void gainLevel(Color col){
+		this.tile.setColor(col);
+		gainLevel();
 	}
 	
 	public boolean isReadyForNextLevel(){
