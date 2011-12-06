@@ -24,7 +24,8 @@ public class Monster extends MobileObject
 	private int attackValue;
 	private int deffenseValue;
 	
-	
+	// item
+	Item item;
 	//constructor
 	public Monster() {}
 	
@@ -40,7 +41,7 @@ public class Monster extends MobileObject
 		this.attackValue = attackValue;
 		this.deffenseValue = deffenseValue;
 		this.exp = exp;
-		
+		item = null;
 	}
 	
 	//stats
@@ -84,6 +85,16 @@ public class Monster extends MobileObject
 		exp += addExp;
 	}
 
+	public void setItem(Item i)
+	{
+		item = i;
+	}
+	
+	public Item getItem()
+	{
+		return item;
+	}
+	
 	@Override
 	public CharTile getTile() 
 	{
