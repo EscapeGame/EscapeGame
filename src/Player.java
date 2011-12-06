@@ -7,6 +7,7 @@ public class Player extends MobileObject {
 	public Player(){
 		gainLevel(levels[0]);
 		skillList = new SkillActionList(this);
+		this.tile = new CharTile('@', Color.RED);
 	}
 	
 	private int hp = 0;
@@ -165,7 +166,7 @@ public class Player extends MobileObject {
 
 
 	public CharTile getTile() {
-		return new CharTile('@', Color.RED);
+		return tile;
 	}
 	
 	public void setTile(CharTile tile) {
