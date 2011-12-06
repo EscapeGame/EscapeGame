@@ -124,9 +124,7 @@ public class Player {
 	public CharTile getTile() {
 		return new CharTile('@', Color.RED);
 	}
-	public void setTile(CharTile tile) {
-		this.tile = tile;
-	}
+	
 	
 
 

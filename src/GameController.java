@@ -51,6 +51,7 @@ public class GameController implements KeyListener  {
 		case KeyEvent.VK_RIGHT:
 			++x;
 			break;
+                
 		}
 		if(!map.isObstacle(x, y)) {
 			//visitFieldOfView(map, x, y, 9);

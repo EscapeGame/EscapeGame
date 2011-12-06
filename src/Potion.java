@@ -21,24 +21,36 @@ public class Potion extends ConsumableItem
         this.hp = hp;
         this.mana = mana;
     }
-    
-
-   
-    
-    
-    
+    /*
+     * This method is get hit point
+     * @return value of hit point
+     */
     public int getHP()
     {
         return hp;
     }
+    
+    /*
+     * This method is set hit point
+     * @param value of hit point
+     */
     public void setHp(int hp)
     {
         this.hp = hp;
     }
+    
+    /*
+     * This method is get mana
+     * @return value of mana
+     */
     public int getMana()
     {
         return mana;
     }
+    /*
+     * This method is set mana
+     * @param value of mana
+     */
     public void setMana(int mana)
     {
         this.mana = mana;
