@@ -39,14 +39,7 @@ public abstract class MobileObject extends Observable implements MapObject
 		y = y2;	
 	}
 	
-	public void checkStatus()
-	{
-		if(hasChanged()) 
-		{
-			notifyObservers();
-			clearChanged();
-		}
-	}
+	public abstract void checkStatus();
 	
 	private int x;
 	private int y;

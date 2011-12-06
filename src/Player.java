@@ -246,4 +246,14 @@ public class Player extends MobileObject {
 		this.revertSkill = revertSkill;
 	}
 	
+	public void checkStatus()
+	{
+		if(hasChanged()) 
+		{
+			skillList = new SkillActionList(this); // update skills @todo should also incorporate new skills learned
+			notifyObservers();
+			clearChanged();
+		}
+	}
+	
 }

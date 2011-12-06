@@ -22,12 +22,12 @@ public enum SkillType {
 			if(mobile instanceof Player) {
 				Player player = (Player) mobile;
 				amount = -player.getAttack();
-				message = "You attack your foe, causing " + amount + " " + targetStat + " of damage.";
+				message = "You attack your foe, causing ";
 			}
 			else { // monster
 				Monster monster = (Monster) mobile;
 				amount = -monster.getAttackValue();
-				message = monster.getName() + " attacks you, causing " + amount + " " + targetStat + " of damage.";
+				message = monster.getName() + " attacks you, causing ";
 			}
 			return new AttackAction("Melee", amount, 0, 0, 0, "strength", targetStat, RangeType.CLOSE_SINGLE, message);
 		}
@@ -45,7 +45,7 @@ public enum SkillType {
 				amount = -monster.getAttackValue() * 2;
 			}
 			String targetStat = "hp";
-			return new AttackAction("Double Attack", amount, 2, 0, 10, "dexterity", targetStat, RangeType.CLOSE_SINGLE, "You move swiftly, attacking twice! Your foe takes " + amount + " " + targetStat + " damage.");
+			return new AttackAction("Double Attack", amount, 2, 0, 10, "dexterity", targetStat, RangeType.CLOSE_SINGLE, "You move swiftly, attacking twice! Your foe takes ");
 		}
 	},
 	
@@ -58,7 +58,7 @@ public enum SkillType {
 			}
 			else amount = 100;
 			String targetStat = "hp";
-			return new AttackAction("Fireball", amount, 10, 0, 10, "intelligence", targetStat, RangeType.CLOSE_ALL, "You summon a fireball, inflicting " + amount + " " + targetStat + " on all surrounding monsters!");
+			return new AttackAction("Fireball", amount, 10, 0, 10, "intelligence", targetStat, RangeType.CLOSE_ALL, "You summon a fireball! Surrounding monsters take a total of ");
 		}
 	},
 	
@@ -71,7 +71,7 @@ public enum SkillType {
 			}
 			else amount = 200;
 			String targetStat = "hp";
-			return new AttackAction("Lightning Bolt", amount, 15, 0, 30, "intelligence", targetStat, RangeType.LINE, "You hurl a lightning bolt, inflicting " + amount + " " + targetStat + " on all monsters in front of you!");
+			return new AttackAction("Lightning Bolt", amount, 15, 0, 30, "intelligence", targetStat, RangeType.LINE, "You hurl a lightning bolt! Monsters in front of you take a total of ");
 		}
 	},
 	
@@ -84,7 +84,7 @@ public enum SkillType {
 			}
 			else amount = 200;
 			String targetStat = "hp";
-			return new SelfAction("Healing", amount, 4, 0, 10, "intelligence", targetStat, RangeType.SELF, "You heal " + amount + " " + targetStat + ".");
+			return new SelfAction("Healing", amount, 4, 0, 10, "intelligence", targetStat, RangeType.SELF, "You heal ");
 		}
 	},
 	
@@ -99,7 +99,7 @@ public enum SkillType {
 				amount = 30;
 			}
 			int duration = 5;
-			return new SelfAction("Power Surge", amount, 5, duration, 10, "strength", "attack", RangeType.SELF, "Your attack power increases by " + amount + "! The effect will fade in " + duration + " turns.");
+			return new SelfAction("Power Surge", amount, 5, duration, 10, "strength", "attack", RangeType.SELF, "For " + duration + " turns, your power increases by ");
 		}
 	};
 	
