@@ -13,7 +13,7 @@ public class SkillActionList extends ArrayList<SkillAction> {
 		addAction(SkillType.FIREBALL);
 		addAction(SkillType.LIGHTNING_BOLT);
 		addAction(SkillType.HEALING);
-		addAction(SkillType.INC_STRENGTH);
+		addAction(SkillType.POWER_SURGE);
 	}
 	
 	public Menu getMenu() {

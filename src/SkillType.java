@@ -54,7 +54,7 @@ public enum SkillType {
 			int amount;
 			if(mobile instanceof Player) {
 				Player player = (Player) mobile;
-				amount = -player.getIntelligence() * 3;
+				amount = -player.getIntelligence() * 5;
 			}
 			else amount = 100;
 			String targetStat = "hp";
@@ -67,7 +67,7 @@ public enum SkillType {
 			int amount;
 			if(mobile instanceof Player) {
 				Player player = (Player) mobile;
-				amount = -player.getIntelligence() * 6;
+				amount = -player.getIntelligence() * 10;
 			}
 			else amount = 200;
 			String targetStat = "hp";
@@ -80,7 +80,7 @@ public enum SkillType {
 			int amount;
 			if(mobile instanceof Player) {
 				Player player = (Player) mobile;
-				amount = -player.getIntelligence();
+				amount = player.getIntelligence() * player.getLevel();
 			}
 			else amount = 200;
 			String targetStat = "hp";
@@ -88,18 +88,18 @@ public enum SkillType {
 		}
 	},
 	
-	INC_STRENGTH {
+	POWER_SURGE {
 		public SkillAction getAction(MobileObject mobile) {
 			int amount;
 			if(mobile instanceof Player) {
 				Player player = (Player) mobile;
-				amount = -player.getLevel() * 5;
+				amount = player.getStrength() * player.getLevel();
 			}
 			else {
-				amount = 20;
+				amount = 30;
 			}
 			int duration = 5;
-			return new SelfAction("Increase Strength", amount, 5, duration, 1, "level", "strength", RangeType.SELF, "Your strength increases by " + amount + "! The effect will fade in " + duration + " turns.");
+			return new SelfAction("Power Surge", amount, 5, duration, 10, "strength", "attack", RangeType.SELF, "Your attack power increases by " + amount + "! The effect will fade in " + duration + " turns.");
 		}
 	};
 	

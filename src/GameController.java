@@ -46,6 +46,8 @@ public class GameController implements KeyListener  {
 			case KeyEvent.VK_RIGHT:
 				++x;
 				break;
+			default:
+				return;
 			}
 			if(!map.isObstacle(x, y)) {
 				//visitFieldOfView(map, x, y, 9);
@@ -56,11 +58,11 @@ public class GameController implements KeyListener  {
 				String message = "";
 				AttackAction attack;
 				Monster monster = (Monster) map.getMapObject(x, y);
-				monster.addObserver(frame.getStatusBar());
 				attack = (AttackAction) SkillType.MELEE.getAction(player);
 				message += attack.execute(player, monster);
-				monster.checkStatus();
+				frame.printMonsterStatus(monster);
     			if(monster.getHp() <= 0) {
+    				message += " " + monster.getName() + " dies! You gain " + monster.getExp() + " xp.";
     				player.setExperience(player.getExperience() + monster.getExp());
     				map.removeObject(x, y);
     			}
@@ -69,7 +71,7 @@ public class GameController implements KeyListener  {
 					message += " " + attack.execute(monster, player);
 					player.checkStatus();
 	    			if(player.getHp() <= 0) {
-	    				message += " Game over!";
+	    				message += " You die! Game over.";
 	    				frame.removeKeyListener(this);
 	    			}
     			}
@@ -104,14 +106,17 @@ public class GameController implements KeyListener  {
 					int nextY = path.get(path.size() - 1).y;
 					if (nextX == map.getPlayerLocation().x && nextY == map.getPlayerLocation().y) 
 					{
+						String message = "";
 						Monster monster = (Monster) map.getMapObject(i, j);
 						AttackAction attack = (AttackAction) SkillType.MELEE.getAction(monster);
-						frame.printMessage(attack.execute(monster, player));
+						message += attack.execute(monster, player);
+						frame.printMonsterStatus(monster);
 						player.checkStatus();
 		    			if(player.getHp() <= 0) {
-		    				frame.printMessage("Game over!");
+		    				message += " You die! Game over.";
 		    				frame.removeKeyListener(this);
 		    			}
+		    			frame.printMessage(message);
 					}
 					else
 					{
@@ -157,12 +162,11 @@ public class GameController implements KeyListener  {
 							Monster m = (Monster) obj;
 							m.checkStatus();
 			    			if(m.getHp() <= 0) {
+			    				message += " " + m.getName() + " dies! You gain " + m.getExp() + " xp.";
 			    				player.setExperience(player.getExperience() + m.getExp());
 			    				map.removeObject((int) m.getLocation().getX(), (int) m.getLocation().getY());
 			    			}
 						}
-						if(targets.size() > 0 && !message.equals(""))
-							message += " " + targets.size() + " monsters damaged.";
 						frame.printMessage(message);
 					}
 					else if(attack.getRange() == RangeType.LINE) {  // Affects monsters in front of player, up to (level) squares away.
@@ -221,12 +225,11 @@ public class GameController implements KeyListener  {
 									Monster m = (Monster) obj;
 									m.checkStatus();
 					    			if(m.getHp() <= 0) {
+					    				message += " " + m.getName() + " dies! You gain " + m.getExp() + " xp.";
 					    				player.setExperience(player.getExperience() + m.getExp());
 					    				map.removeObject((int) m.getLocation().getX(), (int) m.getLocation().getY());
 					    			}
 								}
-								if(targets.size() > 0 && !message.equals(""))
-									message += " " + targets.size() + " monsters damaged.";
 								frame.printMessage(message);
 								frame.removeKeyListener(this);
 							}
@@ -259,14 +262,17 @@ public class GameController implements KeyListener  {
 								}
 								if(map.contains(x, y) && map.isObstacle(x, y) && (map.getMapObject(x, y) != null) 
 									&& (map.getMapObject(x, y) instanceof Monster)) {
+									String message = "";
 									Monster monster = (Monster) map.getMapObject(x, y);
 									monster.addObserver(frame.getStatusBar());
-									frame.printMessage(attack.execute(player, monster));
+									message += attack.execute(player, monster);
 									monster.checkStatus();
 					    			if(monster.getHp() <= 0) {
+					    				message += " " + monster.getName() + " dies! You gain " + monster.getExp() + " xp.";
 					    				player.setExperience(player.getExperience() + monster.getExp());
 					    				map.removeObject(x, y);
 					    			}
+					    			frame.printMessage(message);
 									frame.removeKeyListener(this);
 								}
 							}

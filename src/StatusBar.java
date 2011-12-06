@@ -48,7 +48,8 @@ public class StatusBar extends JPanel implements Observer {
 				monster.getName() + "\n" +
 				"HP: " + monster.getHp() + "/" + monster.getMaxHp() + "\n" +
 				"Atk: " + monster.getAttackValue() + "\n" +
-				"Def: " + monster.getDeffenseValue() + "\n";
+				"Def: " + monster.getDeffenseValue() + "\n" +
+				"XP Worth: " + monster.getExp() + "\n";
 		}
 		else
 			status += "None";
