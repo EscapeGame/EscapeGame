@@ -107,7 +107,7 @@ public class EquippableItem implements Item, MapObject
      * @return tite in the map
      */
     public CharTile getTile() {
-	return new CharTile(symbol, Color.PINK);
+	return new CharTile(symbol, Color.YELLOW);
     }
     
     /*

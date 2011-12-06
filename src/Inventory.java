@@ -14,9 +14,9 @@ public class Inventory
     Scroll [] listScroll;
     Food[] listFood;
     Potion[] listPotion;
-    Weapon sword1 = new Weapon("Rusty sword", "", ',',0, 0, 0, 1, 0, 0);
-    Weapon sword2 = new Weapon("Good sword", "", ',', 0, 0, 0, 5, 0, 0);
-    Weapon sword3 = new Weapon("Excalabur", "", ',', 0, 0, 0, 5, 0, 0);
+    Weapon sword1 = new Weapon("Rusty sword", "", 1, '/', 0, 0, 1, 0, 0);
+    Weapon sword2 = new Weapon("Good sword", "", 1, '/', 0, 0, 5, 0, 0);
+    Weapon sword3 = new Weapon("Excalabur", "", 1, '/', 0, 0, 5, 0, 0);
     Potion potion1 = new Potion("Hp potion", "Heal 50 Hp", 0, ',', 50, 0);
     Potion potion2 = new Potion("Mana potion", "Heal 50 Mana", 0,',', 0, 50);
     Food food1 = new Food("Apple of Intelligence", "Increase your intelligence", 0, ',', 0, 0, 0, 1, 0);

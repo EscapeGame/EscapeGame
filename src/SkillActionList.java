@@ -11,6 +11,7 @@ public class SkillActionList extends ArrayList<SkillAction> {
 		// Add default skills
 		addAction(SkillType.DOUBLE_ATTACK);
 		addAction(SkillType.FIREBALL);
+		addAction(SkillType.LIGHTNING_BOLT);
 		addAction(SkillType.HEALING);
 		addAction(SkillType.INC_STRENGTH);
 	}

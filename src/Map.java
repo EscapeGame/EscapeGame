@@ -159,6 +159,10 @@ public class Map extends Observable implements ILosBoard
 		objectsList.add(o);
 		objectsLocations.put(new Point2I(x, y), o);
 		obstacles[x][y] = true;
+		if(o instanceof MobileObject) {
+			MobileObject mobile = (MobileObject) o;
+			mobile.setLocation(x, y);
+		}
 		changed();
 	}
 	

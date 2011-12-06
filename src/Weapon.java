@@ -28,7 +28,7 @@ public class Weapon extends EquippableItem
         dexterity = 0;
     }
             
-    public Weapon(String name, String description,char symbol, int numItem, int hp, int mana, int strength, int intelligence, int dexterity) 
+    public Weapon(String name, String description, int numItem, char symbol, int hp, int mana, int strength, int intelligence, int dexterity) 
     {
         super(name, description, numItem, symbol);
         this.hp = hp;

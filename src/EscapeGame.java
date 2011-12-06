@@ -23,10 +23,18 @@ public class EscapeGame
 		ArrayList<MapObject> mapObjects = new ArrayList<MapObject>();
 		for (int i = 0; i < 30; i++)
 		{
-			Armor item = new Armor("Badass Armor", "Very spiky and awesome", 1, 'E', 100, 100, 100, 100, 100);
-			Monster m = new Monster("Red Dragon", 'D', 2000, 5000, Color.RED, 6, 200, 250, 10000);
-			mapObjects.add(m);
-			mapObjects.add(item);
+			Armor armor = new Armor("Breastplate", "Good protection.", 1, '[', 0, 0, 10, 10, 10);
+			Weapon weapon = new Weapon("Short Sword", "A simple weapon.", 1, '/', 0, 0, 10, 10, 10);
+			Weapon staff = new Weapon("Mage Staff", "A mage's weapon.", 1, '/', 10, 10, 10, 100, 10);
+			Monster dragon = new Monster("Red Dragon", 'D', 2000, 2000, Color.RED, 5, 200, 250, 10000);
+			Monster wraith = new Monster("Wraith", 'W', 500, 500, Color.BLUE, 8, 100, 120, 1000);
+			Monster goblin = new Monster("Goblin", 'g', 10, 10, Color.GREEN, 3, 5, 5, 30);
+			mapObjects.add(dragon);
+			mapObjects.add(wraith);
+			mapObjects.add(goblin);
+			mapObjects.add(armor);
+			mapObjects.add(weapon);
+			mapObjects.add(staff);
 		}
 		player = new Player();
 		map = new Map(FRAME_WIDTH / TILE_SIZE - 2, FRAME_HEIGHT / TILE_SIZE - 2, inventory, mapObjects);

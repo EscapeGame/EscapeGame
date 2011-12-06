@@ -3,6 +3,7 @@ import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 
 
 public abstract class SkillAction implements Action {
@@ -22,13 +23,14 @@ public abstract class SkillAction implements Action {
 	
 	@Override
 	public String execute() {
+
 		try {
 			// check cost, duration and prereqs if source object is player
 			if(source instanceof Player) {
 				Player player = (Player) source;
-				// check mana cost: only spells need mana 
+				// check mana cost
 				if(cost > player.getMana())
-					return "You do not have enough mana to use that spell.";
+					return "You do not have enough mana to use that skill.";
 				else
 					player.setMana(player.getMana() - cost); // subtract mana cost
 				// if duration exists start counter - right now, can only have one effect at a time
@@ -42,28 +44,31 @@ public abstract class SkillAction implements Action {
 				if(minReq > (Integer) getMinStat.invoke(source))
 					return "You need " + minReq + " " + minStat + " to use this skill.";
 			}
-			// execute action: get targetStat's getter and setter methods
-			Method getTargetStat = new PropertyDescriptor(targetStat, target.getClass()).getReadMethod();
-			Method setTargetStat = new PropertyDescriptor(targetStat, target.getClass()).getWriteMethod();
-			if(getTargetStat != null && setTargetStat != null) {
-				int newVal = (Integer) getTargetStat.invoke(target) + amount;
-				if(targetStat.equals("hp") || targetStat.equals("mana")) {
-					int maxVal, minVal;
-					if(targetStat.equals("hp")) {
-						maxVal = (Integer) target.getClass().getMethod("getMaxHp").invoke(target);
-						minVal = 0;
+			// execute action for all targets
+			for(MapObject target : targets) {
+				// get targetStat's getter and setter methods
+				Method getTargetStat = new PropertyDescriptor(targetStat, target.getClass()).getReadMethod();
+				Method setTargetStat = new PropertyDescriptor(targetStat, target.getClass()).getWriteMethod();
+				if(getTargetStat != null && setTargetStat != null) {
+					int newVal = (Integer) getTargetStat.invoke(target) + amount;
+					if(targetStat.equals("hp") || targetStat.equals("mana")) {
+						int maxVal, minVal;
+						if(targetStat.equals("hp")) {
+							maxVal = (Integer) target.getClass().getMethod("getMaxHp").invoke(target);
+							minVal = 0;
+						}
+						else { // (targetStat.equals("mana"))
+							maxVal = (Integer) target.getClass().getMethod("getMaxMana").invoke(target);
+							minVal = 0;
+						}
+						if(newVal > maxVal) // cannot exceed maxval
+							setTargetStat.invoke(target, maxVal);
+						else
+							setTargetStat.invoke(target, newVal);
 					}
-					else { // (targetStat.equals("mana"))
-						maxVal = (Integer) target.getClass().getMethod("getMaxMana").invoke(target);
-						minVal = 0;
-					}
-					if(newVal > maxVal) // cannot exceed maxval
-						setTargetStat.invoke(target, maxVal);
-					else
+					else // any other targetStat but hp or mana
 						setTargetStat.invoke(target, newVal);
 				}
-				else // any other targetStat but hp or mana
-					setTargetStat.invoke(target, newVal);
 			}
 		} catch (IllegalAccessException e) {
 			e.printStackTrace();
@@ -78,6 +83,7 @@ public abstract class SkillAction implements Action {
 		} catch (SecurityException e) {
 			e.printStackTrace();
 		}
+
 		return message;
 	}
 
@@ -96,12 +102,12 @@ public abstract class SkillAction implements Action {
 		this.source = source;
 	}
 
-	public MapObject getTarget() {
-		return target;
+	public ArrayList<MapObject> getTargets() {
+		return targets;
 	}
 
-	public void setTarget(MapObject target) {
-		this.target = target;
+	public void setTargets(ArrayList<MapObject> targets) {
+		this.targets = targets;
 	}
 
 	public String getName() {
@@ -177,7 +183,7 @@ public abstract class SkillAction implements Action {
 	}
 
 	private MapObject source;
-	private MapObject target;
+	private ArrayList<MapObject> targets;
 	
 	private String name;
 	private int amount;

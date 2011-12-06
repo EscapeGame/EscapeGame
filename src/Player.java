@@ -6,6 +6,7 @@ public class Player extends MobileObject {
 	
 	public Player(){
 		gainLevel();
+		gainLevel();
 		skillList = new SkillActionList(this);
 		this.tile = new CharTile('@', Color.RED);
 	}

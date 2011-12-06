@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 
 public class AttackAction extends SkillAction {
 	
@@ -8,9 +10,18 @@ public class AttackAction extends SkillAction {
 	
 	public String execute(MapObject source, MapObject target)
 	{
+		ArrayList<MapObject> targets = new ArrayList<MapObject>();
+		targets.add(target);
+		
 		setSource(source);
-		setTarget(target);
+		setTargets(targets);
 		return super.execute();
 	}
 
+	public String execute(MapObject source, ArrayList<MapObject> targets)
+	{
+		setSource(source);
+		setTargets(targets);
+		return super.execute();
+	}
 }

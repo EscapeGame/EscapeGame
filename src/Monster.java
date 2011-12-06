@@ -29,7 +29,7 @@ public class Monster extends MobileObject
 	public Monster() {}
 	
 	//public Monster(World world, String...)
-	public Monster(String name, char symbol, int hp, int maxHp, Color mcolor, int visionRadius, int attackValue, int defffenseValue, int exp)
+	public Monster(String name, char symbol, int hp, int maxHp, Color mcolor, int visionRadius, int attackValue, int deffenseValue, int exp)
 	{
 		this.name = name;
 		this.symbol = symbol;
@@ -87,7 +87,7 @@ public class Monster extends MobileObject
 	@Override
 	public CharTile getTile() 
 	{
-		return new CharTile('D', Color.RED);
+		return new CharTile(symbol, mcolor);
 	}
 	
 	@Override
