@@ -24,7 +24,6 @@ public class EscapeGameFrame extends JFrame
 	    MapPanel panel = new MapPanel(map, p);
 	    panel.setSize(w, h);
 	    map.addObserver(panel);
-	    this.addKeyListener(new GameController(map, p, this));
 	    
 	    /* Create LayeredPane - allows popup menus to overlay map */
 	    pane = new JLayeredPane();
@@ -45,6 +44,9 @@ public class EscapeGameFrame extends JFrame
 	    this.add(messageBar, BorderLayout.NORTH);
 		this.add(statusBar, BorderLayout.WEST);
 		this.add(pane, BorderLayout.CENTER);
+		
+		// Add controller
+	    this.addKeyListener(new GameController(map, p, this));
 	}
 	
 	public void printMessage(String message)

@@ -12,6 +12,8 @@ public class GameController implements KeyListener  {
 	{
 		this.map = map;
 		this.player = player;
+		this.monster = null;
+		this.menu = null;
 		this.frame = frame;
 		view = new PrecisePermissive();
 		view.visitFieldOfView(map, map.getPlayerLocation().x, 
@@ -38,7 +40,6 @@ public class GameController implements KeyListener  {
 			break;
 		case KeyEvent.VK_DOWN:
 			++y;
-			player.setHp(player.getHp() - 1);
 			break;
 		case KeyEvent.VK_LEFT:
 			--x;
@@ -58,10 +59,11 @@ public class GameController implements KeyListener  {
 			moveVisibleMonsters(x, y, DISTANCE);
 		}
 		else if(map.getMapObject(x, y) instanceof Monster) {
-			Monster monster = (Monster) map.getMapObject(x, y);
-			frame.printMonsterStatus(monster);
-			AttackAction attack = new AttackAction("attack", player.getAttack());
+			monster = (Monster) map.getMapObject(x, y);
+			AttackAction attack = new AttackAction("Slash", -player.getAttack(), "hp", "You slash your weapon, inflicting");
 			frame.printMessage(attack.execute(player, monster));
+			frame.printMonsterStatus(monster);
+			moveVisibleMonsters(x, y, DISTANCE);
 		}
 		else if(map.getMapObject(x, y) instanceof Item) {
 			// TODO
@@ -104,19 +106,36 @@ public class GameController implements KeyListener  {
 
 	@Override
 	public void keyTyped(KeyEvent e) {
+
 		char key = e.getKeyChar();
 		switch(key) {
 		case 's': // Skill menu
 			frame.removeMenu(); // only one menu at a time
-			frame.addMenu(player.getSkillMenu());
+			menu = player.getSkillMenu();
+			frame.addMenu(menu);
 			break;
 		}
+		Object obj = menu.getChoice(); 
+		if(obj != null) {
+			if(obj instanceof AttackAction) {
+				AttackAction action = (AttackAction) obj;
+				action.execute(player, monster);
+			}
+			else if(obj instanceof SelfAction) {
+				System.out.println("hi");
+				SelfAction action = (SelfAction) obj;
+				action.execute(player);
+			}
+		}
+			
 		player.checkStatus();
 	}
 	
 	private PrecisePermissive view;
 	private Map map;
 	private Player player;
+	private Monster monster;
+	private Menu menu;
 	private EscapeGameFrame frame;
 	private static final int DISTANCE = 9;
 }

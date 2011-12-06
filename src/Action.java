@@ -1,7 +1,7 @@
 
 public interface Action {
 	
-	public String execute(Player player, MapObject mapObj);
+	public String execute();
 	
 	@Override
 	public String toString();

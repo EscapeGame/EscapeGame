@@ -3,13 +3,14 @@ import java.util.ArrayList;
 
 public class SkillActionList extends ArrayList<SkillAction> {
 
-	public SkillActionList()
+	public SkillActionList(Player player)
 	{
 		super();
+		this.player = player;
 		
 		// Add default skills
-		add(new AttackAction("Fireball", 200));
-		add(new SelfAction("Healing", 10, "hp", "You have healed"));
+		addAction(SkillActionType.FIREBALL);
+		addAction(SkillActionType.HEALING);
 	}
 	
 	public Menu getMenu() {
@@ -20,6 +21,15 @@ public class SkillActionList extends ArrayList<SkillAction> {
 	public void setMenu(Menu menu) {
 		this.menu = menu;
 	}
+	
+	public void removeAction(SkillActionType type) {
+		remove(type.getAction(player));
+	}
 
+	public void addAction(SkillActionType type) {
+		add(type.getAction(player));
+	}
+	
 	private Menu menu;
+	private Player player;
 }

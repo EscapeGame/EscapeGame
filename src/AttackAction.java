@@ -1,22 +1,16 @@
 
 public class AttackAction extends SkillAction {
 	
-	public AttackAction(String name, int damage)
+	public AttackAction(String name, int amount, String targetStat, String message)
 	{
-		super(name);
-		this.damage = damage;
+		super(name, amount, targetStat, message);
 	}
 	
-	@Override
-	public String execute(Player player, MapObject mapObj)
+	public String execute(MapObject source, MapObject target)
 	{
-		Monster monster = (Monster) mapObj;
-		
-		// from player's stats/equipment, and monster's stats, determine outcome of action
-		monster.setHp(monster.getHp() - damage);
-		return "You hit " + monster.getName() + " for " + damage + "HP!"
-				+ " The " + monster.getName() + " has " + monster.getHp() + "HP remaining.";
+		setSource(source);
+		setTarget(target);
+		return super.execute();
 	}
 
-	private int damage;
 }

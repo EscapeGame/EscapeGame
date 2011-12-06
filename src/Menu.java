@@ -17,6 +17,7 @@ public class Menu extends JPanel implements KeyListener {
 	
 	public Menu(ArrayList<?> choices) 
 	{
+		this.choice = null;
 		this.choices = choices;
 		
 	      setSize(200, 200);
@@ -44,14 +45,8 @@ public class Menu extends JPanel implements KeyListener {
 	@Override
 	public void keyTyped(KeyEvent e) {
 		char key = e.getKeyChar();
-		switch(key) {
-		case '1':
-			setChoice(choices.get(0));
-			break;
-		case '2':
-			setChoice(choices.get(1));
-			break;
-		}
+		int index = Integer.parseInt((new Character(key)).toString());
+		setChoice(choices.get(index));
 	}
 	
 	public Object getChoice() {

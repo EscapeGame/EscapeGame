@@ -6,7 +6,7 @@ public class Player extends MobileObject {
 	
 	public Player(){
 		gainLevel(levels[0]);
-		skillList = new SkillActionList();
+		skillList = new SkillActionList(this);
 	}
 	
 	private int hp = 0;

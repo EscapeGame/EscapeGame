@@ -52,6 +52,7 @@ public class Monster extends MobileObject
 	
 	public void setHp(int hp) {
 		this.hp = hp;
+		setChanged();
 	}
 	
 	//vision
@@ -66,6 +67,7 @@ public class Monster extends MobileObject
 	public void modifyAttackValue(int addDamage)
 		{
 			attackValue += addDamage;
+			setChanged();
 		}
 	
 	//deffense
@@ -73,6 +75,7 @@ public class Monster extends MobileObject
 	public void modifyDeffenseValue(int addDeffense)
 	{
 		deffenseValue += addDeffense;
+		setChanged();
 	}
 	
 	public int getExp(){return exp;}
