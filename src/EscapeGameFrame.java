@@ -31,7 +31,14 @@ public class EscapeGameFrame extends JFrame
 	    pane.setLayout(new FlowLayout(FlowLayout.LEFT));
 	    //pane.add(panel, JLayeredPane.DEFAULT_LAYER);
 	    pane.add(p.getSkillMenu());
+            
 	    pane.setSize(STATUS_WIDTH, h);
+            
+            pane1 = new JLayeredPane();
+            pane1.setLayout(new FlowLayout(FlowLayout.LEFT));        
+            pane1.add(p.getEquipMenu());
+            pane1.setSize(STATUS_WIDTH, h * 2);
+            
 	    
 	    /* Create MessageBar - display status messages */
 	    messageBar = new MessageBar(w, MESSAGE_HEIGHT, "Welcome to EscapeGame!");
@@ -45,6 +52,7 @@ public class EscapeGameFrame extends JFrame
 		this.add(statusBar, BorderLayout.WEST);
 		this.add(panel, BorderLayout.CENTER);
 		this.add(pane, BorderLayout.EAST);
+                this.add(pane1, BorderLayout.SOUTH);
 		
 		// Add controller
 	    this.addKeyListener(new GameController(map, p, this));
@@ -65,6 +73,11 @@ public class EscapeGameFrame extends JFrame
 		this.menu = menu;
 		pane.add(menu, JLayeredPane.POPUP_LAYER);
 	}
+        public void addEquipMenu(EquipMenu equipMenu)
+        {
+            this.equipMenu = equipMenu;
+            pane1.add(equipMenu, JLayeredPane.POPUP_LAYER);
+        }
 	
 	public void removeMenu()
 	{
@@ -82,7 +95,9 @@ public class EscapeGameFrame extends JFrame
 	private MessageBar messageBar;
 	private StatusBar statusBar;
 	private JLayeredPane pane;
+        private JLayeredPane pane1;
 	private Menu menu;
+        private EquipMenu equipMenu;
 	private static final int STATUS_WIDTH = 120;
 	private static final int MESSAGE_HEIGHT = 30;
 	

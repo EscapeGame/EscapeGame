@@ -8,6 +8,7 @@ public class Player extends MobileObject {
 		gainLevel();
 		gainLevel();
 		skillList = new SkillActionList(this);
+                inventory = new Inventory();
 		this.tile = new CharTile('@', Color.RED);
 	}
 	
@@ -212,6 +213,10 @@ public class Player extends MobileObject {
 	public void removeSkill(SkillAction s) {
 		skillList.remove(s);
 	}
+        public EquipMenu getEquipMenu()
+        {
+            return inventory.getMenu();
+        }
 	
 	public Menu getSkillMenu() {
 		return skillList.getMenu();

@@ -1,3 +1,6 @@
+
+import java.util.ArrayList;
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -9,11 +12,13 @@
  */
 public class Inventory 
 {
-    Weapon[] listWeapon;
+    private Weapon[] listWeapon;
     Armor [] listArmor;
     Scroll [] listScroll;
     Food[] listFood;
     Potion[] listPotion;
+    private EquipMenu menu;
+    ArrayList<String>  list = new ArrayList<String>();
     Weapon sword1 = new Weapon("Rusty sword", "", 1, '/', 0, 0, 1, 0, 0);
     Weapon sword2 = new Weapon("Good sword", "", 1, '/', 0, 0, 5, 0, 0);
     Weapon sword3 = new Weapon("Excalabur", "", 1, '/', 0, 0, 5, 0, 0);
@@ -30,6 +35,10 @@ public class Inventory
             listPotion = new Potion[max];
             listFood = new Food[max];
             listScroll = new Scroll[max];
+            add(sword1);
+            list.add("1");
+            list.add("2");
+            menu = new EquipMenu(list);
             
 	}
         public Inventory()
@@ -39,6 +48,10 @@ public class Inventory
             listPotion = new Potion[5];
             listFood = new Food[5];
             listScroll = new Scroll[5];
+            add(sword1);
+            list.add("1" + getWeapon(0).getName());
+            list.add("2");
+            menu = new EquipMenu(list);
             
 	}
         public Weapon[] getListWeapon() 
@@ -529,4 +542,12 @@ public class Inventory
             }
             return result;
         }
+         public EquipMenu getMenu() {
+		menu = new EquipMenu(list);
+		return menu;
+	}
+
+	public void setMenu(EquipMenu menu) {
+		this.menu = menu;
+	}
 }
