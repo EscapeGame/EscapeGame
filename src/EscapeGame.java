@@ -29,6 +29,8 @@ public class EscapeGame
 			Monster dragon = new Monster("Red Dragon", 'D', 2000, 2000, Color.RED, 5, 200, 250, 10000);
 			Monster wraith = new Monster("Wraith", 'W', 500, 500, Color.BLUE, 8, 100, 120, 1000);
 			Monster goblin = new Monster("Goblin", 'g', 10, 10, Color.GREEN, 3, 5, 5, 30);
+			dragon.setItem(armor);
+			goblin.setItem(weapon);
 			mapObjects.add(dragon);
 			mapObjects.add(wraith);
 			mapObjects.add(goblin);

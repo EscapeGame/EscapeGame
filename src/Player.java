@@ -10,6 +10,7 @@ public class Player extends MobileObject {
 		skillList = new SkillActionList(this);
                 inventory = new Inventory();
 		this.tile = new CharTile('@', Color.RED);
+		inventory = new Inventory();
 	}
 	
 	private int hp = 0;
@@ -249,6 +250,16 @@ public class Player extends MobileObject {
 
 	public void setRevertSkill(SelfAction revertSkill) {
 		this.revertSkill = revertSkill;
+	}
+	
+	public void checkStatus()
+	{
+		if(hasChanged()) 
+		{
+			skillList = new SkillActionList(this); // update skills @todo should also incorporate new skills learned
+			notifyObservers();
+			clearChanged();
+		}
 	}
 	
 }
