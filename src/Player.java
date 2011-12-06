@@ -8,9 +8,9 @@ public class Player extends MobileObject {
 		gainLevel();
 		gainLevel();
 		skillList = new SkillActionList(this);
-                inventory = new Inventory();
+                inventory = new Inventory(5);
 		this.tile = new CharTile('@', Color.RED);
-		inventory = new Inventory();
+		//inventory = new Inventory(5);
 	}
 	
 	private int hp = 0;

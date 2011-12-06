@@ -117,7 +117,7 @@ public class EquippableItem implements Item, MapObject
     @Override
     public String toString()
     {
-        return "Name = " + getName() + " number item = " + getNumberItem();
+        return getName();
     }
     
 }

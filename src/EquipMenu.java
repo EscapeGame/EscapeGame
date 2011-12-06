@@ -24,13 +24,13 @@ public class EquipMenu extends JPanel
         setBackground(Color.BLACK);
         setLayout(new GridLayout(10, 1));
         setBorder(BorderFactory.createLineBorder(Color.WHITE));
-        JLabel title = new JLabel("List of item.");
+        JLabel title = new JLabel("Choose an item.");
         title.setOpaque(true);
         add(title);
 
         for(int i = 0; i < choices.size(); i++)
         {
-            JLabel label = new JLabel("[" + (i+1) +  "] " + choices.get(i).toString());
+            JLabel label = new JLabel("[" + (i+6) +  "] " + choices.get(i).toString());
             label.setForeground(Color.WHITE);
             add(label);
         }

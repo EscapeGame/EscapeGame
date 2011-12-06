@@ -19,7 +19,7 @@ public class EscapeGame
 	{
 		Player player;
 		Map map;
-		Inventory inventory = new Inventory();
+		//Inventory inventory = new Inventory();
 		ArrayList<MapObject> mapObjects = new ArrayList<MapObject>();
 		for (int i = 0; i < 30; i++)
 		{
@@ -39,7 +39,7 @@ public class EscapeGame
 			mapObjects.add(staff);
 		}
 		player = new Player();
-		map = new Map(FRAME_WIDTH / TILE_SIZE - 2, FRAME_HEIGHT / TILE_SIZE - 2, inventory, mapObjects);
+		map = new Map(FRAME_WIDTH / TILE_SIZE - 2, FRAME_HEIGHT / TILE_SIZE - 2, mapObjects);
 		//player.setLocation(2, 2);
 		EscapeGameFrame frame = new EscapeGameFrame(FRAME_WIDTH, FRAME_HEIGHT, map, player);
 		frame.setVisible(true);

@@ -30,7 +30,7 @@ public class Map extends Observable implements ILosBoard
 	 * @param w map width
 	 * @param h map height
 	 */
-	public Map(int w, int h, Inventory inv, ArrayList<MapObject> mapObjects)
+	public Map(int w, int h, ArrayList<MapObject> mapObjects)
 	{
 		// initialize everything
 		width = w;
