@@ -64,7 +64,9 @@ public class GameController implements KeyListener  {
     			if(monster.getHp() <= 0) {
     				message += " " + monster.getName() + " dies! You gain " + monster.getExp() + " xp.";
     				player.setExperience(player.getExperience() + monster.getExp());
-    				map.removeObject(x, y);
+    				monster = (Monster) map.removeObject(x, y);
+    				MapObject item = (MapObject) monster.getItem();
+    				map.placeMapObject(x, y, item);
     			}
     			else {
 					attack = (AttackAction) SkillType.MELEE.getAction(monster);
@@ -81,6 +83,7 @@ public class GameController implements KeyListener  {
 				Item item = (Item) map.getMapObject(x, y);
 				player.getInventory().add(item);
 				map.removeObject(x, y);
+				map.setPlayerLocation(new Point2I(x,y));
 			}
 			moveVisibleMonsters(x, y, DISTANCE);
 		}
@@ -93,8 +96,8 @@ public class GameController implements KeyListener  {
 
 	private void moveVisibleMonsters(int x, int y, int distance)
 	{
-		for(int i = x - distance; i < x + distance; i++)
-			for (int j = y - distance; j < y + distance; j++)
+		for(int i = x - distance + 3; i < x + distance - 3; i++)
+			for (int j = y - distance + 3; j < y + distance - 3; j++)
 			{
 				if (map.contains(i, j) && map.isObstacle(i, j) 
 						&& (map.getMapObject(i, j) != null) 
