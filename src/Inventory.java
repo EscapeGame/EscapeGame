@@ -446,4 +446,87 @@ public class Inventory
             return result;
             
         }
+        public String displayWeapon()
+        {
+            String result = "";
+            for (int i = 0; i < listWeapon.length; i++)
+            {
+                if (listWeapon[i] != null)
+                {
+                    result = result + listWeapon[i].toString() + "\n";
+                }
+                else
+                {
+                    continue;
+                }
+                
+            }
+            return result;
+        }
+        public String displayArmor()
+        {
+            String result = "";
+            for (int i = 0; i < listArmor.length; i++)
+            {
+                if (listArmor[i] != null)
+                {
+                    result = result + listArmor[i].toString() + "\n";
+                }
+                else
+                {
+                    continue;
+                }
+                
+            }
+            return result;
+        }
+        public String displayPotion()
+        {
+            String result = "";
+            for (int i = 0; i < listPotion.length; i++)
+            {
+                if (listFood != null)
+                {
+                    result = result + listArmor[i].toString() + "\n";
+                }
+                else
+                {
+                    continue;
+                }
+            }
+            return result;
+            
+        }
+        public String displayScroll()
+        {
+            String result = "";
+            for (int i = 0; i < listScroll.length; i++)
+            {
+                if (listScroll != null)
+                {
+                    result = result + listScroll[i].toString() + "\n";
+                }
+                else
+                {
+                    continue;
+                }
+            }
+            return result;
+        }
+        public String displayFood()
+        {
+            String result = "";
+            for (int i = 0; i < listFood.length; i++)
+            {
+                if (listFood != null)
+                {
+                    result = result + listFood[i].toString() + "\n";
+                }
+                else
+                {
+                    continue;
+                }
+            }
+            return result;
+        }
 }
