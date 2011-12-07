@@ -99,9 +99,10 @@ public enum SkillType {
 				amount = 30;
 			}
 			int duration = 5;
-			return new SelfAction("Power Surge", amount, 5, duration, 10, "strength", "attack", RangeType.SELF, "For " + duration + " turns, your power increases by ");
+			return new SelfAction("Power Surge", amount, 5, duration, 10, "strength", "attackBonus", RangeType.SELF, "For " + duration + " turns, your attack increases by ");
 		}
 	};
+	
 	
 	public abstract SkillAction getAction(MobileObject mobile);
 

@@ -60,22 +60,26 @@ public abstract class SkillAction implements Action {
 					if(targetStat.equals("hp") || targetStat.equals("mana")) {
 						if(targetStat.equals("hp")) {
 							maxVal = (Integer) target.getClass().getMethod("getMaxHp").invoke(target);
-							// Player defense
-							if(target instanceof Player) {
-								Player player = (Player) target;
-								if(amount + player.getDefense() < 0)
-									adjusted = amount + player.getDefense();
-								else
-									adjusted = 0;
+							if(amount < 0) { // Damage skill
+								// Player defense
+								if(target instanceof Player) {
+									Player player = (Player) target;
+									if(amount + player.getDefense() < 0)
+										adjusted = amount + player.getDefense();
+									else
+										adjusted = 0;
+								}
+								// Monster defense
+								else if(target instanceof Monster) {
+									Monster monster = (Monster) target;
+									if(amount + monster.getDeffenseValue() < 0)
+										adjusted = amount + monster.getDeffenseValue();
+									else
+										adjusted = 0;
+								}
 							}
-							// Monster defense
-							else if(target instanceof Monster) {
-								Monster monster = (Monster) target;
-								if(amount + monster.getDeffenseValue() < 0)
-									adjusted = amount + monster.getDeffenseValue();
-								else
-									adjusted = 0;
-							}
+							else // Heal skill, process amount as is
+								adjusted = amount;
 							newVal += adjusted;
 						}
 						else { // (targetStat.equals("mana"))
@@ -108,7 +112,9 @@ public abstract class SkillAction implements Action {
 			e.printStackTrace();
 		}
 
-		message += total + " " + targetStat;
+		message += total;
+		if(!targetStat.equals("attackBonus") && !targetStat.equals("defenseBonus"))
+			message += " " + targetStat;
 		if(targetStat.equals("hp"))
 			message += " damage.";
 		else

@@ -61,22 +61,7 @@ public class GameController implements KeyListener  {
 				attack = (AttackAction) SkillType.MELEE.getAction(player);
 				message += attack.execute(player, monster);
 				frame.printMonsterStatus(monster);
-    			if(monster.getHp() <= 0) {
-    				message += " " + monster.getName() + " dies! You gain " + monster.getExp() + " xp.";
-    				player.setExperience(player.getExperience() + monster.getExp());
-    				monster = (Monster) map.removeObject(x, y);
-    				MapObject item = (MapObject) monster.getItem();
-    				map.placeMapObject(x, y, item);
-    			}
-    			else {
-					attack = (AttackAction) SkillType.MELEE.getAction(monster);
-					message += " " + attack.execute(monster, player);
-					player.checkStatus();
-	    			if(player.getHp() <= 0) {
-	    				message += " You die! Game over.";
-	    				frame.removeKeyListener(this);
-	    			}
-    			}
+    			message += processAttack(monster);
     			frame.printMessage(message);
 			}
 			else if(map.getMapObject(x, y) instanceof Item) {
@@ -153,6 +138,9 @@ public class GameController implements KeyListener  {
 		String input;
 		int num;
 		
+		int x = (int) map.getPlayerLocation().getX();
+		int y = (int) map.getPlayerLocation().getY();
+		
 		// read a character a-z
 		input = player.getInventoryMenu().getIndices();
 		num = input.indexOf(key);
@@ -224,8 +212,6 @@ public class GameController implements KeyListener  {
 					
 					// Affects a range immediately around the player.
 					if(attack.getRange() == RangeType.CLOSE_ALL) { 
-						int x = (int) map.getPlayerLocation().getX();
-						int y = (int) map.getPlayerLocation().getY();
 						String message = "";
 						ArrayList<MapObject> targets = new ArrayList<MapObject>();
 						for(int i = x - 1; i <= x + 1; i++)
@@ -239,12 +225,7 @@ public class GameController implements KeyListener  {
 						message = attack.execute(player, targets);
 						for(MapObject obj : targets) {
 							Monster m = (Monster) obj;
-							m.checkStatus();
-			    			if(m.getHp() <= 0) {
-			    				message += " " + m.getName() + " dies! You gain " + m.getExp() + " xp.";
-			    				player.setExperience(player.getExperience() + m.getExp());
-			    				map.removeObject((int) m.getLocation().getX(), (int) m.getLocation().getY());
-			    			}
+							processAttack(m);
 						}
 						frame.printMessage(message);
 					}
@@ -315,12 +296,7 @@ public class GameController implements KeyListener  {
 								message = attack.execute(player, targets);
 								for(MapObject obj : targets) {
 									Monster m = (Monster) obj;
-									m.checkStatus();
-					    			if(m.getHp() <= 0) {
-					    				message += " " + m.getName() + " dies! You gain " + m.getExp() + " xp.";
-					    				player.setExperience(player.getExperience() + m.getExp());
-					    				map.removeObject((int) m.getLocation().getX(), (int) m.getLocation().getY());
-					    			}
+									message += processAttack(m);
 								}
 								frame.printMessage(message);
 								frame.removeKeyListener(this);  // remove temp key listener
@@ -358,12 +334,7 @@ public class GameController implements KeyListener  {
 									Monster monster = (Monster) map.getMapObject(x, y);
 									monster.addObserver(frame.getStatusBar());
 									message += attack.execute(player, monster);
-									monster.checkStatus();
-					    			if(monster.getHp() <= 0) {
-					    				message += " " + monster.getName() + " dies! You gain " + monster.getExp() + " xp.";
-					    				player.setExperience(player.getExperience() + monster.getExp());
-					    				map.removeObject(x, y);
-					    			}
+									message += processAttack(monster);
 					    			frame.printMessage(message);
 									frame.removeKeyListener(this);
 								}
@@ -379,7 +350,36 @@ public class GameController implements KeyListener  {
 	
 			player.checkStatus();
 		}
-
+		moveVisibleMonsters(x, y, DISTANCE);
+	}
+	
+	public String processAttack(Monster m)
+	{
+		String message = "";
+		int x = (int) m.getLocation().getX();
+		int y = (int) m.getLocation().getY();
+		m.checkStatus();
+		if(m.getHp() <= 0) {
+			message += " " + m.getName() + " dies! You gain " + m.getExp() + " xp.";
+			player.setExperience(player.getExperience() + m.getExp());
+			if(player.isReadyForNextLevel()) {
+				message += " You gain a level!";
+				player.gainLevel();
+			}
+			MapObject item = (MapObject) m.getItem();
+			map.placeMapObject(x, y, item);
+			map.removeObject(x, y);
+		}
+		else {
+			AttackAction attack = (AttackAction) SkillType.MELEE.getAction(m);
+			message += " " + attack.execute(m, player);
+			player.checkStatus();
+			if(player.getHp() <= 0) {
+				message += " You die! Game over.";
+				frame.removeKeyListener(this);
+			}
+		}
+		return message;
 	}
 	
 	private PrecisePermissive view;

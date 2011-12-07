@@ -23,6 +23,10 @@ public class Player extends MobileObject {
 	private int experience = 0;
 	private int mana = 0;
 	private int maxMana = 0;
+	
+	private int attackBonus = 0;
+	private int defenseBonus = 0;
+	
 	private CharTile tile;
 	private Inventory inventory;
 	private SkillList skillList;
@@ -30,33 +34,55 @@ public class Player extends MobileObject {
 	private SelfAction revertSkill = null; // action to revert self-cast skill
         private Weapon currentWeapon;
         private Armor currentArmor;
-	private Level[] levels = {new Level(0, 100, 10, 10, 10, 10, 10, 10), 
-			new Level(100, 20, 20, 20, 20, 20, 20, 20)};
+	private Level[] levels = {new Level(0, 10, 10, 10), 
+			new Level(200, 10, 10, 10),
+			new Level(400, 10, 10, 10),
+			new Level(800, 10, 10, 10),
+			new Level(1600, 10, 10, 10),
+			new Level(3200, 15, 15, 15),
+			new Level(6400, 15, 15, 15),
+			new Level(12800, 15, 15, 15),
+			new Level(25600, 15, 15, 15),
+			new Level(51200, 15, 15, 15),
+			new Level(102400, 20, 20, 20)};
         
 	
-	private void gainLevel(){
-		this.maxHp += levels[level].getMaxHp();
-		this.hp = this.maxHp;
-		this.attack += levels[level].getAttack();
-		this.defense += levels[level].getDefense();
-		this.strength += levels[level].getStrength();
-		this.intelligence += levels[level].getIntelligence();
-		this.dexterity += levels[level].getDexterity();
-		this.maxMana += levels[level].getMaxMana();
-		this.mana = this.maxMana;
-		this.experience = 0;
-		this.level++;
+	public void gainLevel(){
+		if(this.experience >= levels[level].getExperience()) {
+			// Set base stats
+			this.strength += levels[level].getStrength();
+			this.intelligence += levels[level].getIntelligence();
+			this.dexterity += levels[level].getDexterity();
+			
+			// Set derived stats
+			calculateDerivedStats();
+	
+			// autoheal at level gain
+			this.hp = this.maxHp;
+			this.mana = this.maxMana;
+			this.level++;
+		}
 	}
-	/*
-	public void gainLevel(Color col){
-		this.tile.setColor(col);
-		gainLevel();
+
+	private void calculateDerivedStats() {
+		// Set derived stats
+		this.maxHp = strength * 5;
+		this.maxMana = intelligence * 5;
+		this.attack = strength + attackBonus;
+		this.defense = dexterity + defenseBonus;
+		
+		// truncate hp if it is above new max
+		if(this.hp > this.maxHp)
+			this.hp = this.maxHp;
+		if(this.mana > this.maxMana)
+			this.mana = this.maxMana;
 	}
-         * 
-         */
 	
 	public boolean isReadyForNextLevel(){
-		return experience >= levels[level].getExperience(); 
+		if(level < levels.length) {  // only check until max level
+			return experience >= levels[level].getExperience();
+		}
+		return false;
 	}
 
         public Weapon getCurrentWeapon()
@@ -248,37 +274,20 @@ public class Player extends MobileObject {
 		setChanged();
 	}
 	
-
+	// Derived stat has no mutator
 	public int getMaxHp() {
 		return maxHp;
 	}
 
 
-	public void setMaxHp(int maxHp) {
-		this.maxHp = maxHp;
-		setChanged();
-	}
-
-
+	// Derived stat has no mutator
 	public int getAttack() {
 		return attack;
 	}
 
-
-	public void setAttack(int attack) {
-		this.attack = attack;
-		setChanged();
-	}
-
-
+	// Derived stat has no mutator
 	public int getDefense() {
 		return defense;
-	}
-
-
-	public void setDefense(int defense) {
-		this.defense = defense;
-		setChanged();
 	}
 
 
@@ -348,18 +357,29 @@ public class Player extends MobileObject {
 		setChanged();
 	}
 	
-	
-	
+	// Derived stat has no mutator
 	public int getMaxMana() {
 		return maxMana;
 	}
 
 
-	public void setMaxMana(int maxMana) {
-		this.maxMana = maxMana;
+	public int getAttackBonus() {
+		return attackBonus;
+	}
+
+	public void setAttackBonus(int attackBonus) {
+		this.attackBonus = attackBonus;
 		setChanged();
 	}
 
+	public int getDefenseBonus() {
+		return defenseBonus;
+	}
+
+	public void setDefenseBonus(int defenseBonus) {
+		this.defenseBonus = defenseBonus;
+		setChanged();
+	}
 
 	public CharTile getTile() {
 		return tile;
@@ -447,6 +467,7 @@ public class Player extends MobileObject {
 	{
 		if(hasChanged()) 
 		{
+			calculateDerivedStats();
 			skillList = new SkillList(this); // update skills @todo should also incorporate new skills learned
 			
             notifyObservers();
