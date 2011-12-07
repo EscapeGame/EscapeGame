@@ -43,7 +43,7 @@ public class EscapeGameFrame extends JFrame
         pane1.setLayout(new FlowLayout(FlowLayout.LEFT));        
         pane1.add(p.getEquipMenu());
         pane1.setSize(STATUS_WIDTH, h * 2);*/
-	    //inventoryPanel = new InventoryPanel(p);    
+	    inventoryPanel = new InventoryPanel(p);    
 	    
 	    /* Create MessageBar - display status messages */
 	    messageBar = new MessageBar(w, MESSAGE_HEIGHT, "Welcome to EscapeGame!");
@@ -57,7 +57,7 @@ public class EscapeGameFrame extends JFrame
 		this.add(statusBar, BorderLayout.WEST);
 		this.add(panel, BorderLayout.CENTER);
 		this.add(pane, BorderLayout.EAST);
-		//this.add(inventoryPanel, BorderLayout.SOUTH);
+		this.add(inventoryPanel, BorderLayout.SOUTH);
         //this.add(pane1, BorderLayout.SOUTH);
 		
 		// Add controller
