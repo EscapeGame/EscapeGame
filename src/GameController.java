@@ -81,10 +81,11 @@ public class GameController implements KeyListener  {
 			}
 			else if(map.getMapObject(x, y) instanceof Item) {
 				Item item = (Item) map.getMapObject(x, y);
-				boolean addSuc = player.getInventory().add(item);
+                                Inventory inventory = player.getInventory();
+				boolean addSuc = inventory.add(item);
                                 if (addSuc == true)
                                 {
-                                frame.printMessage("You pick " + player.getInventory().getItem(0).getName());
+                                frame.printMessage("You pick " + inventory.getItem(inventory.getlistItem().indexOf(item)).getName());
                                 }
                                 else
                                 {

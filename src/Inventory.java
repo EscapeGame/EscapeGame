@@ -65,48 +65,72 @@ public class Inventory extends Observable
         public boolean add(Item item)
         {
             boolean isAdd = false;
-            for (int i = 0; i < list.size(); i++)
+            System.out.println("Size = " + list.size());
+            if (list.size() == 0)
             {
-               if (list.get(i) == null)
+                System.out.println("Empty");
+                list.add(item);
+                return true;
+            }
+            else
+            {
+                for (int i = 0; i <= list.size(); i++)
                 {
-                    isAdd = true;
-                    list.set(i, item);
-                    return isAdd;
+                   if (list.get(i) == null)
+                    {
+                        System.out.println("Add");
+                        isAdd = true;
+                        list.add(i, item);
+                        return isAdd;
+                    }
+                   if(list.get(i) == item)
+                   {
+                       System.out.println("Increase the number");
+                        isAdd = true;
+                        list.get(i).setNumberItem(list.get(i).getNumberItem() + 1);
+                        return isAdd;
+                   }
+                   else
+                   {
+                       System.out.println("Add success");
+                       isAdd= true;
+                       list.add(item);
+                       return isAdd;
+                   }
                 }
-               else if(list.get(i).getName().equalsIgnoreCase(item.getName()))
-               {
-                    isAdd = true;
-                    list.get(i).setNumberItem(list.get(i).getNumberItem() + 1);
-                    return isAdd;
-               }
-                
             }
             return isAdd;
         }
         public boolean remove(Item item)
         {
             boolean isRemove = false;
-            for (int i = 0; i < list.size(); i++)
+            if (list.isEmpty())
             {
-                if (list.get(i) == null)
+                return false;
+            }
+            else
+            {
+                for (int i = 0; i < list.size(); i++)
                 {
-                    continue;
-                }
-                else if (list.get(i).getName().equalsIgnoreCase(item.getName()))
-                {
-                    isRemove = true;
-                    if (list.get(i).getNumberItem() > 1)
+                    if (list.get(i) == null)
                     {
-
-                        list.get(i).setNumberItem(list.get(i).getNumberItem() -1);
-                        return isRemove;
+                        continue;
                     }
-                    else
+                    else if (list.get(i) == item)
                     {
-                        list.set(i, null);
-                        return isRemove;
-                    }
+                        isRemove = true;
+                        if (list.get(i).getNumberItem() > 1)
+                        {
+                            list.get(i).setNumberItem(list.get(i).getNumberItem() -1);
+                            return isRemove;
+                        }
+                        else
+                        {
+                            list.remove(i);
+                            return isRemove;
+                        }
 
+                    }
                 }
             }
             return isRemove;
