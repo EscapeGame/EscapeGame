@@ -17,7 +17,7 @@ public class SkillActionList extends ArrayList<SkillAction> {
 	}
 	
 	public Menu getMenu() {
-		menu = new Menu(this);
+		menu = new Menu(this, "Choose a skill");
 		return menu;
 	}
 
