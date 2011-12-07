@@ -42,8 +42,9 @@ public class EquipMenu extends JPanel implements Observer
     @Override
     public void update(Observable inventory, Object arg) {
         ArrayList<Item> listItem = (ArrayList<Item>) arg;
-        nInventory.setListItem(listItem);
+        //p.getInventory().setListItem(listItem);
         
     }
     Inventory nInventory;
+    Player p;
 }

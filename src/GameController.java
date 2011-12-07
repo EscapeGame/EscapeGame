@@ -149,6 +149,23 @@ public class GameController implements KeyListener  {
 	public void keyTyped(KeyEvent e) {
 
 		char key = e.getKeyChar();
+                if (key == 'c')
+                {
+                    frame.printMessage("Test");
+                    Weapon test = (Weapon) player.getInventory().getItem(1);
+                    if(!player.isWeaponEquiped())
+                    {
+                        player.setCurrentWeapon(test);
+                        player.equipWeapon();
+                    }
+                    else
+                    {
+                        player.unequipedWeapon();
+                    }
+                    
+                    player.checkStatus();
+                    
+                }
 		try {
 			int index = Integer.parseInt((new Character(key)).toString());
 	
