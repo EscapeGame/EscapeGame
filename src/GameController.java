@@ -176,7 +176,7 @@ public class GameController implements KeyListener  {
                     else if (player.getInventory().getItem(num) instanceof Armor)
                     {
                         Armor armor = (Armor) player.getInventory().getItem(num);
-                        if(!player.isWeaponEquiped())
+                        if(!player.isArmorEquiped())
                         {
                             player.setCurrentArmor(armor);
                             player.equipArmor();
@@ -199,6 +199,7 @@ public class GameController implements KeyListener  {
                     {
                         Potion potion = (Potion) player.getInventory().getItem(num);
                         player.usedPotion(potion);
+                        player.getInventory().remove(potion);
                     }
                     player.checkStatus();
                 }

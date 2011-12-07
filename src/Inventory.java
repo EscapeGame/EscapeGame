@@ -130,11 +130,15 @@ public class Inventory extends Observable
                         if (list.get(i).getNumberItem() > 1)
                         {
                             list.get(i).setNumberItem(list.get(i).getNumberItem() -1);
+                            setChanged();
+                            notifyObservers(list);
                             return isRemove;
                         }
                         else
                         {
                             list.remove(i);
+                            setChanged();
+                            notifyObservers(list);
                             return isRemove;
                         }
 
