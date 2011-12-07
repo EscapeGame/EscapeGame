@@ -151,18 +151,22 @@ public class GameController implements KeyListener  {
 		char key = e.getKeyChar();
                 if (key == 'c')
                 {
-                    frame.printMessage("Test");
-                    Weapon test = (Weapon) player.getInventory().getItem(1);
-                    if(!player.isWeaponEquiped())
+                    int index = convertCharToInt(key);
+                    if (index != -1)
                     {
-                        player.setCurrentWeapon(test);
-                        player.equipWeapon();
-                    }
-                    else
-                    {
-                        player.unequipedWeapon();
-                    }
                     
+                        frame.printMessage("Equip");
+                        Weapon test = (Weapon) player.getInventory().getItem(index);
+                        if(!player.isWeaponEquiped())
+                        {
+                            player.setCurrentWeapon(test);
+                            player.equipWeapon();
+                        }
+                        else
+                        {
+                            player.unequipedWeapon();
+                        }
+                    }
                     player.checkStatus();
                     
                 }
@@ -326,4 +330,10 @@ public class GameController implements KeyListener  {
 	private EscapeGameFrame frame;
 	private boolean choosingDirection = false;
 	private static final int DISTANCE = 9;
+        private String input = "abcdef";
+        public int convertCharToInt(char i)
+        {
+            return input.indexOf(i);
+        }
+        
 }
