@@ -40,6 +40,7 @@ public class Inventory extends Observable
             list.add(sword1);
             list.add(sword2);
             list.add(sword3);
+            list.add(potion1);
             menu = getMenu();
             
 	}
@@ -72,7 +73,7 @@ public class Inventory extends Observable
         {
             boolean isAdd = false;
             System.out.println("Size = " + list.size());
-            if (list.size() == 0)
+            if (list.isEmpty())
             {
                 System.out.println("Empty");
                 list.add(item);
@@ -129,11 +130,15 @@ public class Inventory extends Observable
                         if (list.get(i).getNumberItem() > 1)
                         {
                             list.get(i).setNumberItem(list.get(i).getNumberItem() -1);
+                            setChanged();
+                            notifyObservers(list);
                             return isRemove;
                         }
                         else
                         {
                             list.remove(i);
+                            setChanged();
+                            notifyObservers(list);
                             return isRemove;
                         }
 

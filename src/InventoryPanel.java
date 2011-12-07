@@ -36,9 +36,31 @@ public class InventoryPanel extends JPanel implements Observer
 	{
       super.paintComponent(g);
       Graphics2D g2 = (Graphics2D) g;
-		g2.setColor(Color.WHITE);
-	    g2.drawString("Current armor: ", 200, 20);
-	    g2.drawString("Current weapon: ", 200, 50);
+            g2.setColor(Color.WHITE);
+            if (player.getCurrentArmor() == null && player.getCurrentWeapon() == null)
+            {
+                g2.drawString("Current armor: ", 200, 20);
+                g2.drawString("Current weapon: ", 200, 50);
+            }
+            else if (player.getCurrentArmor() != null && player.getCurrentWeapon() == null)
+            {
+                g2.drawString("Current armor: " + player.getCurrentArmor(), 200, 20);
+                g2.drawString("Current weapon: ", 200, 50);
+            }
+            else if (player.getCurrentArmor() == null && player.getCurrentWeapon() != null)
+            {
+                g2.drawString("Current armor: ", 200, 20);
+                g2.drawString("Current weapon: " + player.getCurrentWeapon(), 200, 50);
+                
+            }
+            else if (player.getCurrentArmor() != null && player.getCurrentWeapon() != null)
+            {
+                g2.drawString("Current armor: " + player.getCurrentArmor(), 200, 20);
+                g2.drawString("Current weapon: " + player.getCurrentWeapon(), 200, 50);
+                
+            }
+            
+	    
 	}
 	
 	public void update(Observable obj, Object o) 
