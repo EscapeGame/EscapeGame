@@ -58,6 +58,10 @@ public class Inventory extends Observable
         {
             return list;
         }
+        public void setListItem(ArrayList<Item> listItem)
+        {
+            list = listItem;
+        }
         public Item getItem(int index)
         {
             return list.get(index);
@@ -70,24 +74,22 @@ public class Inventory extends Observable
             {
                 System.out.println("Empty");
                 list.add(item);
+                setChanged();
+                notifyObservers(list);
                 return true;
             }
             else
             {
                 for (int i = 0; i <= list.size(); i++)
                 {
-                   if (list.get(i) == null)
-                    {
-                        System.out.println("Add");
-                        isAdd = true;
-                        list.add(i, item);
-                        return isAdd;
-                    }
+                   
                    if(list.get(i) == item)
                    {
                        System.out.println("Increase the number");
                         isAdd = true;
                         list.get(i).setNumberItem(list.get(i).getNumberItem() + 1);
+                        setChanged();
+                        notifyObservers(list);
                         return isAdd;
                    }
                    else
@@ -95,12 +97,15 @@ public class Inventory extends Observable
                        System.out.println("Add success");
                        isAdd= true;
                        list.add(item);
+                       setChanged();
+                       notifyObservers(list);
                        return isAdd;
                    }
                 }
             }
             return isAdd;
         }
+        
         public boolean remove(Item item)
         {
             boolean isRemove = false;
