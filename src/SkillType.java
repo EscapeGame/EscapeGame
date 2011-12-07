@@ -4,7 +4,7 @@ public enum SkillType {
 	/*
 	 * Order of parameters:
 	 * Name of skill
-	 * Amount skill will add to target stat (make negative for a damaging skill
+	 * Amount skill will add to target stat (make negative for a damaging skill)
 	 * Mana cost of skill
 	 * Duration of effect in number of turns - only has use for player, for now
 	 * Minimum value of prerequisite stat

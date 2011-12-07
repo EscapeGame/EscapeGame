@@ -86,6 +86,7 @@ public class GameController implements KeyListener  {
                                 if (addSuc == true)
                                 {
                                 frame.printMessage("You pick " + inventory.getItem(inventory.getlistItem().indexOf(item)).getName());
+                                inventory.checkStatus();
                                 }
                                 else
                                 {
@@ -152,11 +153,16 @@ public class GameController implements KeyListener  {
 		try {
 			int index = Integer.parseInt((new Character(key)).toString());
 	
+			// Skills will range from 1-9
 			if(index >= 1 && index <= 9) {
 				SkillAction skill = (SkillAction) player.getSkill(index - 1);
+				
+				// Process attack actions
 				if(skill instanceof AttackAction) {
 					final AttackAction attack = (AttackAction) skill;
-					if(attack.getRange() == RangeType.CLOSE_ALL) { // Affects a range immediately around the player.
+					
+					// Affects a range immediately around the player.
+					if(attack.getRange() == RangeType.CLOSE_ALL) { 
 						int x = (int) map.getPlayerLocation().getX();
 						int y = (int) map.getPlayerLocation().getY();
 						String message = "";
@@ -181,11 +187,16 @@ public class GameController implements KeyListener  {
 						}
 						frame.printMessage(message);
 					}
-					else if(attack.getRange() == RangeType.LINE) {  // Affects monsters in front of player, up to (level) squares away.
+					
+					// Affects monsters in front of player, up to (level) squares away.
+					else if(attack.getRange() == RangeType.LINE) {  
 						frame.printMessage("Choose a direction.");
 						choosingDirection = true;
-						frame.removeKeyListener(this);
+						frame.removeKeyListener(this); // briefly remove master key listener so as not to confuse
+						
+						// Read direction of line attack
 						frame.addKeyListener(new KeyAdapter() {
+							
 							@Override
 							public void keyPressed(KeyEvent e) {
 								int x = (int) map.getPlayerLocation().getX();
@@ -193,7 +204,9 @@ public class GameController implements KeyListener  {
 								int direction = e.getKeyCode();
 								String message = "";
 								ArrayList<MapObject> targets = new ArrayList<MapObject>();
+								
 								switch(direction) {
+									// Attack monsters on line moving upward
 									case KeyEvent.VK_UP: 
 										for(int j = y - 1; j >= y - player.getLevel(); j--)
 											if(map.contains(x, j) && map.isObstacle(x, j) && (map.getMapObject(x, j) != null) 
@@ -203,6 +216,8 @@ public class GameController implements KeyListener  {
 												targets.add(monster);
 											}
 										break;
+										
+									// Attack monsters on line moving downward
 									case KeyEvent.VK_DOWN:
 										for(int j = y + 1; j <= y + player.getLevel(); j++)
 											if(map.contains(x, j) && map.isObstacle(x, j) && (map.getMapObject(x, j) != null) 
@@ -212,6 +227,8 @@ public class GameController implements KeyListener  {
 												targets.add(monster);
 											}
 										break;
+										
+									// Attack monsters on line moving toward left
 									case KeyEvent.VK_LEFT:
 										for(int i = x - 1; i >= x - player.getLevel(); i--)
 											if(map.contains(i, y) && map.isObstacle(i, y) && (map.getMapObject(i, y) != null) 
@@ -221,6 +238,8 @@ public class GameController implements KeyListener  {
 												targets.add(monster);
 											}
 										break;
+										
+									// Attack monsters on line moving toward right
 									case KeyEvent.VK_RIGHT:
 										for(int i = x + 1; i <= x + player.getLevel(); i++)
 											if(map.contains(i, y) && map.isObstacle(i, y) && (map.getMapObject(i, y) != null) 
@@ -243,10 +262,10 @@ public class GameController implements KeyListener  {
 					    			}
 								}
 								frame.printMessage(message);
-								frame.removeKeyListener(this);
+								frame.removeKeyListener(this);  // remove temp key listener
 							}
 						});
-						frame.addKeyListener(this);
+						frame.addKeyListener(this);  // return to master key listener
 					}
 					else { // RangeType.CLOSE_SINGLE - Affects monster in front of player, indicated by direction.
 						frame.printMessage("Choose a direction.");

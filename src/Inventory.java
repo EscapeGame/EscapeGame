@@ -18,7 +18,7 @@ public class Inventory extends Observable
     Scroll [] listScroll;
     Food[] listFood;
     Potion[] listPotion;
-    private EquipMenu menu;
+    private Menu menu;
     private ArrayList<Item>  list;
     Weapon sword1 = new Weapon("Rusty sword", "", 1, '/', 0, 0, 1, 0, 0);
     Weapon sword2 = new Weapon("Good sword", "", 1, '/', 0, 0, 5, 0, 0);
@@ -38,7 +38,7 @@ public class Inventory extends Observable
             listFood = new Food[max];
             listScroll = new Scroll[max];
             list.add(food1);
-            menu = new EquipMenu(list);
+            menu = getMenu();
             
 	}
         /*public Inventory()
@@ -650,12 +650,20 @@ public class Inventory extends Observable
         }
          * 
          */
-         public EquipMenu getMenu() {
-		menu = new EquipMenu(list);
-		return menu;
+    public Menu getMenu() {
+		return new Menu(list, "Items in your inventory.", 'a');
 	}
 
-	public void setMenu(EquipMenu menu) {
+	public void setMenu(Menu menu) {
 		this.menu = menu;
+	}
+	
+	public void checkStatus()
+	{
+		if(hasChanged()) 
+		{
+            notifyObservers();
+			clearChanged();
+		}
 	}
 }

@@ -14,9 +14,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 
-public class Menu extends JPanel implements Observer {
+public class Menu extends JPanel {
 	
-	public Menu(ArrayList<?> choices, String title, String indices) 
+	public Menu(ArrayList<?> choices, String title, char startIndex) 
 	{	
 	      setSize(500, 500);
 	      setBackground(Color.BLACK);
@@ -28,16 +28,10 @@ public class Menu extends JPanel implements Observer {
 	            
 	      for(int i = 0; i < choices.size(); i++)
 	      {
-	    	  JLabel label = new JLabel("[" + (indices.charAt(i)) +  "] " + choices.get(i).toString());
+	    	  JLabel label = new JLabel("[" + (char)(i+startIndex) +  "] " + choices.get(i).toString());
 	    	  label.setForeground(Color.WHITE);
 	    	  add(label);
 	      }
-	}
-
-	@Override
-	public void update(Observable arg0, Object arg1) {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

@@ -18,7 +18,7 @@ public class InventoryPanel extends JPanel implements Observer
 		this.setBackground(Color.BLACK);
 		player = p;
 		inventory = player.getInventory();
-		menu = new EquipMenu(inventory.getlistItem());
+		menu = inventory.getMenu();
 		this.add(menu, BorderLayout.WEST);
 		/*this.add(new JPanel(){
 				public void paintComponent(Graphics g)
@@ -41,15 +41,17 @@ public class InventoryPanel extends JPanel implements Observer
 	    g2.drawString("Current weapon: ", 200, 50);
 	}
 	
-	public void update(Observable arg0, Object arg1) 
+	public void update(Observable obj, Object o) 
 	{
-		inventory = player.getInventory();
+		this.remove(menu);
+		menu = inventory.getMenu();
+		this.add(menu, BorderLayout.WEST);
 		repaint();	
 	}
 
 	private Inventory inventory;
 	private Player player;
-	private EquipMenu menu;
+	private Menu menu;
 	private Armor currArmor;
 	private Weapon currWeapon;
 }

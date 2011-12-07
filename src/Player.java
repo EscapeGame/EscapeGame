@@ -6,7 +6,7 @@ public class Player extends MobileObject {
 	
 	public Player(){
 		gainLevel();
-		skillList = new SkillActionList(this);
+		skillList = new SkillList(this);
                 inventory = new Inventory(5);
 		this.tile = new CharTile('@', Color.RED);
 		//inventory = new Inventory(5);
@@ -25,7 +25,7 @@ public class Player extends MobileObject {
 	private int maxMana = 0;
 	private CharTile tile;
 	private Inventory inventory;
-	private SkillActionList skillList;
+	private SkillList skillList;
 	private int skillCounter = 0; // for self-cast skills with duration
 	private SelfAction revertSkill = null; // action to revert self-cast skill
 	private Level[] levels = {new Level(0, 10, 10, 10, 10, 10, 10, 10), 
@@ -200,12 +200,12 @@ public class Player extends MobileObject {
 	}
 
 
-	public SkillActionList getSkillList() {
+	public SkillList getSkillList() {
 		return skillList;
 	}
 
 
-	public void setSkillList(SkillActionList skillList) {
+	public void setSkillList(SkillList skillList) {
 		this.skillList = skillList;
 	}
 	
@@ -220,7 +220,7 @@ public class Player extends MobileObject {
 	public void removeSkill(SkillAction s) {
 		skillList.remove(s);
 	}
-        public EquipMenu getEquipMenu()
+        public Menu getEquipMenu()
         {
             return inventory.getMenu();
         }
@@ -262,9 +262,9 @@ public class Player extends MobileObject {
 	{
 		if(hasChanged()) 
 		{
-			skillList = new SkillActionList(this); // update skills @todo should also incorporate new skills learned
+			skillList = new SkillList(this); // update skills @todo should also incorporate new skills learned
 			
-                        notifyObservers();
+            notifyObservers();
 			clearChanged();
 		}
 	}
