@@ -18,6 +18,8 @@ public class EscapeGameFrame extends JFrame
 
 	public EscapeGameFrame(int w, int h, Map map, Player p)
 	{
+		player = p;
+		
 		setSize(w + (2 * STATUS_WIDTH), h + MESSAGE_HEIGHT);
 	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    getContentPane().setBackground(Color.BLACK);
@@ -28,16 +30,10 @@ public class EscapeGameFrame extends JFrame
 	    panel.setSize(w, h);
 	    map.addObserver(panel);
 	   
-	    /* Create LayeredPane - allows popup menus to overlay map */
-	    pane = new JLayeredPane();
-	    
-	    //pane = new JPanel();
-	    pane.setBackground(Color.BLACK);
-	    pane.setLayout(new FlowLayout(FlowLayout.LEFT));
-	    //pane.add(panel, JLayeredPane.DEFAULT_LAYER);
-	    pane.add(p.getSkillMenu());
-	    //pane.add(p.getEquipMenu());    
-	    pane.setSize(STATUS_WIDTH, h);
+	    /* Create skill panel */
+	    skillPanel = new SkillPanel(p);    
+	    p.getSkillList().addObserver(skillPanel);
+	    skillPanel.setSize(STATUS_WIDTH, h);
             
         /*pane1 = new JLayeredPane();
         pane1.setLayout(new FlowLayout(FlowLayout.LEFT));        
@@ -60,7 +56,7 @@ public class EscapeGameFrame extends JFrame
 	    this.add(messageBar, BorderLayout.NORTH);
 		this.add(statusBar, BorderLayout.WEST);
 		this.add(panel, BorderLayout.CENTER);
-		this.add(pane, BorderLayout.EAST);
+		this.add(skillPanel, BorderLayout.EAST);
 		this.add(inventoryPanel, BorderLayout.SOUTH);
         //this.add(pane1, BorderLayout.SOUTH);
 		
@@ -78,24 +74,6 @@ public class EscapeGameFrame extends JFrame
 		statusBar.printMonsterStatus(monster);
 	}
 	
-	public void addMenu(Menu menu)
-	{
-		this.menu = menu;
-		pane.add(menu, JLayeredPane.POPUP_LAYER);
-	}
-        public void addEquipMenu(Menu equipMenu)
-        {
-            pane1.add(equipMenu, JLayeredPane.POPUP_LAYER);
-        }
-	
-	public void removeMenu()
-	{
-		if(menu != null) {
-			pane.remove(menu);
-			menu = null;
-		}
-	}
-	
 	public StatusBar getStatusBar()
 	{
 		return statusBar;
@@ -103,10 +81,9 @@ public class EscapeGameFrame extends JFrame
 
 	private MessageBar messageBar;
 	private StatusBar statusBar;
-	private JLayeredPane pane;
-    private JLayeredPane pane1;
-	private Menu menu;
 	private InventoryPanel inventoryPanel;
+	private SkillPanel skillPanel;
+	private Player player;
 	private static final int STATUS_WIDTH = 120;
 	private static final int MESSAGE_HEIGHT = 30;
 	

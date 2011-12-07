@@ -19,7 +19,7 @@ public class SkillList extends Observable {
 	}
 	
 	public Menu getMenu() {
-		menu = new Menu(skills, "Choose a skill", '1');
+		menu = new Menu(skills, "Choose a skill", "1234567890");
 		return menu;
 	}
 
@@ -48,6 +48,15 @@ public class SkillList extends Observable {
 	public void addAction(SkillType type) {
 		skills.add(type.getAction(player));
 		setChanged();
+	}
+	
+	public void checkStatus()
+	{
+		if(hasChanged()) 
+		{
+            notifyObservers();
+			clearChanged();
+		}
 	}
 	
 	private Menu menu;

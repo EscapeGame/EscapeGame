@@ -410,6 +410,10 @@ public class Player extends MobileObject {
 		return skillList.getMenu();
 	}
 
+	public Menu getInventoryMenu() {
+		return inventory.getMenu();
+	}
+	
 	public int getSkillCounter() {
 		return skillCounter;
 	}

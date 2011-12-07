@@ -17,8 +17,7 @@ public class InventoryPanel extends JPanel implements Observer
 		super(new BorderLayout());
 		this.setBackground(Color.BLACK);
 		player = p;
-		inventory = player.getInventory();
-		menu = inventory.getMenu();
+		menu = player.getInventoryMenu();
 		this.add(menu, BorderLayout.WEST);
 		/*this.add(new JPanel(){
 				public void paintComponent(Graphics g)
@@ -66,12 +65,12 @@ public class InventoryPanel extends JPanel implements Observer
 	public void update(Observable obj, Object o) 
 	{
 		this.remove(menu);
-		menu = inventory.getMenu();
+		menu = player.getInventoryMenu();
 		this.add(menu, BorderLayout.WEST);
 		repaint();	
 	}
 
-	private Inventory inventory;
+
 	private Player player;
 	private Menu menu;
 	private Armor currArmor;

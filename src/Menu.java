@@ -16,8 +16,10 @@ import javax.swing.border.Border;
 
 public class Menu extends JPanel {
 	
-	public Menu(ArrayList<?> choices, String title, char startIndex) 
+	public Menu(ArrayList<?> choices, String title, String indices) 
 	{	
+		this.indices = indices;
+		
 	      setSize(500, 500);
 	      setBackground(Color.BLACK);
 	      setLayout(new GridLayout(10, 1));
@@ -28,10 +30,23 @@ public class Menu extends JPanel {
 	            
 	      for(int i = 0; i < choices.size(); i++)
 	      {
-	    	  JLabel label = new JLabel("[" + (char)(i+startIndex) +  "] " + choices.get(i).toString());
+	    	  JLabel label = new JLabel("[" + (char)(indices.charAt(i)) +  "] " + choices.get(i).toString());
 	    	  label.setForeground(Color.WHITE);
 	    	  add(label);
 	      }
 	}
 
+	public String getIndices() {
+		return indices;
+	}
+
+
+
+	public void setIndices(String indices) {
+		this.indices = indices;
+	}
+
+
+
+	private String indices;
 }

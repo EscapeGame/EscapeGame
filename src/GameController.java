@@ -150,66 +150,73 @@ public class GameController implements KeyListener  {
 	public void keyTyped(KeyEvent e) {
 
 		char key = e.getKeyChar();
-                int num = convertCharToInt(key);
-                if (num > -1 && player.getInventory().getlistItem().size() > num)
+		String input;
+		int num;
+		
+		// read a character a-z
+		input = player.getInventoryMenu().getIndices();
+		num = input.indexOf(key);
+		
+        if (num > -1 && player.getInventory().getlistItem().size() > num)
+        {
+            frame.printMessage("Equip");
+            if (player.getInventory().getItem(num) instanceof  Weapon)
+            {
+                Weapon weapon = (Weapon) player.getInventory().getItem(num);
+                if(!player.isWeaponEquiped())
                 {
-                    frame.printMessage("Equip");
-                    if (player.getInventory().getItem(num) instanceof  Weapon)
-                    {
-                        Weapon weapon = (Weapon) player.getInventory().getItem(num);
-                        if(!player.isWeaponEquiped())
-                        {
-                            player.setCurrentWeapon(weapon);
-                            player.equipWeapon();
-                        }
-                        else
-                        {   if(player.getCurrentWeapon() == weapon)
-                                player.unequipedWeapon();
-                            else
-                            {
-                                player.unequipedWeapon();
-                                player.setCurrentWeapon(weapon);
-                                player.equipWeapon();
-                            }
-                        }
-                    }
-                    else if (player.getInventory().getItem(num) instanceof Armor)
-                    {
-                        Armor armor = (Armor) player.getInventory().getItem(num);
-                        if(!player.isArmorEquiped())
-                        {
-                            player.setCurrentArmor(armor);
-                            player.equipArmor();
-                        }
-                        else
-                        {
-                            if (player.getCurrentArmor() == armor)
-                            {
-                                player.unequipedArmor();
-                            }
-                            else
-                            {
-                                player.unequipedArmor();
-                                player.setCurrentArmor(armor);
-                                player.equipArmor();
-                            }
-                        }
-                    }
-                    else if (player.getInventory().getItem(num) instanceof Potion)
-                    {
-                        Potion potion = (Potion) player.getInventory().getItem(num);
-                        player.usedPotion(potion);
-                        player.getInventory().remove(potion);
-                    }
-                    player.checkStatus();
+                    player.setCurrentWeapon(weapon);
+                    player.equipWeapon();
                 }
-                
-		try {
-			int index = Integer.parseInt((new Character(key)).toString());
+                else
+                {   if(player.getCurrentWeapon() == weapon)
+                        player.unequipedWeapon();
+                    else
+                    {
+                        player.unequipedWeapon();
+                        player.setCurrentWeapon(weapon);
+                        player.equipWeapon();
+                    }
+                }
+            }
+            else if (player.getInventory().getItem(num) instanceof Armor)
+            {
+                Armor armor = (Armor) player.getInventory().getItem(num);
+                if(!player.isArmorEquiped())
+                {
+                    player.setCurrentArmor(armor);
+                    player.equipArmor();
+                }
+                else
+                {
+                    if (player.getCurrentArmor() == armor)
+                    {
+                        player.unequipedArmor();
+                    }
+                    else
+                    {
+                        player.unequipedArmor();
+                        player.setCurrentArmor(armor);
+                        player.equipArmor();
+                    }
+                }
+            }
+            else if (player.getInventory().getItem(num) instanceof Potion)
+            {
+                Potion potion = (Potion) player.getInventory().getItem(num);
+                player.usedPotion(potion);
+                player.getInventory().remove(potion);
+            }
+            player.checkStatus();
+        }
+        
+		// read 0-9 (skills)
+		input = player.getSkillMenu().getIndices();
+		num = input.indexOf(key);
+		
+		if(num > -1) {
 	
-			// Skills will range from 1-9
-			if(index >= 1 && index <= 9) {
-				SkillAction skill = (SkillAction) player.getSkill(index - 1);
+				SkillAction skill = (SkillAction) player.getSkill(num);
 				
 				// Process attack actions
 				if(skill instanceof AttackAction) {
@@ -369,11 +376,10 @@ public class GameController implements KeyListener  {
 					SelfAction self = (SelfAction) skill;
 					frame.printMessage(self.execute(player));
 				}
-			}			
+	
 			player.checkStatus();
-		} catch(NumberFormatException nfe) {
-			// do nothing
 		}
+
 	}
 	
 	private PrecisePermissive view;
@@ -382,10 +388,5 @@ public class GameController implements KeyListener  {
 	private EscapeGameFrame frame;
 	private boolean choosingDirection = false;
 	private static final int DISTANCE = 9;
-        private String input = "abcdefghijklmnopqrstuvwxyz";
-        public int convertCharToInt(char i)
-        {
-            return input.indexOf(i);
-        }
         
 }

@@ -658,7 +658,7 @@ public class Inventory extends Observable
          * 
          */
     public Menu getMenu() {
-		return new Menu(list, "Items in your inventory.", 'a');
+		return new Menu(list, "Items in your inventory.", "abcdefghijklmnopqrstuvwxyz");
 	}
 
 	public void setMenu(Menu menu) {
@@ -669,7 +669,7 @@ public class Inventory extends Observable
 	{
 		if(hasChanged()) 
 		{
-            		notifyObservers();
+            notifyObservers();
 			clearChanged();
 		}
 	}
