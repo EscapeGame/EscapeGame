@@ -40,8 +40,10 @@ public class EquipMenu extends JPanel implements Observer
     }
 
     @Override
-    public void update(Observable o, Object arg) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void update(Observable inventory, Object arg) {
+        ArrayList<Item> listItem = (ArrayList<Item>) arg;
+        nInventory.setListItem(listItem);
+        
     }
-    
+    Inventory nInventory;
 }
