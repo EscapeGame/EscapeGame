@@ -30,7 +30,7 @@ public class Player extends MobileObject {
 	private SelfAction revertSkill = null; // action to revert self-cast skill
         private Weapon currentWeapon;
         private Armor currentArmor;
-	private Level[] levels = {new Level(0, 10, 10, 10, 10, 10, 10, 10), 
+	private Level[] levels = {new Level(0, 100, 10, 10, 10, 10, 10, 10), 
 			new Level(100, 20, 20, 20, 20, 20, 20, 20)};
         
 	
@@ -81,24 +81,25 @@ public class Player extends MobileObject {
             {
                 if (currentArmor.getHP() > 0)
                 {
-                    setHp(getMaxHp() + currentArmor.getHP());
+                    setHp(getMaxHp() - currentArmor.getHP());
                 }
                 if (currentArmor.getMana() > 0)
                 {
-                    setMana(getMaxMana() + currentArmor.getMana());
+                    setMana(getMaxMana() - currentArmor.getMana());
                 }
                 if (currentArmor.getStrength() > 0)
                 {
-                    setStrength(getStrength() + currentArmor.getStrength());
+                    setStrength(getStrength() - currentArmor.getStrength());
                 }
                 if  (currentArmor.getDexterity() > 0)
                 {
-                    setDexterity(getDexterity() + currentArmor.getDexterity());
+                    setDexterity(getDexterity() - currentArmor.getDexterity());
                 }
                 if (currentArmor.getIntelligence() > 0)
                 {
-                    setIntelligence(getIntelligence() + currentArmor.getIntelligence());
+                    setIntelligence(getIntelligence() - currentArmor.getIntelligence());
                 }
+                currentArmor = null;
             }
             
         }
@@ -202,6 +203,40 @@ public class Player extends MobileObject {
             }
             return true;
             
+        }
+        public void usedPotion(Potion potion)
+        {
+            if (potion.getHP() >0)
+            {
+                if(getHp() < getMaxHp())
+                {
+                    if (getHp() + potion.getHP() >= getMaxHp())
+                    {
+                        setHp(getMaxHp());
+                    }
+                    else
+                    {
+                        setHp(getHp() + potion.getHP());
+                    }
+                        
+                }
+            }
+            else if (potion.getMana() > 0)
+            {
+                if(getMana() < getMaxMana())
+                {
+                    if (getMana() + potion.getMana() >= getMaxMana())
+                    {
+                       setMana(getMaxMana());
+                    }
+                    else
+                    {
+                        setMana(getMana() + potion.getMana());
+                    }
+                        
+                }
+                
+            }
         }
 	public int getHp() {
 		return hp;
