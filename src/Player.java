@@ -28,8 +28,11 @@ public class Player extends MobileObject {
 	private SkillList skillList;
 	private int skillCounter = 0; // for self-cast skills with duration
 	private SelfAction revertSkill = null; // action to revert self-cast skill
+        private Weapon currentWeapon;
+        private Armor currentArmor;
 	private Level[] levels = {new Level(0, 10, 10, 10, 10, 10, 10, 10), 
 			new Level(100, 20, 20, 20, 20, 20, 20, 20)};
+        
 	
 	private void gainLevel(){
 		this.maxHp += levels[level].getMaxHp();
@@ -56,7 +59,150 @@ public class Player extends MobileObject {
 		return experience >= levels[level].getExperience(); 
 	}
 
-
+        public Weapon getCurrentWeapon()
+        {
+            return currentWeapon;
+        }
+        public Armor getCurrentArmor()
+        {
+            return currentArmor;
+        }
+        public void setCurrentWeapon(Weapon weapon)
+        {
+            currentWeapon = weapon;
+        }
+        public void setCurrentArmor(Armor armor)
+        {
+            currentArmor = armor;
+        }
+        public void unequipedArmor()
+        {
+            if(currentArmor != null)
+            {
+                if (currentArmor.getHP() > 0)
+                {
+                    setHp(getMaxHp() + currentArmor.getHP());
+                }
+                if (currentArmor.getMana() > 0)
+                {
+                    setMana(getMaxMana() + currentArmor.getMana());
+                }
+                if (currentArmor.getStrength() > 0)
+                {
+                    setStrength(getStrength() + currentArmor.getStrength());
+                }
+                if  (currentArmor.getDexterity() > 0)
+                {
+                    setDexterity(getDexterity() + currentArmor.getDexterity());
+                }
+                if (currentArmor.getIntelligence() > 0)
+                {
+                    setIntelligence(getIntelligence() + currentArmor.getIntelligence());
+                }
+            }
+            
+        }
+        public void unequipedWeapon()
+        {
+            if(currentWeapon != null)
+            {
+                if (currentWeapon.getHP() > 0)
+                {
+                    setHp(getMaxHp() - currentWeapon.getHP());
+                }
+                if (currentWeapon.getMana() > 0)
+                {
+                    setMana(getMaxMana() - currentWeapon.getMana());
+                }
+                if (currentWeapon.getStrength() > 0)
+                {
+                    setStrength(getStrength() - currentWeapon.getStrength());
+                }
+                if  (currentWeapon.getDexterity() > 0)
+                {
+                    setDexterity(getDexterity() - currentWeapon.getDexterity());
+                }
+                if (currentWeapon.getIntelligence() > 0)
+                {
+                    setIntelligence(getIntelligence() - currentWeapon.getIntelligence());
+                }
+                currentWeapon = null;
+            }
+            
+            
+        }
+        public void equipWeapon()
+        {
+            if(currentWeapon != null)
+            {
+                if (currentWeapon.getHP() > 0)
+                {
+                    setHp(getMaxHp() + currentWeapon.getHP());
+                }
+                if (currentWeapon.getMana() > 0)
+                {
+                    setMana(getMaxMana() + currentWeapon.getMana());
+                }
+                if (currentWeapon.getStrength() > 0)
+                {
+                    setStrength(getStrength() + currentWeapon.getStrength());
+                }
+                if  (currentWeapon.getDexterity() > 0)
+                {
+                    setDexterity(getDexterity() + currentWeapon.getDexterity());
+                }
+                if (currentWeapon.getIntelligence() > 0)
+                {
+                    setIntelligence(getIntelligence() + currentWeapon.getIntelligence());
+                }
+            }
+            
+        }
+        public void equipArmor()
+        {
+            if(currentArmor != null)
+            {
+                if (currentArmor.getHP() > 0)
+                {
+                    setHp(getMaxHp() + currentArmor.getHP());
+                }
+                if (currentArmor.getMana() > 0)
+                {
+                    setMana(getMaxMana() + currentArmor.getMana());
+                }
+                if (currentArmor.getStrength() > 0)
+                {
+                    setStrength(getStrength() + currentArmor.getStrength());
+                }
+                if  (currentArmor.getDexterity() > 0)
+                {
+                    setDexterity(getDexterity() + currentArmor.getDexterity());
+                }
+                if (currentArmor.getIntelligence() > 0)
+                {
+                    setIntelligence(getIntelligence() + currentArmor.getIntelligence());
+                }
+            }
+            
+        }
+        public boolean isWeaponEquiped()
+        {
+            if (currentWeapon == null)
+            {
+                return false;
+            }
+            return true;
+            
+        }
+        public boolean isArmorEquiped()
+        {
+            if (currentArmor == null)
+            {
+                return false;
+            }
+            return true;
+            
+        }
 	public int getHp() {
 		return hp;
 	}

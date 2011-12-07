@@ -52,6 +52,8 @@ public class EscapeGameFrame extends JFrame
 	    /* Create StatusBar - display player (and monster, if encountered) stats */
 	    statusBar = new StatusBar(STATUS_WIDTH, h, p);
 	    p.addObserver(statusBar);
+            equipMenu = new EquipMenu(p.getInventory().getlistItem());
+            p.getInventory().addObserver(equipMenu);
 		
 	    // Add panel and bars to frame's BorderLayout
 	    this.add(messageBar, BorderLayout.NORTH);

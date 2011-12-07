@@ -20,9 +20,9 @@ public class Inventory extends Observable
     Potion[] listPotion;
     private Menu menu;
     private ArrayList<Item>  list;
-    Weapon sword1 = new Weapon("Rusty sword", "", 1, '/', 0, 0, 1, 0, 0);
-    Weapon sword2 = new Weapon("Good sword", "", 1, '/', 0, 0, 5, 0, 0);
-    Weapon sword3 = new Weapon("Excalabur", "", 1, '/', 0, 0, 5, 0, 0);
+    Weapon sword1 = new Weapon("Rusty sword", "", 1, '/', 0, 0, 5, 5, 5);
+    Weapon sword2 = new Weapon("Good sword", "", 1, '/', 0, 0, 50, 50, 50);
+    Weapon sword3 = new Weapon("Excalabur", "", 1, '/', 0, 0, 100, 100, 100);
     Potion potion1 = new Potion("Hp potion", "Heal 50 Hp", 0, ',', 50, 0);
     Potion potion2 = new Potion("Mana potion", "Heal 50 Mana", 0,',', 0, 50);
     Food food1 = new Food("Apple of Intelligence", "Increase your intelligence", 0, ',', 0, 0, 0, 1, 0);
@@ -37,7 +37,9 @@ public class Inventory extends Observable
             listPotion = new Potion[max];
             listFood = new Food[max];
             listScroll = new Scroll[max];
-            list.add(food1);
+            list.add(sword1);
+            list.add(sword2);
+            list.add(sword3);
             menu = getMenu();
             
 	}
@@ -662,7 +664,7 @@ public class Inventory extends Observable
 	{
 		if(hasChanged()) 
 		{
-            notifyObservers();
+            		notifyObservers();
 			clearChanged();
 		}
 	}
