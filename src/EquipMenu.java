@@ -26,13 +26,14 @@ public class EquipMenu extends JPanel implements Observer
         setBackground(Color.BLACK);
         setLayout(new GridLayout(10, 1));
         setBorder(BorderFactory.createLineBorder(Color.WHITE));
-        JLabel title = new JLabel("Choose an item.");
+        JLabel title = new JLabel("Items in your inventory.");
         title.setOpaque(true);
         add(title);
 
+        char c = 'a';
         for(int i = 0; i < choices.size(); i++)
         {
-            JLabel label = new JLabel("[" + (i+6) +  "] " + choices.get(i).toString());
+            JLabel label = new JLabel("[" + ((char)(i+c)) +  "] " + choices.get(i).toString());
             label.setForeground(Color.WHITE);
             add(label);
         }
