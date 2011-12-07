@@ -44,11 +44,13 @@ public class Player extends MobileObject {
 		this.experience = 0;
 		this.level++;
 	}
-	
+	/*
 	public void gainLevel(Color col){
 		this.tile.setColor(col);
 		gainLevel();
 	}
+         * 
+         */
 	
 	public boolean isReadyForNextLevel(){
 		return experience >= levels[level].getExperience(); 
@@ -261,9 +263,11 @@ public class Player extends MobileObject {
 		if(hasChanged()) 
 		{
 			skillList = new SkillActionList(this); // update skills @todo should also incorporate new skills learned
-			notifyObservers();
+			
+                        notifyObservers();
 			clearChanged();
 		}
 	}
+        
 	
 }

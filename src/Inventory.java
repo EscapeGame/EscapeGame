@@ -1,5 +1,6 @@
 
 import java.util.ArrayList;
+import java.util.Observable;
 
 /*
  * To change this template, choose Tools | Templates
@@ -10,7 +11,7 @@ import java.util.ArrayList;
  *
  * @author Thanh Au
  */
-public class Inventory 
+public class Inventory extends Observable
 {
     private Weapon[] listWeapon;
     Armor [] listArmor;
@@ -18,7 +19,7 @@ public class Inventory
     Food[] listFood;
     Potion[] listPotion;
     private EquipMenu menu;
-    ArrayList<Item>  list = new ArrayList<Item>();
+    private ArrayList<Item>  list;
     Weapon sword1 = new Weapon("Rusty sword", "", 1, '/', 0, 0, 1, 0, 0);
     Weapon sword2 = new Weapon("Good sword", "", 1, '/', 0, 0, 5, 0, 0);
     Weapon sword3 = new Weapon("Excalabur", "", 1, '/', 0, 0, 5, 0, 0);
@@ -30,14 +31,13 @@ public class Inventory
     
         public Inventory(int max)
         {
+            list = new ArrayList<Item>(max);
             listWeapon = new Weapon[max];
             listArmor = new Armor[max];
             listPotion = new Potion[max];
             listFood = new Food[max];
             listScroll = new Scroll[max];
-            add(sword1);
-            list.add(sword1);
-            list.add(sword2);
+            list.add(food1);
             menu = new EquipMenu(list);
             
 	}
@@ -111,6 +111,23 @@ public class Inventory
             }
             return isRemove;
         }
+        public boolean isFull(){
+		int size = 0;
+		for (int i = 0; i < list.size(); i++){
+			if (list.get(i) != null)
+				size++;
+		}
+		return size == list.size();
+	}
+	
+	public boolean contains(Item item) {
+		for (Item i : list){
+			if (i == item)
+                            return true;
+		}
+		return false;
+	}
+        /*
         public Weapon[] getListWeapon() 
         {
             return listWeapon; 
@@ -152,7 +169,7 @@ public class Inventory
             return listPotion[i];
         }
 	
-	/*
+	
 	public boolean add (Item item)
         {
             boolean isAdd = false;
@@ -455,6 +472,7 @@ public class Inventory
 	
          * 
          */
+        /*
         public String toString()
         {
             String result = "";
@@ -601,6 +619,8 @@ public class Inventory
             }
             return result;
         }
+         * 
+         */
          public EquipMenu getMenu() {
 		menu = new EquipMenu(list);
 		return menu;

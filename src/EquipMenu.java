@@ -2,6 +2,8 @@
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -15,7 +17,7 @@ import javax.swing.JPanel;
  *
  * @author Thanh Au
  */
-public class EquipMenu extends JPanel
+public class EquipMenu extends JPanel implements Observer
 {
     public EquipMenu (ArrayList<?> choices)
     {
@@ -34,6 +36,11 @@ public class EquipMenu extends JPanel
             label.setForeground(Color.WHITE);
             add(label);
         }
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
     
 }

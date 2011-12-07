@@ -94,7 +94,7 @@ public class ConsumableItem implements Item,MapObject
     @Override
     public String toString()
     {
-        return "Name = " + getName() + " number item = " + getNumberItem();
+        return getName();
     }
     public CharTile getTile() {
 	return new CharTile(symbol, Color.PINK);
