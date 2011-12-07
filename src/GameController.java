@@ -53,6 +53,7 @@ public class GameController implements KeyListener  {
 				//visitFieldOfView(map, x, y, 9);
 				view.visitFieldOfView(map, x, y, DISTANCE);
 				map.setPlayerLocation(new Point2I(x, y));
+				moveVisibleMonsters(x, y, DISTANCE);
 			}
 			else if(map.getMapObject(x, y) instanceof Monster) {
 				String message = "";
@@ -79,8 +80,8 @@ public class GameController implements KeyListener  {
                                 }
 				map.removeObject(x, y);
 				map.setPlayerLocation(new Point2I(x,y));
+				moveVisibleMonsters(x, y, DISTANCE);
 			}
-			moveVisibleMonsters(x, y, DISTANCE);
 		}
 		else {
 			choosingDirection = false; // reset
@@ -350,7 +351,6 @@ public class GameController implements KeyListener  {
 	
 			player.checkStatus();
 		}
-		moveVisibleMonsters(x, y, DISTANCE);
 	}
 	
 	public String processAttack(Monster m)
@@ -362,10 +362,15 @@ public class GameController implements KeyListener  {
 		if(m.getHp() <= 0) {
 			message += " " + m.getName() + " dies! You gain " + m.getExp() + " xp.";
 			player.setExperience(player.getExperience() + m.getExp());
-			if(player.isReadyForNextLevel()) {
-				message += " You gain a level!";
+			int levelCount = 0;
+			while(player.isReadyForNextLevel()) {
+				levelCount++;
 				player.gainLevel();
 			}
+			if(levelCount > 1)
+				message += " Wow! You gain " + levelCount + "levels.";
+			else if(levelCount == 1)
+				message += " You gain a level!";
 			MapObject item = (MapObject) m.getItem();
 			map.placeMapObject(x, y, item);
 			map.removeObject(x, y);
@@ -379,6 +384,7 @@ public class GameController implements KeyListener  {
 				frame.removeKeyListener(this);
 			}
 		}
+		moveVisibleMonsters(x, y, DISTANCE);
 		return message;
 	}
 	
