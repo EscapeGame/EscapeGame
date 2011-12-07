@@ -15,7 +15,10 @@ import javax.swing.border.Border;
 // Popup menu.
 public class Menu extends JPanel {
 	
-	public Menu(ArrayList<?> choices) 
+	private final static String CHOICE = "1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	private int current = 0;
+	
+	public Menu(ArrayList<?> choices, String title) 
 	{
 		/*this.choice = null;
 		this.choices = choices;*/
@@ -24,15 +27,16 @@ public class Menu extends JPanel {
 	      setBackground(Color.BLACK);
 	      setLayout(new GridLayout(10, 1));
 	      setBorder(BorderFactory.createLineBorder(Color.WHITE));
-	      JLabel title = new JLabel("Choose a skill.");
-	      title.setOpaque(true);
-	      add(title);
+	      JLabel header = new JLabel(title);
+	      header.setOpaque(true);
+	      add(header);
 	      
 	      for(int i = 0; i < choices.size(); i++)
 	      {
-	    	  JLabel label = new JLabel("[" + (i+1) +  "] " + choices.get(i).toString());
+	    	  JLabel label = new JLabel("[" + (CHOICE.charAt(i)) +  "] " + choices.get(i).toString());
 	    	  label.setForeground(Color.WHITE);
 	    	  add(label);
+	    	  current = i;
 	      }
 	}
 
