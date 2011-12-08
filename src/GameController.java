@@ -74,10 +74,7 @@ public class GameController implements KeyListener  {
                                 frame.printMessage("You pick " + inventory.getItem(inventory.getlistItem().indexOf(item)).getName());
                                 inventory.checkStatus();
                                 }
-                                else
-                                {
-                                frame.printMessage("Your method don't work");
-                                }
+                                
 				map.removeObject(x, y);
 				map.setPlayerLocation(new Point2I(x,y));
 				moveVisibleMonsters(x, y, DISTANCE);
