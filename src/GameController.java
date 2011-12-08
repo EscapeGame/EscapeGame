@@ -427,9 +427,9 @@ public class GameController implements KeyListener  {
 				message += " Wow! You gain " + levelCount + " levels.";
 			else if(levelCount == 1)
 				message += " You gain a level!";
+			m = (Monster) map.removeObject(x, y);
 			MapObject item = (MapObject) m.getItem();
 			map.placeMapObject(x, y, item);
-			map.removeObject(x, y);
 		}
 		else {
 			AttackAction attack = (AttackAction) SkillType.MELEE.getAction(m);
