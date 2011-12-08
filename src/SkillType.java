@@ -336,10 +336,10 @@ public enum SkillType {
 		private String name = "Defensive Stance";
 		private int amount;
 		private int cost = 5;
-		private int duration = 5;
+		private int duration = 10;
 		private int minReq = 10;
 		private String minStat = "dexterity";
-		private String targetStat = "attackBonus";
+		private String targetStat = "defenseBonus";
 		private RangeType range = RangeType.SELF;
 		private String message = "For " + duration + " turns, your defense increases by ";
 		
@@ -365,7 +365,7 @@ public enum SkillType {
 		private String name = "Offensive Stance";
 		private int amount;
 		private int cost = 5;
-		private int duration = 5;
+		private int duration = 10;
 		private int minReq = 10;
 		private String minStat = "strength";
 		private String targetStat = "attackBonus";
