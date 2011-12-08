@@ -21,8 +21,8 @@ public class Inventory extends Observable
     private Menu menu;
     private ArrayList<Item>  list;
     Weapon sword1 = new Weapon("Rusty sword", "", 1, '|', 0, 0, 10, 0, 5);
-    Potion potion1 = new Potion("Hp potion", "Heal 50 Hp", 0, ',', 50, 0);
-    Potion potion2 = new Potion("Mana potion", "Heal 50 Mana", 0,',', 0, 50);
+    Potion potion1 = new Potion("Hp potion", "Heal 50 Hp", 1, ',', 50, 0);
+    Potion potion2 = new Potion("Mana potion", "Heal 50 Mana", 1,',', 0, 50);
 	Scroll scroll = new Scroll("Skill scroll", "Read to learn a random skill.", 1, '?', SkillType.random());
     Weapon currentWeapon;
     Armor currentArmor;
@@ -81,17 +81,21 @@ public class Inventory extends Observable
             }
             else
             {
-                for (int i = 0; i <= list.size(); i++)
+            	int index = -1;
+                for (int i = 0; i < list.size(); i++)
                 {
+                	if (item.getName().equals(list.get(i).getName()))
+                		index = i;
+                }
                    
-                   if(list.contains(item))
+                   if(index != -1)
                    {
                        //System.out.println("Increase the number");
                         isAdd = true;
-                        list.get(i).setNumberItem(list.get(i).getNumberItem() + 1);
+                        list.get(index).setNumberItem(list.get(index).getNumberItem() + 1);
                         setChanged();
                         notifyObservers(list);
-                        return isAdd;
+                        //return isAdd;
                    }
                    else
                    {
@@ -100,9 +104,9 @@ public class Inventory extends Observable
                        list.add(item);
                        setChanged();
                        notifyObservers(list);
-                       return isAdd;
+                       //return isAdd;
                    }
-                }
+                
             }
             return isAdd;
         }

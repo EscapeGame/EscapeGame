@@ -68,9 +68,9 @@ public class EscapeGame
     			Weapon weapon3 = new Weapon("Quickblade", "Fast striking, defensive blade.", 1, '\\', 0, 0, 30, 0, 60);
             		Monster dragon = new Monster("Red Dragon", 'D', 2000, 2000, Color.RED, 6, 200, 250, 10000);
             		Potion potion4 = new Potion("Elixir", "Heal 500 hp and mana",1, '^', 500, 500);
-        			Food food1 = new Food("Apple of Intelligence", "Increase your intelligence", 0, '%', 0, 0, 0, 5, 0);
-        			Food food2 = new Food("Meat of Power", "Increase your strength", 0, '%', 0, 0, 5, 0, 0);
-        			Food food3 = new Food("Milk of Speed", "Increase your dexterity", 0, '%', 0, 0, 0, 0, 5);
+        			Food food1 = new Food("Apple of Intelligence", "Increase your intelligence", 1, '%', 0, 0, 0, 5, 0);
+        			Food food2 = new Food("Meat of Power", "Increase your strength", 1, '%', 0, 0, 5, 0, 0);
+        			Food food3 = new Food("Milk of Speed", "Increase your dexterity", 1, '%', 0, 0, 0, 0, 5);
             		dragon.setItem(potion4);
             		mapObjects.add(dragon);
             		mapObjects.add(potion4);
@@ -83,7 +83,7 @@ public class EscapeGame
         	}
         	Armor armor1 = new Armor("Invincible Armor", "Ultima Armor", 1, '*', 0, 0, 0, 0, 1000);
         	Weapon sword3 = new Weapon("Excalibur", "", 1, '!', 0, 0, 1000, 100, 100);
-			Food food4 = new Food("Ambrosia", "Increase all stats", 0, '&', 0, 0, 50, 50, 50);
+			Food food4 = new Food("Ambrosia", "Increase all stats", 1, '&', 0, 0, 50, 50, 50);
         	mapObjects.add(armor1);
         	mapObjects.add(sword3);
         	mapObjects.add(food4);

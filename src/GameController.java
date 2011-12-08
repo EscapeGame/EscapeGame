@@ -75,7 +75,7 @@ public class GameController implements KeyListener  {
                                     boolean addSuc = inventory.add(item);
                                     if (addSuc == true)
                                     {
-                                    frame.printMessage("You pick " + inventory.getItem(inventory.getlistItem().indexOf(item)).getName());
+                                    frame.printMessage("You pick " + item.getName());
                                     inventory.checkStatus();
                                     }
                                 
