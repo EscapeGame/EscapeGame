@@ -66,7 +66,7 @@ public class EscapeGame
                 {
                     Monster wraith = new Monster("Wraith", 'W', 500, 500, Color.BLUE, 8, 100, 120, 1000);
                     Weapon sword4 = new Weapon("Anduril", "Sword for king", 1, '*', 0, 0, 120, 0, 0);
-                    Armor armor4 = new Armor("Myrith", "Great Armor", 1, '*', 0, 0, 0, 0, 100);
+                    Armor armor4 = new Armor("Myrith", "Great Armor", 1, '*', 0, 0, 0, 0, 50);
                     wraith.setItem(armor4);
                     mapObjects.add(wraith);
                     mapObjects.add(sword4);
