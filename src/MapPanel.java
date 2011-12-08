@@ -9,10 +9,19 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.event.ChangeEvent;
 
-
+/**
+ * Class that displays map
+ * @author Tatiana Braginets
+ *
+ */
 public class MapPanel extends JPanel implements Observer
 {
 
+	/**
+	 * Constructs a panel
+	 * @param map map to display
+	 * @param p player object
+	 */
 	public MapPanel(Map map, Player p)
 	{
 		super(new GridBagLayout());
@@ -22,6 +31,9 @@ public class MapPanel extends JPanel implements Observer
 	    //requestFocus(true);
 	}
 	
+	/**
+	 * Paints panel
+	 */
 	public void paintComponent(Graphics g)
 	{
       super.paintComponent(g);
@@ -57,15 +69,16 @@ public class MapPanel extends JPanel implements Observer
       }
 	}
 	
+	/**
+	 * Updates panel if map changes
+	 */
 	public void update(Observable map, Object o) 
 	{
-		
 		repaint();
 	}
 	
 	private Map map;
-	Player player;
-	//GameController controller;
+	private Player player;
 	public static final CharTile floor = new CharTile('.', Color.WHITE);
 	public static final CharTile wall = new CharTile('#', Color.WHITE);
 
