@@ -30,7 +30,7 @@ public class Map extends Observable implements ILosBoard
 	 * @param w map width
 	 * @param h map height
 	 */
-	public Map(int w, int h, ArrayList<MapObject> mapObjects)
+	public Map(int w, int h, ArrayList<MapObject> mapObjects, Player p)
 	{
 		// initialize everything
 		width = w;
@@ -44,7 +44,7 @@ public class Map extends Observable implements ILosBoard
 		for (int i = 0; i < width; i++)
 			for (int j = 0; j < height; j++)
 			{
-				visited[i][j] = true;
+				visited[i][j] = false;
 				obstacles[i][j] = false;
 			}
 		
@@ -74,16 +74,36 @@ public class Map extends Observable implements ILosBoard
 		{
 			int x = rand.nextInt(width);
 			int y = rand.nextInt(height);
-			if (!obstacles[x][y] && (x > pLocation.x + 15 && y > pLocation.y + 15))
+			MapObject o = randomizedObjects.get(i);
+			if (obstacles[x][y] || (x < pLocation.x + width / 7  && y < pLocation.y + height / 7))
 			{
-				MapObject o = randomizedObjects.get(i);
+				i--;
+				
+			}
+			else if (!obstacles[x][y] && (x < width / 7 + width / 3 && y > height / 5)
+					&& o instanceof Monster && ((Monster)o).getHp() > p.getHp())
+			{
+				i--;
+			}
+                        //Test 
+                        else if(!obstacles[x][y] && (x < width / 7 + width / 3 && y > height / 5)
+					&& o instanceof Weapon && ((Weapon)o).getStrength() > p.getStrength())
+                        {
+                                i--;
+                        }
+                        else if(!obstacles[x][y] && (x < width / 7 + width / 3 && y > height / 5)
+					&& o instanceof Armor && ((Armor)o).getDexterity() > p.getDexterity())
+                        {
+                                i--;
+                        }
+			else
+			{
 				objectsLocations.put(new Point2I(x, y), o);
 				if (o instanceof MobileObject)
 					((MobileObject) o).setLocation(x, y);
 				obstacles[x][y] = true;
 			}
-			else
-				i--;
+				
 		}
 		
 	}
@@ -227,8 +247,8 @@ public class Map extends Observable implements ILosBoard
 	private void createWalls()
 	{
 		// frame
-		verticalWall(new Point2I(0, 0), height); // left
-		horizontalWall(new Point2I(0, 1), width); // top
+		verticalWall(new Point2I(0, 0), height - 1); // left
+		horizontalWall(new Point2I(0, 1), width - 1); // top
 		verticalWall(new Point2I(width - 1, 0), height); // right
 		horizontalWall(new Point2I(0, height - 1), width - 5); // bottom
 		//verticalWall();
@@ -237,18 +257,19 @@ public class Map extends Observable implements ILosBoard
 			{
 				visit(i, j);
 			}
+		//System.out.print();
+		verticalWall(new Point2I(width / 7, 0), height / 5);
+		horizontalWall(new Point2I(width / 7, height / 5), width / 3);
+		verticalWall(new Point2I(width / 7 + width / 3, height / 5), 2 * height / 3);
+		horizontalWall(new Point2I(width / 7, height / 5 +  2 * height / 3), width / 3);
 		
-		verticalWall(new Point2I(5, 0), 10);
-		horizontalWall(new Point2I(5, 10), 30);
-		verticalWall(new Point2I(35, 10), 40);
-		horizontalWall(new Point2I(5, 50), 30);
+		horizontalWall(new Point2I(0, height / 2), width / 3);
+		//horizontalWall(new Point2I(5, 40), 30);
+		horizontalWall(new Point2I(width / 5, height / 8), 2 * width / 3);
 		
-		horizontalWall(new Point2I(0, 30), 25);
-		horizontalWall(new Point2I(5, 40), 30);
+		verticalWall(new Point2I(2 * width / 3, height / 8), height - height / 8);
 		
-		verticalWall(new Point2I(60, 5), height - 5);
-		horizontalWall(new Point2I(10, 5), width - 15);
-		horizontalWall(new Point2I(40, 30), 35);
+		horizontalWall(new Point2I(2 * width / 3, height / 2), width / 4);
 	}
 	
 	/**

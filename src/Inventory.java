@@ -24,7 +24,7 @@ public class Inventory extends Observable
     Weapon sword2 = new Weapon("Magic sword", "", 1, '/', 0, 0, 40, 20, 20);
     Potion potion1 = new Potion("Hp potion", "Heal 50 Hp", 0, ',', 50, 0);
     Potion potion2 = new Potion("Mana potion", "Heal 50 Mana", 0,',', 0, 50);
-	Scroll scroll = new Scroll("Skill scroll", "Read to lear a random skill.", 1, '?', SkillType.random());
+	Scroll scroll = new Scroll("Skill scroll", "Read to learn a random skill.", 1, '?', SkillType.random());
     Food food1 = new Food("Apple of Intelligence", "Increase your intelligence", 0, ',', 0, 0, 0, 1, 0);
     Weapon currentWeapon;
     Armor currentArmor;
@@ -158,11 +158,29 @@ public class Inventory extends Observable
 	}
 	
 	public boolean contains(Item item) {
-		for (Item i : list){
-			if (i == item)
-                            return true;
-		}
-		return false;
+            if (list.isEmpty())
+            {
+                return false;
+            }
+            else
+            {
+                for (int i = 0; i < list.size(); i++)
+                {
+                    if (list.get(i) == null)
+                    {
+                        continue;
+                    }
+                    else if (list.get(i).getName().equals(item.getName()))
+                    {
+                        //isRemove = true;
+                       return true;
+
+                    }
+                }
+                
+            }
+            return false;
+		
 	}
         /*
         public Weapon[] getListWeapon() 

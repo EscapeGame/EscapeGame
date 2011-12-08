@@ -68,12 +68,16 @@ public class GameController implements KeyListener  {
 			else if(map.getMapObject(x, y) instanceof Item) {
 				Item item = (Item) map.getMapObject(x, y);
                                 Inventory inventory = player.getInventory();
-				boolean addSuc = inventory.add(item);
-                                if (addSuc == true)
-                                {
-                                frame.printMessage("You pick " + inventory.getItem(inventory.getlistItem().indexOf(item)).getName());
-                                inventory.checkStatus();
-                                }
+                                    if (inventory.contains(item))
+                                    {
+                                        frame.printMessage("Already has item");
+                                    }
+                                    boolean addSuc = inventory.add(item);
+                                    if (addSuc == true)
+                                    {
+                                    frame.printMessage("You pick " + inventory.getItem(inventory.getlistItem().indexOf(item)).getName());
+                                    inventory.checkStatus();
+                                    }
                                 
 				map.removeObject(x, y);
 				map.setPlayerLocation(new Point2I(x,y));
@@ -140,10 +144,18 @@ public class GameController implements KeyListener  {
 		
 		int x = (int) map.getPlayerLocation().getX();
 		int y = (int) map.getPlayerLocation().getY();
-		
+		if(key == ',')
+                {
+                    frame.printMessage("Cheat");
+                    Armor armor1 = new Armor("Invincible Armor", "Ultima Armor", 1, '+', 0, 0, 0, 0, 1000);
+                    Weapon sword3 = new Weapon("Excalabur", "Ultima Weapon", 1, '+', 0, 0, 1000, 100, 100);
+                    player.getInventory().add(armor1);
+                    player.getInventory().add(sword3);
+                }
 		// read a character a-z
 		input = player.getInventoryMenu().getIndices();
 		num = input.indexOf(key);
+                
 		
         if (num > -1 && player.getInventory().getlistItem().size() > num)
         {
