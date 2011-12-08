@@ -90,7 +90,7 @@ public class Inventory extends Observable
                 for (int i = 0; i <= list.size(); i++)
                 {
                    
-                   if(list.get(i).getName().equalsIgnoreCase(item.getName()))
+                   if(list.contains(item))
                    {
                        //System.out.println("Increase the number");
                         isAdd = true;

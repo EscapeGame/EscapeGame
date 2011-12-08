@@ -77,14 +77,14 @@ public class Player extends MobileObject {
 		// truncate hp if it is above new max
 		if(this.hp > this.maxHp)
 			this.hp = this.maxHp;
-		else 
-			this.hp = this.maxHp * (this.hp / oldMaxHp);
+		/*else 
+			this.hp = this.maxHp * (this.hp / oldMaxHp);*/
 
 		// truncate mana if it is above new max
 		if(this.mana > this.maxMana)
 			this.mana = this.maxMana;
-		else 
-			this.mana = this.maxMana * (this.mana / oldMaxMana);
+		/*else 
+			this.mana = this.maxMana * (this.mana / oldMaxMana);*/
 	}
 
 	
