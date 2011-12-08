@@ -1,8 +1,27 @@
-import java.util.ArrayList;
+import java.util.Random;
 
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
 
-public enum RangeType {
-	
-	SELF, CLOSE_SINGLE, CLOSE_ALL, LINE;
+/**
+ *
+ * @author Thanh Au
+ */
+public class Scroll extends ConsumableItem
+{    
+    public Scroll(String name, String description, int numItem,char symbol, SkillType skillType) {
+        super(name, description, numItem, symbol);
+        this.skillType = skillType;
+    }
+    
+	public SkillType getSkillType() {
+		return skillType;
+	}
+	public void setSkillType(SkillType skillType) {
+		this.skillType = skillType;
+	}
 
+    private SkillType skillType;
 }

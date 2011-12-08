@@ -1,27 +1,21 @@
-import java.util.Random;
+import java.util.ArrayList;
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
-/**
- *
- * @author Thanh Au
- */
-public class Scroll extends ConsumableItem
-{    
-    public Scroll(String name, String description, int numItem,char symbol, SkillType skillType) {
-        super(name, description, numItem, symbol);
-        this.skillType = skillType;
-    }
-    
-	public SkillType getSkillType() {
-		return skillType;
+
+public class SelfAction extends SkillAction {
+
+	public SelfAction(String name, int amount, int cost, int duration, int minReq, String minStat, String targetStat, RangeType range, String message)
+	{
+		super(name, amount, cost, duration, minReq, minStat, targetStat, RangeType.SELF, message);
 	}
-	public void setSkillType(SkillType skillType) {
-		this.skillType = skillType;
+	
+	public String execute(MobileObject mobile) {
+		ArrayList<MapObject> targets = new ArrayList<MapObject>();
+		targets.add(mobile);
+		
+		setSource(mobile);
+		setTargets(targets);
+		return super.execute();
 	}
 
-    private SkillType skillType;
 }
