@@ -41,6 +41,7 @@ public class EscapeGameFrame extends JFrame
         pane1.setSize(STATUS_WIDTH, h * 2);*/
 	    inventoryPanel = new InventoryPanel(p);
 	    p.getInventory().addObserver(inventoryPanel);
+	    p.addObserver(inventoryPanel);
 	    
 	    /* Create MessageBar - display status messages */
 	    messageBar = new MessageBar(w, MESSAGE_HEIGHT, "Welcome to EscapeGame!");
