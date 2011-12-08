@@ -186,7 +186,7 @@ public enum SkillType {
 		public SkillAction getAction(MobileObject mobile) {
 			if(mobile instanceof Player) {
 				Player player = (Player) mobile;
-				amount = -player.getStrength() * (int) (player.getLevel() / 2);
+				amount = -player.getStrength() * player.getLevel();
 			}
 			return new AttackAction(name, amount, cost, duration, minReq, minStat, targetStat, range, message);
 		}
