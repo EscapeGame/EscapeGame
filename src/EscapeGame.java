@@ -49,8 +49,8 @@ public class EscapeGame
 			Armor armor2 = new Armor("Breastplate", "Decent protection.", 1, '[', 0, 0, 20, 0, 50);
 			Weapon staff = new Weapon("Mage staff", "A mage's weapon.", 1, '|', 0, 0, 0, 60, 0);
 		    Weapon weapon2 = new Weapon("Magic sword", "", 1, '/', 0, 0, 40, 20, 20);
-		    Monster wraith = new Monster("Wraith", 'W', 400, 400, Color.BLUE, 7, 100, 120, 500);
-		    Monster fiend = new Monster("Pit Fiend", 'F', 200, 200, Color.ORANGE, 6, 75, 50, 250);
+		    Monster wraith = new Monster("Wraith", 'W', 500, 500, Color.BLUE, 7, 100, 120, 500);
+		    Monster fiend = new Monster("Pit Fiend", 'F', 200, 200, Color.ORANGE, 6, 75, 50, 300);
 			Potion potion3 = new Potion("High potion", "Heal 100 Hp", 1, ':', 100, 0);
 			wraith.setItem(armor2);
 			fiend.setItem(potion3);
