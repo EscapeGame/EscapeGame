@@ -44,7 +44,7 @@ public class Map extends Observable implements ILosBoard
 		for (int i = 0; i < width; i++)
 			for (int j = 0; j < height; j++)
 			{
-				visited[i][j] = false;
+				visited[i][j] = true;
 				obstacles[i][j] = false;
 			}
 		
@@ -80,18 +80,18 @@ public class Map extends Observable implements ILosBoard
 				i--;
 				
 			}
-			else if (!obstacles[x][y] && (x < width / 7 + width / 3 && y > height / 5)
+			else if (!obstacles[x][y] && (x < width / 7 + width / 3 && y > height / 7)
 					&& o instanceof Monster && ((Monster)o).getHp() > p.getHp())
 			{
 				i--;
 			}
                         //Test 
-                        else if(!obstacles[x][y] && (x < width / 7 + width / 3 && y > height / 5)
+                        else if(!obstacles[x][y] && (x < width / 7 + width / 3 && y > height / 7)
 					&& o instanceof Weapon && ((Weapon)o).getStrength() > p.getStrength())
                         {
                                 i--;
                         }
-                        else if(!obstacles[x][y] && (x < width / 7 + width / 3 && y > height / 5)
+                        else if(!obstacles[x][y] && (x < width / 7 + width / 3 && y > height / 7)
 					&& o instanceof Armor && ((Armor)o).getDexterity() > p.getDexterity())
                         {
                                 i--;
