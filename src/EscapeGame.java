@@ -24,23 +24,22 @@ public class EscapeGame
 		for (int i = 0; i < 30; i++)
 		{
             Potion potion1 = new Potion("Hp potion", "Heal 50 Hp", 1, ':', 50, 0);
-            Potion potion2 = new Potion("Mana potion", "Heal 50 Mana", 1,';', 0, 50);
-			Monster fairy = new Monster("Fairy", 'f', 50, 50, Color.PINK, 6, 40, 20, 100);
 			Monster goblin = new Monster("Goblin", 'g', 10, 10, Color.GREEN, 4, 20, 5, 50);
 			goblin.setItem(potion1);
-			fairy.setItem(potion2);
     		mapObjects.add(potion1);
-    		mapObjects.add(potion2);
-    		mapObjects.add(fairy);
     		mapObjects.add(goblin);
 		}
 			
 		for (int i = 0; i < 20; i++)
 		{
+            Potion potion2 = new Potion("Mana potion", "Heal 50 Mana", 1,';', 0, 50);
+			Monster fairy = new Monster("Fairy", 'f', 50, 50, Color.PINK, 6, 40, 20, 100);
 			Scroll scroll = new Scroll("Skill scroll", "Read to learn a random skill.", 1, '?', SkillType.random());
 			Weapon weapon = new Weapon("Short sword", "A simple weapon.", 1, '/', 0, 0, 20, 0, 10);
 			Armor armor = new Armor ("Leather armor", "Not very protective.", 1, ']', 0, 0, 0, 0, 20);
-			
+			fairy.setItem(potion2);
+    		mapObjects.add(potion2);
+    		mapObjects.add(fairy);
 			mapObjects.add(scroll);
 			mapObjects.add(weapon);
 			mapObjects.add(armor);
@@ -54,10 +53,12 @@ public class EscapeGame
 		    Monster fiend = new Monster("Pit Fiend", 'F', 200, 200, Color.ORANGE, 7, 75, 50, 250);
 			Potion potion3 = new Potion("High potion", "Heal 100 Hp", 1, ':', 100, 0);
 			wraith.setItem(armor2);
-			fiend.setItem(weapon2);
+			fiend.setItem(potion3);
 			mapObjects.add(wraith);
 			mapObjects.add(fiend);
+			mapObjects.add(armor2);
 			mapObjects.add(potion3);
+        	mapObjects.add(weapon2);
 			mapObjects.add(staff);
 			
 		}
