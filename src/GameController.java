@@ -282,7 +282,7 @@ public class GameController implements KeyListener  {
 						message = attack.execute(player, targets);
 						for(MapObject obj : targets) {
 							Monster m = (Monster) obj;
-							processAttack(m);
+							message += processAttack(m);
 						}
 						frame.printMessage(message);
 					}
@@ -440,7 +440,7 @@ public class GameController implements KeyListener  {
 				frame.removeKeyListener(this);
 			}
 		}
-		moveVisibleMonsters(x, y, DISTANCE);
+		//moveVisibleMonsters(x, y, DISTANCE);
 		return message;
 	}
 	
