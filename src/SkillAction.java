@@ -28,14 +28,19 @@ public abstract class SkillAction implements Action {
 		try {
 			// check cost, duration and prereqs if source object is player
 			if(source instanceof Player) {
+				// check prereqs: get minStat's getter method
+				Method getMinStat = new PropertyDescriptor(minStat, source.getClass()).getReadMethod();
+				// check that player has minimum requirement to use skill
+				if(minReq > (Integer) getMinStat.invoke(source))
+					return "You need " + minReq + " " + minStat + " to use this skill.";
 				Player player = (Player) source;
 				// check mana cost
 				if(cost > player.getMana())
 					return "You do not have enough mana to use that skill.";
 				else
 					player.setMana(player.getMana() - cost); // subtract mana cost
-				// if duration exists start counter - right now, can only have one effect at a time
-				if(duration > 0) {
+				// if duration exists for player start counter - right now, can only have one effect at a time
+				if(this instanceof SelfAction && duration > 0) {
 					player.setSkillCounter(duration);
 					if(player.getRevertSkill() != null) {
 						SelfAction self = (SelfAction) player.getRevertSkill();
@@ -43,17 +48,24 @@ public abstract class SkillAction implements Action {
 					}
 					player.setRevertSkill(new SelfAction("Revert", -amount, 0, 0, 0, minStat, targetStat, RangeType.SELF, name + " effect has ended. You lose " + amount + " " + targetStat));
 				}
-				// check prereqs: get minStat's getter method
-				Method getMinStat = new PropertyDescriptor(minStat, source.getClass()).getReadMethod();
-				// check that player has minimum requirement to use skill
-				if(minReq > (Integer) getMinStat.invoke(source))
-					return "You need " + minReq + " " + minStat + " to use this skill.";
 			}
 			// execute action for all targets
 			for(MapObject target : targets) {
 				// get targetStat's getter and setter methods
 				Method getTargetStat = new PropertyDescriptor(targetStat, target.getClass()).getReadMethod();
 				Method setTargetStat = new PropertyDescriptor(targetStat, target.getClass()).getWriteMethod();
+				// if duration exists start counter for monster - right now, can only have one effect at a time
+				if(this instanceof AttackAction && target instanceof Monster) {
+					if(duration > 0) {
+						Monster monster = (Monster) target;
+						monster.setSkillCounter(duration);
+						if(monster.getRevertSkill() != null) {
+							SelfAction self = (SelfAction) monster.getRevertSkill();
+							self.execute(monster);
+						}
+						monster.setRevertSkill(new SelfAction("Revert", -amount, 0, 0, 0, minStat, targetStat, RangeType.SELF, name + " effect has ended. You gain " + amount + " " + targetStat));
+					}
+				}
 				if(getTargetStat != null && setTargetStat != null) {
 					int newVal = (Integer) getTargetStat.invoke(target);
 					int maxVal;
@@ -113,7 +125,8 @@ public abstract class SkillAction implements Action {
 		}
 
 		message += total;
-		if(!targetStat.equals("attackBonus") && !targetStat.equals("defenseBonus"))
+		if(!targetStat.equals("attackBonus") && !targetStat.equals("defenseBonus") &&
+		   !targetStat.equals("attackValue") && !targetStat.equals("deffenseValue"))
 			message += " " + targetStat;
 		if(targetStat.equals("hp"))
 			message += " damage.";

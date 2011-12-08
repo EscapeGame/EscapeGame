@@ -31,9 +31,9 @@ public class EscapeGameFrame extends JFrame
 	    map.addObserver(panel);
 	   
 	    /* Create skill panel */
-	    //skillPanel = new SkillPanel(p);    
-	    //p.getSkillList().addObserver(skillPanel);
-	    //skillPanel.setSize(STATUS_WIDTH, h);
+	    skillPanel = new SkillPanel(p);    
+	    p.getSkillList().addObserver(skillPanel);
+	    skillPanel.setSize(STATUS_WIDTH, h);
             
         /*pane1 = new JLayeredPane();
         pane1.setLayout(new FlowLayout(FlowLayout.LEFT));        
@@ -41,6 +41,7 @@ public class EscapeGameFrame extends JFrame
         pane1.setSize(STATUS_WIDTH, h * 2);*/
 	    inventoryPanel = new InventoryPanel(p);
 	    p.getInventory().addObserver(inventoryPanel);
+	    p.addObserver(inventoryPanel);
 	    
 	    /* Create MessageBar - display status messages */
 	    messageBar = new MessageBar(w, MESSAGE_HEIGHT, "Welcome to EscapeGame!");
@@ -56,7 +57,7 @@ public class EscapeGameFrame extends JFrame
 	    this.add(messageBar, BorderLayout.NORTH);
 		this.add(statusBar, BorderLayout.WEST);
 		this.add(panel, BorderLayout.CENTER);
-		//this.add(skillPanel, BorderLayout.EAST);
+		this.add(skillPanel, BorderLayout.EAST);
 		this.add(inventoryPanel, BorderLayout.SOUTH);
         //this.add(pane1, BorderLayout.SOUTH);
 		
@@ -82,7 +83,7 @@ public class EscapeGameFrame extends JFrame
 	private MessageBar messageBar;
 	private StatusBar statusBar;
 	private InventoryPanel inventoryPanel;
-	//private SkillPanel skillPanel;
+	private SkillPanel skillPanel;
 	private Player player;
 	private static final int STATUS_WIDTH = 120;
 	private static final int MESSAGE_HEIGHT = 30;

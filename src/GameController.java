@@ -116,12 +116,14 @@ public class GameController implements KeyListener  {
 		    				frame.removeKeyListener(this);
 		    			}
 		    			frame.printMessage(message);
+						monster.decrementSkillCounter();
 					}
 					else
 					{
 						if(map.contains(nextX, nextY) && !map.isObstacle(nextX, nextY)) {
 							Monster m = (Monster) map.removeObject(i, j);
 							map.placeMapObject(nextX, nextY, m);
+							m.decrementSkillCounter();
 						}
 					}
 					
@@ -241,6 +243,15 @@ public class GameController implements KeyListener  {
                 frame.printMessage(food.getDescription());
                 player.getInventory().remove(food);
             }
+            else if (player.getInventory().getItem(num) instanceof Scroll)
+            {
+            	Scroll scroll = (Scroll) player.getInventory().getItem(num);
+            	if(!player.usedScroll(scroll)) {
+            		frame.printMessage("You already know the skill on this scroll.");
+            	}
+            	player.getSkillList().checkStatus();
+            	player.getInventory().remove(scroll);
+            }
             player.checkStatus();
         }
         
@@ -248,7 +259,7 @@ public class GameController implements KeyListener  {
 		input = player.getSkillMenu().getIndices();
 		num = input.indexOf(key);
 		
-		if(num > -1) {
+		if(num > -1 && player.getSkillList().getSkills().size() > num) {
 	
 				SkillAction skill = (SkillAction) player.getSkill(num);
 				
@@ -413,7 +424,7 @@ public class GameController implements KeyListener  {
 				player.gainLevel();
 			}
 			if(levelCount > 1)
-				message += " Wow! You gain " + levelCount + "levels.";
+				message += " Wow! You gain " + levelCount + " levels.";
 			else if(levelCount == 1)
 				message += " You gain a level!";
 			MapObject item = (MapObject) m.getItem();

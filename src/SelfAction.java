@@ -9,11 +9,11 @@ public class SelfAction extends SkillAction {
 		super(name, amount, cost, duration, minReq, minStat, targetStat, RangeType.SELF, message);
 	}
 	
-	public String execute(Player player) {
+	public String execute(MobileObject mobile) {
 		ArrayList<MapObject> targets = new ArrayList<MapObject>();
-		targets.add(player);
+		targets.add(mobile);
 		
-		setSource(player);
+		setSource(mobile);
 		setTargets(targets);
 		return super.execute();
 	}
