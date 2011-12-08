@@ -27,7 +27,7 @@ public class EquippableItem implements Item, MapObject
    {
        name = "Equip Item";
        description = "";
-       numItem = 0;
+       numItem = 1;
        symbol = '!';
    }
    
@@ -117,7 +117,7 @@ public class EquippableItem implements Item, MapObject
     @Override
     public String toString()
     {
-        return getName();
+        return getName() + "(" + numItem + ")";
     }
     
 }

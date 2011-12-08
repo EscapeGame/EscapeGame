@@ -25,8 +25,8 @@ public class StatusBar extends JPanel implements Observer {
 	
 	public void printPlayerStatus()
 	{
-		String currArmor = player.getCurrentArmor() == null ? "" : player.getCurrentArmor().toString();
-		String currWeapon = player.getCurrentWeapon() == null ? "" : player.getCurrentWeapon().toString();
+		String currArmor = player.getCurrentArmor() == null ? "" : player.getCurrentArmor().getName();
+		String currWeapon = player.getCurrentWeapon() == null ? "" : player.getCurrentWeapon().getName();
 		playerStatus.setText(
 			"PLAYER\n\n" +
 			"Level: " + player.getLevel() + "\n" +
