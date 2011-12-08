@@ -344,7 +344,7 @@ public class Player extends MobileObject {
 
 	public void setIntelligence(int intelligence) {
 		this.intelligence = intelligence;
-		System.out.println("This happened");
+		//System.out.println("This happened");
 		setChanged();
 	}
 

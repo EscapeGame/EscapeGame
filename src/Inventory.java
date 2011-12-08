@@ -20,11 +20,12 @@ public class Inventory extends Observable
     Potion[] listPotion;
     private Menu menu;
     private ArrayList<Item>  list;
-    Weapon sword1 = new Weapon("Rusty sword", "", 1, '/', 0, 0, 5, 5, 5);
+    Weapon sword1 = new Weapon("Rusty sword", "", 1, '/', 0, 0, 10, 0, 0);
     Weapon sword2 = new Weapon("Good sword", "", 1, '/', 0, 0, 50, 50, 50);
-    Weapon sword3 = new Weapon("Excalabur", "", 1, '/', 0, 0, 100, 100, 100);
+    
     Potion potion1 = new Potion("Hp potion", "Heal 50 Hp", 0, ',', 50, 0);
     Potion potion2 = new Potion("Mana potion", "Heal 50 Mana", 0,',', 0, 50);
+    Armor armor1 = new Armor("Invincible Armor", "Ultima Armor", 1, '.', 0, 0, 0, 0,1000);
 	Scroll scroll = new Scroll("Skill scroll", "Read to lear a random skill.", 1, '?', SkillType.random());
     Food food1 = new Food("Apple of Intelligence", "Increase your intelligence", 0, ',', 0, 0, 0, 1, 0);
     Weapon currentWeapon;
@@ -40,9 +41,10 @@ public class Inventory extends Observable
             listScroll = new Scroll[max];
             list.add(sword1);
             list.add(sword2);
-            list.add(sword3);
+            //list.add(sword3);
             list.add(potion1);
             list.add(scroll);
+            list.add(armor1);
             menu = getMenu();
             
 	}
@@ -88,9 +90,9 @@ public class Inventory extends Observable
                 for (int i = 0; i <= list.size(); i++)
                 {
                    
-                   if(list.get(i) == item)
+                   if(list.get(i).getName().equalsIgnoreCase(item.getName()))
                    {
-                       System.out.println("Increase the number");
+                       //System.out.println("Increase the number");
                         isAdd = true;
                         list.get(i).setNumberItem(list.get(i).getNumberItem() + 1);
                         setChanged();
@@ -99,7 +101,7 @@ public class Inventory extends Observable
                    }
                    else
                    {
-                       System.out.println("Add success");
+                       //System.out.println("Add success");
                        isAdd= true;
                        list.add(item);
                        setChanged();
