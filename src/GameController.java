@@ -68,7 +68,10 @@ public class GameController implements KeyListener  {
 			else if(map.getMapObject(x, y) instanceof Item) {
 				Item item = (Item) map.getMapObject(x, y);
                                 Inventory inventory = player.getInventory();
-                                
+                                    if (inventory.contains(item))
+                                    {
+                                        frame.printMessage("Already has item");
+                                    }
                                     boolean addSuc = inventory.add(item);
                                     if (addSuc == true)
                                     {
@@ -144,8 +147,8 @@ public class GameController implements KeyListener  {
 		if(key == ',')
                 {
                     frame.printMessage("Cheat");
-                    Armor armor1 = new Armor("Invincible Armor", "Ultima Armor", 1, '[', 0, 0, 0, 0, 1000);
-                    Weapon sword3 = new Weapon("Excalabur", "Ultima Weapon", 1, '/', 0, 0, 1000, 100, 100);
+                    Armor armor1 = new Armor("Invincible Armor", "Ultima Armor", 1, '+', 0, 0, 0, 0, 1000);
+                    Weapon sword3 = new Weapon("Excalabur", "Ultima Weapon", 1, '+', 0, 0, 1000, 100, 100);
                     player.getInventory().add(armor1);
                     player.getInventory().add(sword3);
                 }

@@ -163,12 +163,29 @@ public class Inventory extends Observable
 	}
 	
 	public boolean contains(Item item) {
-		if(list.contains(item))
+            if (list.isEmpty())
+            {
+                return false;
+            }
+            else
+            {
+                for (int i = 0; i < list.size(); i++)
                 {
-                    return true;
+                    if (list.get(i) == null)
+                    {
+                        continue;
+                    }
+                    else if (list.get(i).getName().equals(item.getName()))
+                    {
+                        //isRemove = true;
+                       return true;
+
+                    }
                 }
-                    
-		return false;
+                
+            }
+            return false;
+		
 	}
         /*
         public Weapon[] getListWeapon() 

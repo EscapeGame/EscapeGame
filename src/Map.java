@@ -85,6 +85,17 @@ public class Map extends Observable implements ILosBoard
 			{
 				i--;
 			}
+                        //Test 
+                        else if(!obstacles[x][y] && (x < width / 7 + width / 3 && y > height / 5)
+					&& o instanceof Weapon && ((Weapon)o).getStrength() > p.getStrength())
+                        {
+                                i--;
+                        }
+                        else if(!obstacles[x][y] && (x < width / 7 + width / 3 && y > height / 5)
+					&& o instanceof Armor && ((Armor)o).getDexterity() > p.getDexterity())
+                        {
+                                i--;
+                        }
 			else
 			{
 				objectsLocations.put(new Point2I(x, y), o);

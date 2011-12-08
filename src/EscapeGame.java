@@ -37,9 +37,9 @@ public class EscapeGame
 			
 			//Monster dragon = new Monster("Red Dragon", 'D', 2000, 2000, Color.RED, 5, 200, 250, 10000);
 			
-                        Monster fairy = new Monster("Fairy", 'f', 10, 10, Color.GREEN, 3, 5, 5, 10);
-			Monster goblin = new Monster("Goblin", 'g', 10, 10, Color.GREEN, 3, 25, 5, 50);
-                        Monster orc = new Monster("Orc", 'o', 100, 100, Color.LIGHT_GRAY, 3, 50, 20, 100);
+                        Monster fairy = new Monster("Fairy", 'f', 10, 10, Color.GREEN, 3, 5, 5, 50);
+			Monster goblin = new Monster("Goblin", 'g', 10, 10, Color.GREEN, 3, 25, 5, 100);
+                        Monster orc = new Monster("Orc", 'o', 100, 100, Color.LIGHT_GRAY, 3, 50, 20, 200);
                         
 			Scroll scroll = new Scroll("Skill scroll", "Read to clear a random skill.", 1, '?', SkillType.random());
 			//dragon.setItem(armor);
@@ -64,8 +64,12 @@ public class EscapeGame
 		}
                 for (int i = 0; i < 10; i++)
                 {
-                    Monster wraith = new Monster("Wraith", 'W', 500, 500, Color.BLUE, 8, 100, 120, 500);
+                    Monster wraith = new Monster("Wraith", 'W', 500, 500, Color.BLUE, 8, 100, 120, 1000);
+                    Weapon sword4 = new Weapon("Anduril", "Sword for king", 1, '*', 0, 0, 120, 0, 0);
+                    Armor armor4 = new Armor("Myrith", "Great Armor", 1, '*', 0, 0, 0, 0, 100);
+                    wraith.setItem(armor4);
                     mapObjects.add(wraith);
+                    mapObjects.add(sword4);
                     
                 }
                 for (int i = 0; i < 5; i++)
@@ -77,8 +81,8 @@ public class EscapeGame
                 }
                 for(int i = 0; i < 1; i++)
                 {
-                    Armor armor1 = new Armor("Invincible Armor", "Ultima Armor", 1, '[', 0, 0, 0, 0, 1000);
-                    Weapon sword3 = new Weapon("Excalabur", "", 1, '/', 0, 0, 1000, 100, 100);
+                    Armor armor1 = new Armor("Invincible Armor", "Ultima Armor", 1, '+', 0, 0, 0, 0, 1000);
+                    Weapon sword3 = new Weapon("Excalabur", "", 1, '+', 0, 0, 1000, 100, 100);
                     mapObjects.add(armor1);
                     mapObjects.add(sword3);
                     
