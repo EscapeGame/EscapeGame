@@ -40,7 +40,7 @@ public enum SkillType {
 		private int amount;
 		private int cost = 5;
 		private int duration = 0;
-		private int minReq = 30;
+		private int minReq = 10;
 		private String minStat = "dexterity";
 		private String targetStat = "hp";
 		private RangeType range = RangeType.CLOSE_SINGLE;
@@ -55,6 +55,62 @@ public enum SkillType {
 			else { // monster
 				Monster monster = (Monster) mobile;
 				amount = -monster.getAttackValue() * 2;
+			}
+			return new AttackAction(name, amount, cost, duration, minReq, minStat, targetStat, range, message);
+		}
+
+		@Override
+		public String toString() {
+			return name + " (" + cost + ")";
+		}
+	},
+	
+	TRIPLE_ATTACK {
+		private String name = "Triple Attack";
+		private int amount;
+		private int cost = 10;
+		private int duration = 0;
+		private int minReq = 60;
+		private String minStat = "dexterity";
+		private String targetStat = "hp";
+		private RangeType range = RangeType.CLOSE_SINGLE;
+		private String message = "You unleash a flurry of three attacks! Your foe takes ";
+		
+		@Override
+		public SkillAction getAction(MobileObject mobile) {
+			if(mobile instanceof Player) {
+				Player player = (Player) mobile;
+				amount = -player.getAttack() * 3;
+			}
+			else { // monster
+				Monster monster = (Monster) mobile;
+				amount = -monster.getAttackValue() * 3;
+			}
+			return new AttackAction(name, amount, cost, duration, minReq, minStat, targetStat, range, message);
+		}
+
+		@Override
+		public String toString() {
+			return name + " (" + cost + ")";
+		}
+	},
+	
+	RUSH_ATTACK {
+		private String name = "Rush Attack";
+		private int amount;
+		private int cost = 15;
+		private int duration = 0;
+		private int minReq = 30;
+		private String minStat = "dexterity";
+		private String targetStat = "hp";
+		private RangeType range = RangeType.LINE;
+		private String message = "You rush the opponents in front of you! Monsters in your path take a total of ";
+		
+		@Override
+		public SkillAction getAction(MobileObject mobile) {
+			if(mobile instanceof Player) {
+				Player player = (Player) mobile;
+				amount = -player.getAttack() - player.getDexterity();
 			}
 			return new AttackAction(name, amount, cost, duration, minReq, minStat, targetStat, range, message);
 		}
@@ -80,7 +136,59 @@ public enum SkillType {
 		public SkillAction getAction(MobileObject mobile) {
 			if(mobile instanceof Player) {
 				Player player = (Player) mobile;
-				amount = -player.getAttack();
+				amount = -player.getAttack() - (player.getDexterity() * 2);
+			}
+			return new AttackAction(name, amount, cost, duration, minReq, minStat, targetStat, range, message);
+		}
+
+		@Override
+		public String toString() {
+			return name + " (" + cost + ")";
+		}
+	},
+	
+	ENERGY_WAVE {
+		private String name = "Energy Wave";
+		private int amount;
+		private int cost = 15;
+		private int duration = 0;
+		private int minReq = 30;
+		private String minStat = "intelligence";
+		private String targetStat = "hp";
+		private RangeType range = RangeType.CLOSE_ALL;
+		private String message = "An energy blast engulfs your foes! Surrounding monsters take a total of ";
+		
+		@Override
+		public SkillAction getAction(MobileObject mobile) {
+			if(mobile instanceof Player) {
+				Player player = (Player) mobile;
+				amount = -player.getIntelligence() * (player.getLevel() * 2);
+			}
+			return new AttackAction(name, amount, cost, duration, minReq, minStat, targetStat, range, message);
+		}
+
+		@Override
+		public String toString() {
+			return name + " (" + cost + ")";
+		}
+	},
+	
+	CYCLONE {
+		private String name = "Cyclone";
+		private int amount;
+		private int cost = 30;
+		private int duration = 0;
+		private int minReq = 60;
+		private String minStat = "intelligence";
+		private String targetStat = "hp";
+		private RangeType range = RangeType.CLOSE_ALL;
+		private String message = "You conjure a deadly cyclone that batters surrounding monsters, inflicting a total of ";
+		
+		@Override
+		public SkillAction getAction(MobileObject mobile) {
+			if(mobile instanceof Player) {
+				Player player = (Player) mobile;
+				amount = -player.getIntelligence() * 10;
 			}
 			return new AttackAction(name, amount, cost, duration, minReq, minStat, targetStat, range, message);
 		}
@@ -96,7 +204,7 @@ public enum SkillType {
 		private int amount;
 		private int cost = 10;
 		private int duration = 0;
-		private int minReq = 10;
+		private int minReq = 20;
 		private String minStat = "intelligence";
 		private String targetStat = "hp";
 		private RangeType range = RangeType.CLOSE_ALL;
@@ -107,33 +215,6 @@ public enum SkillType {
 			if(mobile instanceof Player) {
 				Player player = (Player) mobile;
 				amount = -player.getIntelligence() * 5;
-			}
-			else amount = 100;
-			return new AttackAction(name, amount, cost, duration, minReq, minStat, targetStat, range, message);
-		}
-
-		@Override
-		public String toString() {
-			return name + " (" + cost + ")";
-		}
-	},
-	
-	CYCLONE {
-		private String name = "Cyclone";
-		private int amount;
-		private int cost = 40;
-		private int duration = 0;
-		private int minReq = 4;
-		private String minStat = "level";
-		private String targetStat = "hp";
-		private RangeType range = RangeType.CLOSE_ALL;
-		private String message = "You conjure a deadly cyclone that batters surrounding monsters, inflicting a total of ";
-		
-		@Override
-		public SkillAction getAction(MobileObject mobile) {
-			if(mobile instanceof Player) {
-				Player player = (Player) mobile;
-				amount = -player.getIntelligence() * 10;
 			}
 			else amount = 100;
 			return new AttackAction(name, amount, cost, duration, minReq, minStat, targetStat, range, message);
@@ -160,7 +241,7 @@ public enum SkillType {
 		public SkillAction getAction(MobileObject mobile) {
 			if(mobile instanceof Player) {
 				Player player = (Player) mobile;
-				amount = -player.getIntelligence() * (int) (player.getLevel() / 2);
+				amount = -player.getIntelligence() * player.getLevel();
 			}
 			return new AttackAction(name, amount, cost, duration, minReq, minStat, targetStat, range, message);
 		}
@@ -200,9 +281,9 @@ public enum SkillType {
 	LIGHTNING_BOLT {
 		private String name = "Lightning Bolt";
 		private int amount;
-		private int cost = 15;
+		private int cost = 20;
 		private int duration = 0;
-		private int minReq = 30;
+		private int minReq = 40;
 		private String minStat = "intelligence";
 		private String targetStat = "hp";
 		private RangeType range = RangeType.LINE;
@@ -212,7 +293,34 @@ public enum SkillType {
 		public SkillAction getAction(MobileObject mobile) {
 			if(mobile instanceof Player) {
 				Player player = (Player) mobile;
-				amount = -player.getIntelligence() * 10;
+				amount = -player.getIntelligence() * 12;
+			}
+			else amount = 200;
+			return new AttackAction(name, amount, cost, duration, minReq, minStat, targetStat, range, message);
+		}
+
+		@Override
+		public String toString() {
+			return name + " (" + cost + ")";
+		}
+	},
+
+	ICE_BOLT {
+		private String name = "Ice Bolt";
+		private int amount;
+		private int cost = 10;
+		private int duration = 0;
+		private int minReq = 20;
+		private String minStat = "intelligence";
+		private String targetStat = "hp";
+		private RangeType range = RangeType.LINE;
+		private String message = "You shoot an ice ray from your fingertips! Monsters in front of you take a total of ";
+		
+		@Override
+		public SkillAction getAction(MobileObject mobile) {
+			if(mobile instanceof Player) {
+				Player player = (Player) mobile;
+				amount = -player.getIntelligence() * 6;
 			}
 			else amount = 200;
 			return new AttackAction(name, amount, cost, duration, minReq, minStat, targetStat, range, message);
@@ -239,7 +347,7 @@ public enum SkillType {
 		public SkillAction getAction(MobileObject mobile) {
 			if(mobile instanceof Player) {
 				Player player = (Player) mobile;
-				amount = -player.getIntelligence();
+				amount = -player.getIntelligence() * (player.getLevel() * 2);
 			}
 			else amount = 200;
 			return new AttackAction(name, amount, cost, duration, minReq, minStat, targetStat, range, message);
@@ -310,7 +418,7 @@ public enum SkillType {
 		private int amount;
 		private int cost = 60;
 		private int duration = 0;
-		private int minReq = 300;
+		private int minReq = 120;
 		private String minStat = "intelligence";
 		private String targetStat = "hp";
 		private RangeType range = RangeType.SELF;
@@ -395,8 +503,8 @@ public enum SkillType {
 		private int amount;
 		private int cost = 30;
 		private int duration = 3;
-		private int minReq = 5;
-		private String minStat = "level";
+		private int minReq = 30;
+		private String minStat = "strength";
 		private String targetStat = "strength";
 		private RangeType range = RangeType.SELF;
 		private String message = "Adrenaline burns through your veins! For " + duration + " turns you gain ";
@@ -416,13 +524,39 @@ public enum SkillType {
 		}
 	},
 	
+	SPEED_SURGE {
+		private String name = "Speed Surge";
+		private int amount;
+		private int cost = 30;
+		private int duration = 3;
+		private int minReq = 30;
+		private String minStat = "dexterity";
+		private String targetStat = "dexterity";
+		private RangeType range = RangeType.SELF;
+		private String message = "Your reflexes are supernaturally heightened! For " + duration + " turns you gain ";
+		
+		@Override
+		public SkillAction getAction(MobileObject mobile) {
+			if(mobile instanceof Player) {
+				Player player = (Player) mobile;
+				amount = player.getDexterity() * player.getLevel();
+			}
+			return new SelfAction(name, amount, cost, duration, minReq, minStat, targetStat, range, message);
+		}
+
+		@Override
+		public String toString() {
+			return name + " (" + cost + ")";
+		}
+	},
+	
 	MAGIC_SURGE {
 		private String name = "Magic Surge";
 		private int amount;
 		private int cost = 30;
 		private int duration = 3;
-		private int minReq = 5;
-		private String minStat = "level";
+		private int minReq = 30;
+		private String minStat = "intelligence";
 		private String targetStat = "intelligence";
 		private RangeType range = RangeType.SELF;
 		private String message = "The secrets of the arcane are revealed to you! For " + duration + " turns you gain ";
@@ -473,7 +607,7 @@ public enum SkillType {
 		private int amount;
 		private int cost = 25;
 		private int duration = 5;
-		private int minReq = 3;
+		private int minReq = 1;
 		private String minStat = "level";
 		private String targetStat = "deffenseValue";
 		private RangeType range = RangeType.CLOSE_SINGLE;
@@ -492,41 +626,14 @@ public enum SkillType {
 		public String toString() {
 			return name + " (" + cost + ")";
 		}
-	},
-	
-	TRIPLE_ATTACK {
-		private String name = "Triple Attack";
-		private int amount;
-		private int cost = 10;
-		private int duration = 0;
-		private int minReq = 100;
-		private String minStat = "dexterity";
-		private String targetStat = "hp";
-		private RangeType range = RangeType.CLOSE_SINGLE;
-		private String message = "You unleash a flurry of three attacks! Your foe takes ";
-		
-		@Override
-		public SkillAction getAction(MobileObject mobile) {
-			if(mobile instanceof Player) {
-				Player player = (Player) mobile;
-				amount = -player.getAttack() * 3;
-			}
-			else { // monster
-				Monster monster = (Monster) mobile;
-				amount = -monster.getAttackValue() * 3;
-			}
-			return new AttackAction(name, amount, cost, duration, minReq, minStat, targetStat, range, message);
-		}
-
-		@Override
-		public String toString() {
-			return name + " (" + cost + ")";
-		}
 	};
 	
 	public static SkillType random() {
 		SkillType[] skillTypes = SkillType.values();
-		int index = new Random().nextInt(skillTypes.length);
+		int index;
+		do {
+			index = new Random().nextInt(skillTypes.length);
+		} while(skillTypes[index] == SkillType.MELEE);
 		return skillTypes[index];
 	}
 	

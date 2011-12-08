@@ -200,37 +200,39 @@ public class GameController implements KeyListener  {
             else if (player.getInventory().getItem(num) instanceof Potion)
             {
                 Potion potion = (Potion) player.getInventory().getItem(num);
-                if (player.getHp() < player.getMaxHp())
+                if (potion.getHP() > 0)
                 {
-                    frame.printMessage("Use " + potion.getName());
-                    player.usedPotion(potion);
-                    if (potion.getHP() > 0)
+                 
+                    if (player.getHp() < player.getMaxHp())
                     {
+                    	frame.printMessage("Use " + potion.getName());
+                    	player.usedPotion(potion);
                         frame.printMessage("Player recover " + potion.getHP() + " Hp");
+                        player.getInventory().remove(potion);
+                    }
+                    else
+                    {
+                        frame.printMessage("Can not use " + potion.getName() + " because Hp is full");
                     }
                     
-                    player.getInventory().remove(potion);
-                    
                 }
-                else if (player.getMana() < player.getMaxMana())
+                
+                else if (potion.getMana() > 0)
                 {
-                    if (potion.getMana() > 0)
+                    if (player.getMana() < player.getMaxMana())
                     {
                         frame.printMessage("Use " + potion.getName());
                         player.usedPotion(potion);
-                        frame.printMessage("Player recorer " + potion.getMana() + " Mana");
+                        frame.printMessage("Player recover " + potion.getMana() + " Mana");
+                        player.getInventory().remove(potion);
                     }
-                    player.getInventory().remove(potion);
+                    else
+                    {
+                        frame.printMessage("Can not use " + potion.getName() + " because Mana is full");
+                    }
                     
                 }
-                else if (player.getMana() == player.getMaxMana())
-                {
-                    frame.printMessage("Can not use " + potion.getName() + " because Mana is full");
-                }
-                else
-                {
-                    frame.printMessage("Can not use " + potion.getName() + " because Hp is full");
-                }
+                
             }
             else if (player.getInventory().getItem(num) instanceof Food)
             {
@@ -243,7 +245,10 @@ public class GameController implements KeyListener  {
             else if (player.getInventory().getItem(num) instanceof Scroll)
             {
             	Scroll scroll = (Scroll) player.getInventory().getItem(num);
-            	if(!player.usedScroll(scroll)) {
+            	if(player.usedScroll(scroll)) {
+            		frame.printMessage("You learned " + scroll.getSkillType().toString() + ".");
+            	}
+            	else {
             		frame.printMessage("You already know the skill on this scroll.");
             	}
             	player.getSkillList().checkStatus();
@@ -403,6 +408,7 @@ public class GameController implements KeyListener  {
 				}
 	
 			player.checkStatus();
+			player.decrementSkillCounter();
 		}
 	}
 	
