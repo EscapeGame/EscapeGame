@@ -87,7 +87,7 @@ public class Map extends Observable implements ILosBoard
 			}
                         //Test 
                         else if(!obstacles[x][y] && (x < width / 7 + width / 3 && y > height / 5)
-					&& o instanceof Weapon && ((Weapon)o).getStrength() > p.getStrength())
+					&& o instanceof Weapon && ((Weapon)o).getStrength() > p.getStrength() && ((Weapon)o).getIntelligence() > p.getIntelligence())
                         {
                                 i--;
                         }

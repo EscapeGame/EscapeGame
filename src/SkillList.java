@@ -10,7 +10,7 @@ public class SkillList extends Observable {
 		this.skills = new ArrayList<SkillType>();
 		
 		add(SkillType.DEFENSIVE);
-		add(SkillType.ENERGY_BOLT);
+		add(SkillType.DOUBLE_ATTACK);
 		add(SkillType.random());
 		
 	}

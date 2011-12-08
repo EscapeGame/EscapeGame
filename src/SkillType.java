@@ -50,7 +50,7 @@ public enum SkillType {
 		public SkillAction getAction(MobileObject mobile) {
 			if(mobile instanceof Player) {
 				Player player = (Player) mobile;
-				amount = -player.getAttack() * 2;
+				amount = -(player.getAttack() * 2) - player.getDexterity();
 			}
 			else { // monster
 				Monster monster = (Monster) mobile;
@@ -80,7 +80,7 @@ public enum SkillType {
 		public SkillAction getAction(MobileObject mobile) {
 			if(mobile instanceof Player) {
 				Player player = (Player) mobile;
-				amount = -player.getAttack() * 3;
+				amount = -(player.getAttack() * 3) - player.getDexterity();
 			}
 			else { // monster
 				Monster monster = (Monster) mobile;
@@ -110,7 +110,7 @@ public enum SkillType {
 		public SkillAction getAction(MobileObject mobile) {
 			if(mobile instanceof Player) {
 				Player player = (Player) mobile;
-				amount = -player.getAttack() - player.getDexterity();
+				amount = -player.getAttack() - (player.getDexterity() * 2);
 			}
 			return new AttackAction(name, amount, cost, duration, minReq, minStat, targetStat, range, message);
 		}
@@ -136,7 +136,7 @@ public enum SkillType {
 		public SkillAction getAction(MobileObject mobile) {
 			if(mobile instanceof Player) {
 				Player player = (Player) mobile;
-				amount = -player.getAttack() - (player.getDexterity() * 2);
+				amount = -player.getAttack() - (player.getDexterity() * 3);
 			}
 			return new AttackAction(name, amount, cost, duration, minReq, minStat, targetStat, range, message);
 		}
