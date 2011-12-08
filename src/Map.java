@@ -44,7 +44,7 @@ public class Map extends Observable implements ILosBoard
 		for (int i = 0; i < width; i++)
 			for (int j = 0; j < height; j++)
 			{
-				visited[i][j] = true;
+				visited[i][j] = false;
 				obstacles[i][j] = false;
 			}
 		
