@@ -66,8 +66,8 @@ public class Player extends MobileObject {
 
 	private void calculateDerivedStats() {
 		// Set derived stats
-		this.maxHp = strength * 5;
-		this.maxMana = intelligence * 5;
+		this.maxHp = strength * 3;
+		this.maxMana = (int)(intelligence * 1.5);
 		this.attack = strength + attackBonus;
 		this.defense = dexterity + defenseBonus;
 		
