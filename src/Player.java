@@ -65,6 +65,9 @@ public class Player extends MobileObject {
 	}
 
 	private void calculateDerivedStats() {
+    	int oldMaxHp = this.maxHp;
+    	int oldMaxMana = this.maxMana;
+		
 		// Set derived stats
 		this.maxHp = strength * 3;
 		this.maxMana = intelligence * 2;
@@ -74,9 +77,16 @@ public class Player extends MobileObject {
 		// truncate hp if it is above new max
 		if(this.hp > this.maxHp)
 			this.hp = this.maxHp;
+		else 
+			this.hp = this.maxHp * (this.hp / oldMaxHp);
+
+		// truncate mana if it is above new max
 		if(this.mana > this.maxMana)
 			this.mana = this.maxMana;
+		else 
+			this.mana = this.maxMana * (this.mana / oldMaxMana);
 	}
+
 	
 	public boolean isReadyForNextLevel(){
 		if(level < levels.length) {  // only check until max level
