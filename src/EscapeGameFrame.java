@@ -31,9 +31,9 @@ public class EscapeGameFrame extends JFrame
 	    map.addObserver(panel);
 	   
 	    /* Create skill panel */
-	    //skillPanel = new SkillPanel(p);    
-	    //p.getSkillList().addObserver(skillPanel);
-	    //skillPanel.setSize(STATUS_WIDTH, h);
+	    skillPanel = new SkillPanel(p);    
+	    p.getSkillList().addObserver(skillPanel);
+	    skillPanel.setSize(STATUS_WIDTH, h);
             
         /*pane1 = new JLayeredPane();
         pane1.setLayout(new FlowLayout(FlowLayout.LEFT));        
