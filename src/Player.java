@@ -65,8 +65,6 @@ public class Player extends MobileObject {
 	}
 
 	private void calculateDerivedStats() {
-    	int oldMaxHp = this.maxHp;
-    	int oldMaxMana = this.maxMana;
 		
 		// Set derived stats
 		this.maxHp = strength * 3;
@@ -74,19 +72,16 @@ public class Player extends MobileObject {
 		this.attack = strength + attackBonus;
 		this.defense = dexterity + defenseBonus;
 		
-		// truncate hp if it is above new max
+		/*if(oldMaxHp != this.maxHp && oldMaxHp > 0)
+			this.hp = this.maxHp * (int)(this.hp / oldMaxHp);
+		if(oldMaxMana != this.maxMana && oldMaxMana > 0)
+			this.mana = this.maxMana * (int)(this.mana / oldMaxMana);*/
+		
+		// preserve hp and mana max
 		if(this.hp > this.maxHp)
 			this.hp = this.maxHp;
-		// calculate new hp as ratio of old hp/maxHp
-		else if(oldMaxHp != this.maxHp && oldMaxHp > 0) // watch for div by 0
-			this.hp = this.maxHp * (this.hp / oldMaxHp);
-
-		// truncate mana if it is above new max
 		if(this.mana > this.maxMana)
 			this.mana = this.maxMana;
-		// calculate new mana as ratio of old mana/maxMana 
-		else if(oldMaxMana != this.maxMana && oldMaxHp > 0) // watch for div by 0 
-			this.mana = this.maxMana * (this.mana / oldMaxMana);
 	}
 
 	
@@ -377,7 +372,7 @@ public class Player extends MobileObject {
 		return mana;
 	}
 
-
+	// Derived stat has no mutator
 	public void setMana(int mana) {
 		this.mana = mana;
 		setChanged();
@@ -385,13 +380,15 @@ public class Player extends MobileObject {
 	
         public void setMaxMana(int maxMana)
         {
-            this.maxMana = maxMana;
+        	this.maxMana = maxMana;
+            setChanged();
         }
         public void setMaxHp(int maxHp)
         {
-            this.maxHp = maxHp;
+        	this.maxHp = maxHp;
+            setChanged();
         }
-	// Derived stat has no mutator
+
 	public int getMaxMana() {
 		return maxMana;
 	}

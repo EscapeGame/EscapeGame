@@ -20,14 +20,10 @@ public class Inventory extends Observable
     Potion[] listPotion;
     private Menu menu;
     private ArrayList<Item>  list;
-    Weapon sword1 = new Weapon("Rusty sword", "", 1, '/', 0, 0, 20, 5, 0);
-    
-    
-    Potion potion1 = new Potion("Hp potion", "Heal 50 Hp", 1, ',', 50, 0);
-    Potion potion2 = new Potion("Mana potion", "Heal 50 Mana", 1,',', 0, 50);
-    Armor armor1 = new Armor("Rusty Armor", "Used Armor", 1, '.', 0, 0, 0, 0,10);
-    Scroll scroll = new Scroll("Skill scroll", "Read to lear a random skill.", 1, '?', SkillType.random());
-    Food food1 = new Food("Apple of Intelligence", "Increase your intelligence", 0, ',', 0, 0, 0, 1, 0);
+    Weapon sword1 = new Weapon("Rusty sword", "", 1, '|', 0, 0, 10, 0, 5);
+    Potion potion1 = new Potion("Hp potion", "Heal 50 Hp", 0, ',', 50, 0);
+    Potion potion2 = new Potion("Mana potion", "Heal 50 Mana", 0,',', 0, 50);
+	Scroll scroll = new Scroll("Skill scroll", "Read to learn a random skill.", 1, '?', SkillType.random());
     Weapon currentWeapon;
     Armor currentArmor;
     
@@ -40,13 +36,9 @@ public class Inventory extends Observable
             listFood = new Food[max];
             listScroll = new Scroll[max];
             list.add(sword1);
-            list.add(armor1);
-            //list.add(sword2);
-            //list.add(sword3);
             list.add(potion1);
             list.add(potion2);
             list.add(scroll);
-            
             menu = getMenu();
             
 	}

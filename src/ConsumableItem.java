@@ -113,7 +113,7 @@ public class ConsumableItem implements Item,MapObject
         return getName();
     }
     public CharTile getTile() {
-	return new CharTile(symbol, Color.PINK);
+	return new CharTile(symbol, Color.CYAN);
     }
     
 }
