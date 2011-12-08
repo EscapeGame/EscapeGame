@@ -12,7 +12,7 @@ import java.awt.Color;
  */
 public class ConsumableItem implements Item,MapObject
 {
-    private String name;
+	private String name;
     private String description;
     private int numItem;
     private char symbol;
@@ -82,6 +82,22 @@ public class ConsumableItem implements Item,MapObject
         this.numItem = numItem;
         
     }
+    
+    /*
+     * This method is get symbol
+     * @return symbol
+     */
+    public char getSymbol() {
+		return symbol;
+	}
+
+    /*
+     * This method is set symbol
+     */
+	public void setSymbol(char symbol) {
+		this.symbol = symbol;
+	}
+    
     public void displayItem()
     {
         System.out.println("Name = " + name + " ,Number Item = " + numItem);

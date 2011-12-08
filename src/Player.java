@@ -6,8 +6,8 @@ public class Player extends MobileObject {
 	
 	public Player(){
 		gainLevel();
-		skillList = new SkillList(this);
-                inventory = new Inventory(5);
+		skillList = new SkillList();
+        inventory = new Inventory(5);
 		this.tile = new CharTile('@', Color.RED);
 		//inventory = new Inventory(5);
 	}
@@ -264,7 +264,12 @@ public class Player extends MobileObject {
                 
             }
         }
-	public int getHp() {
+        
+    public boolean usedScroll(Scroll scroll) {
+    	return skillList.add(scroll.getSkillType());
+    }
+
+    public int getHp() {
 		return hp;
 	}
 
@@ -410,17 +415,18 @@ public class Player extends MobileObject {
 		this.skillList = skillList;
 	}
 	
-	public void addSkill(SkillAction s) {
-		skillList.add(s);
+	public void addSkillType(SkillType skill) {
+		skillList.add(skill);
+	}
+	
+	public void removeSkillType(SkillType s) {
+		skillList.remove(s);
 	}
 	
 	public SkillAction getSkill(int index) {
-		return skillList.get(index);
+		return skillList.get(index).getAction(this);
 	}
 	
-	public void removeSkill(SkillAction s) {
-		skillList.remove(s);
-	}
         public Menu getEquipMenu()
         {
             return inventory.getMenu();
@@ -468,8 +474,6 @@ public class Player extends MobileObject {
 		if(hasChanged()) 
 		{
 			calculateDerivedStats();
-			skillList = new SkillList(this); // update skills @todo should also incorporate new skills learned
-			
             notifyObservers();
 			clearChanged();
 		}

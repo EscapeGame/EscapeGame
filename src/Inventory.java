@@ -25,6 +25,7 @@ public class Inventory extends Observable
     Weapon sword3 = new Weapon("Excalabur", "", 1, '/', 0, 0, 100, 100, 100);
     Potion potion1 = new Potion("Hp potion", "Heal 50 Hp", 0, ',', 50, 0);
     Potion potion2 = new Potion("Mana potion", "Heal 50 Mana", 0,',', 0, 50);
+	Scroll scroll = new Scroll("Skill scroll", "Read to lear a random skill.", 1, '?', SkillType.random());
     Food food1 = new Food("Apple of Intelligence", "Increase your intelligence", 0, ',', 0, 0, 0, 1, 0);
     Weapon currentWeapon;
     Armor currentArmor;
@@ -41,6 +42,7 @@ public class Inventory extends Observable
             list.add(sword2);
             list.add(sword3);
             list.add(potion1);
+            list.add(scroll);
             menu = getMenu();
             
 	}

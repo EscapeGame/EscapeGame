@@ -4,18 +4,14 @@ import java.util.Observable;
 
 public class SkillList extends Observable {
 
-	public SkillList(Player player)
+	public SkillList()
 	{
 		super();
-		this.player = player;
-		this.skills = new ArrayList<SkillAction>();
+		this.skills = new ArrayList<SkillType>();
 		
-		// Add default skills
-		addAction(SkillType.DOUBLE_ATTACK);
-		addAction(SkillType.FIREBALL);
-		addAction(SkillType.LIGHTNING_BOLT);
-		addAction(SkillType.HEALING);
-		addAction(SkillType.POWER_SURGE);
+		for(int i = 0; i < 3; i++) {
+			add(SkillType.random());
+		}
 	}
 	
 	public Menu getMenu() {
@@ -28,28 +24,32 @@ public class SkillList extends Observable {
 		setChanged();
 	}
 	
-	public void add(SkillAction skill) {
-		skills.add(skill);
+	public boolean add(SkillType skill) {
+		if(!skills.contains(skill) && skill != SkillType.MELEE) {
+			skills.add(skill);
+			setChanged();
+			return true;
+		}
+		return false;
 	}
 	
-	public void remove(SkillAction skill) {
+	public void remove(SkillType skill) {
 		skills.remove(skill);
+		setChanged();
 	}
 	
-	public SkillAction get(int index) {
+	public SkillType get(int index) {
 		return skills.get(index);
 	}
-	
-	public void removeAction(SkillType type) {
-		skills.remove(type.getAction(player));
-		setChanged();
+		
+	public ArrayList<SkillType> getSkills() {
+		return skills;
 	}
 
-	public void addAction(SkillType type) {
-		skills.add(type.getAction(player));
-		setChanged();
+	public void setSkills(ArrayList<SkillType> skills) {
+		this.skills = skills;
 	}
-	
+
 	public void checkStatus()
 	{
 		if(hasChanged()) 
@@ -60,6 +60,5 @@ public class SkillList extends Observable {
 	}
 	
 	private Menu menu;
-	private Player player;
-	private ArrayList<SkillAction> skills;
+	private ArrayList<SkillType> skills;
 }
