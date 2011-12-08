@@ -15,8 +15,8 @@ public class StatusBar extends JPanel implements Observer {
 		setPreferredSize(new Dimension(w, h));
 		setBackground(Color.BLACK);
 		setForeground(Color.WHITE);
-		playerStatus = new StatusArea(w, h/3);
-		monsterStatus = new StatusArea(w, h/3);
+		playerStatus = new StatusArea(w, h/2);
+		monsterStatus = new StatusArea(w, h/2);
 		add(playerStatus);
 		add(monsterStatus);
 		printPlayerStatus();
@@ -25,6 +25,8 @@ public class StatusBar extends JPanel implements Observer {
 	
 	public void printPlayerStatus()
 	{
+		String currArmor = player.getCurrentArmor() == null ? "" : player.getCurrentArmor().toString();
+		String currWeapon = player.getCurrentWeapon() == null ? "" : player.getCurrentWeapon().toString();
 		playerStatus.setText(
 			"PLAYER\n\n" +
 			"Level: " + player.getLevel() + "\n" +
@@ -35,7 +37,9 @@ public class StatusBar extends JPanel implements Observer {
 			"Def: " + player.getDefense() + "\n\n" +
 			"Str: " + player.getStrength() + "\n" +
 			"Dex: " + player.getDexterity() + "\n" +
-			"Int: " + player.getIntelligence() + "\n"
+			"Int: " + player.getIntelligence() + "\n\n" +
+			"Curr.armor: \n" + currArmor + "\n" +
+			"Curr.weapon: \n" + currWeapon + "\n"
 		);
 	}
 	
