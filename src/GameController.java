@@ -150,23 +150,28 @@ public class GameController implements KeyListener  {
 		
         if (num > -1 && player.getInventory().getlistItem().size() > num)
         {
-            frame.printMessage("Equip");
+            //frame.printMessage("Equip");
             if (player.getInventory().getItem(num) instanceof  Weapon)
             {
                 Weapon weapon = (Weapon) player.getInventory().getItem(num);
                 if(!player.isWeaponEquiped())
                 {
+                    frame.printMessage("Equip " + weapon.getName());
                     player.setCurrentWeapon(weapon);
                     player.equipWeapon();
                 }
                 else
                 {   if(player.getCurrentWeapon() == weapon)
+                    {
                         player.unequipedWeapon();
+                        frame.printMessage("Unequip " + weapon.getName());
+                    }
                     else
                     {
                         player.unequipedWeapon();
                         player.setCurrentWeapon(weapon);
                         player.equipWeapon();
+                        frame.printMessage("Equip " + weapon.getName());
                     }
                 }
             }
@@ -175,6 +180,7 @@ public class GameController implements KeyListener  {
                 Armor armor = (Armor) player.getInventory().getItem(num);
                 if(!player.isArmorEquiped())
                 {
+                    frame.printMessage("Equip " + armor.getName());
                     player.setCurrentArmor(armor);
                     player.equipArmor();
                 }
@@ -182,6 +188,7 @@ public class GameController implements KeyListener  {
                 {
                     if (player.getCurrentArmor() == armor)
                     {
+                        frame.printMessage("Unequip " + armor.getName());
                         player.unequipedArmor();
                     }
                     else
@@ -189,14 +196,52 @@ public class GameController implements KeyListener  {
                         player.unequipedArmor();
                         player.setCurrentArmor(armor);
                         player.equipArmor();
+                        frame.printMessage("Equip " + armor.getName());
                     }
                 }
             }
             else if (player.getInventory().getItem(num) instanceof Potion)
             {
                 Potion potion = (Potion) player.getInventory().getItem(num);
-                player.usedPotion(potion);
-                player.getInventory().remove(potion);
+                if (player.getHp() < player.getMaxHp())
+                {
+                    frame.printMessage("Use " + potion.getName());
+                    player.usedPotion(potion);
+                    if (potion.getHP() > 0)
+                    {
+                        frame.printMessage("Player recover " + potion.getHP() + " Hp");
+                    }
+                    
+                    player.getInventory().remove(potion);
+                    
+                }
+                else if (player.getMana() < player.getMaxMana())
+                {
+                    if (potion.getMana() > 0)
+                    {
+                        frame.printMessage("Use " + potion.getName());
+                        player.usedPotion(potion);
+                        frame.printMessage("Player recorer " + potion.getMana() + " Mana");
+                    }
+                    player.getInventory().remove(potion);
+                    
+                }
+                else if (player.getMana() == player.getMaxMana())
+                {
+                    frame.printMessage("Can not use " + potion.getName() + " because Mana is full");
+                }
+                else
+                {
+                    frame.printMessage("Can not use " + potion.getName() + " because Hp is full");
+                }
+            }
+            else if (player.getInventory().getItem(num) instanceof Food)
+            {
+                Food food = (Food) player.getInventory().getItem(num);
+                player.usedFood(food);
+                frame.printMessage("Use " + food.getName());
+                frame.printMessage(food.getDescription());
+                player.getInventory().remove(food);
             }
             else if (player.getInventory().getItem(num) instanceof Scroll)
             {

@@ -107,11 +107,11 @@ public class Player extends MobileObject {
             {
                 if (currentArmor.getHP() > 0)
                 {
-                    setHp(getMaxHp() - currentArmor.getHP());
+                    setMaxHp(getMaxHp() - currentArmor.getHP());
                 }
                 if (currentArmor.getMana() > 0)
                 {
-                    setMana(getMaxMana() - currentArmor.getMana());
+                    setMaxMana(getMaxMana() - currentArmor.getMana());
                 }
                 if (currentArmor.getStrength() > 0)
                 {
@@ -135,11 +135,11 @@ public class Player extends MobileObject {
             {
                 if (currentWeapon.getHP() > 0)
                 {
-                    setHp(getMaxHp() - currentWeapon.getHP());
+                    setMaxHp(getMaxHp() - currentWeapon.getHP());
                 }
                 if (currentWeapon.getMana() > 0)
                 {
-                    setMana(getMaxMana() - currentWeapon.getMana());
+                    setMaxMana(getMaxMana() - currentWeapon.getMana());
                 }
                 if (currentWeapon.getStrength() > 0)
                 {
@@ -164,11 +164,11 @@ public class Player extends MobileObject {
             {
                 if (currentWeapon.getHP() > 0)
                 {
-                    setHp(getMaxHp() + currentWeapon.getHP());
+                    setMaxHp(getMaxHp() + currentWeapon.getHP());
                 }
                 if (currentWeapon.getMana() > 0)
                 {
-                    setMana(getMaxMana() + currentWeapon.getMana());
+                    setMaxMana(getMaxMana() + currentWeapon.getMana());
                 }
                 if (currentWeapon.getStrength() > 0)
                 {
@@ -191,11 +191,11 @@ public class Player extends MobileObject {
             {
                 if (currentArmor.getHP() > 0)
                 {
-                    setHp(getMaxHp() + currentArmor.getHP());
+                    setMaxHp(getMaxHp() + currentArmor.getHP());
                 }
                 if (currentArmor.getMana() > 0)
                 {
-                    setMana(getMaxMana() + currentArmor.getMana());
+                    setMaxMana(getMaxMana() + currentArmor.getMana());
                 }
                 if (currentArmor.getStrength() > 0)
                 {
@@ -228,6 +228,15 @@ public class Player extends MobileObject {
                 return false;
             }
             return true;
+            
+        }
+        public void usedFood(Food food)
+        {
+            setMaxHp(food.getHP() + getMaxHp());
+            setMaxMana(getMaxMana() + food.getMana());
+            setStrength(getStrength() + food.getStrength());
+            setDexterity(getDexterity() + food.getDexterity());
+            setIntelligence(getIntelligence() + food.getIntelligence());
             
         }
         public void usedPotion(Potion potion)
@@ -362,6 +371,14 @@ public class Player extends MobileObject {
 		setChanged();
 	}
 	
+        public void setMaxMana(int maxMana)
+        {
+            this.maxMana = maxMana;
+        }
+        public void setMaxHp(int maxHp)
+        {
+            this.maxHp = maxHp;
+        }
 	// Derived stat has no mutator
 	public int getMaxMana() {
 		return maxMana;
