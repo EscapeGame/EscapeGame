@@ -279,7 +279,7 @@ public class GameController implements KeyListener  {
 						message = attack.execute(player, targets);
 						for(MapObject obj : targets) {
 							Monster m = (Monster) obj;
-							processAttack(m);
+							message += processAttack(m);
 						}
 						frame.printMessage(message);
 					}
@@ -424,9 +424,9 @@ public class GameController implements KeyListener  {
 				message += " Wow! You gain " + levelCount + " levels.";
 			else if(levelCount == 1)
 				message += " You gain a level!";
+			m = (Monster) map.removeObject(x, y);
 			MapObject item = (MapObject) m.getItem();
 			map.placeMapObject(x, y, item);
-			map.removeObject(x, y);
 		}
 		else {
 			AttackAction attack = (AttackAction) SkillType.MELEE.getAction(m);
@@ -437,7 +437,7 @@ public class GameController implements KeyListener  {
 				frame.removeKeyListener(this);
 			}
 		}
-		moveVisibleMonsters(x, y, DISTANCE);
+		//moveVisibleMonsters(x, y, DISTANCE);
 		return message;
 	}
 	

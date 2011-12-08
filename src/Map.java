@@ -44,7 +44,7 @@ public class Map extends Observable implements ILosBoard
 		for (int i = 0; i < width; i++)
 			for (int j = 0; j < height; j++)
 			{
-				visited[i][j] = false;
+				visited[i][j] = true;
 				obstacles[i][j] = false;
 			}
 		
@@ -90,6 +90,7 @@ public class Map extends Observable implements ILosBoard
 	
 	/**
 	 * Checks if location is on the map
+	 * 
 	 */
 	public boolean contains(int x, int y) 
 	{
@@ -125,8 +126,8 @@ public class Map extends Observable implements ILosBoard
 	
 	/**
 	 * Method to check if location was visited
-	 * @param x
-	 * @param y
+	 * @param x x coordinate
+	 * @param y y coordinate
 	 * @return true if location was visited
 	 */
 	public boolean visited(int x, int y)
@@ -138,8 +139,8 @@ public class Map extends Observable implements ILosBoard
 	
 	/**
 	 * Method to get an object that is at requested location (if any)
-	 * @param x
-	 * @param y
+	 * @param x x coordinate
+	 * @param y y coordinate
 	 * @return MapObject that is at requested location or null if none
 	 */
 	public MapObject getMapObject(int x, int y)
@@ -149,8 +150,8 @@ public class Map extends Observable implements ILosBoard
 	
 	/**
 	 * Method to place a MapObject that is at requested location
-	 * @param x
-	 * @param y
+	 * @param x x cordinate
+	 * @param y y coordinate
 	 */
 	public void placeMapObject(int x, int y, MapObject o)
 	{
@@ -168,8 +169,8 @@ public class Map extends Observable implements ILosBoard
 	
 	/**
 	 * Removes MapObject that is at requested location (if any) from map 
-	 * @param x
-	 * @param y
+	 * @param x x coordinate
+	 * @param y y coordinate
 	 * @return MapObject that was removed or null if none
 	 */
 	public MapObject removeObject(int x, int y)
@@ -186,23 +187,32 @@ public class Map extends Observable implements ILosBoard
 		}
 		return o;
 	}
-	/*
-	public ArrayList<Point2I> findPath(Point2I p1, Point2I p2)
-	{
-		return null;
-	}*/
 
+	/**
+	 * Getter for player location
+	 * @return location of the player
+	 */
 	public Point2I getPlayerLocation() 
 	{
 		return pLocation;
 	}
 	
+	/**
+	 * Setter for player location
+	 * @param p new location for the player
+	 */
 	public void setPlayerLocation(Point2I p) 
 	{
-		pLocation = p;
-		changed();
+		if (contains(p.x, p.y) && !obstacles[p.x][p.y])
+		{
+			pLocation = p;
+			changed();
+		}
 	}
 	
+	/**
+	 * Notifies observers
+	 */
 	private void changed()
 	{
 
@@ -211,6 +221,9 @@ public class Map extends Observable implements ILosBoard
 		clearChanged();
 	}
 	
+	/**
+	 * Creates walls
+	 */
 	private void createWalls()
 	{
 		// frame
@@ -238,8 +251,11 @@ public class Map extends Observable implements ILosBoard
 		horizontalWall(new Point2I(40, 30), 35);
 	}
 	
-	
-	
+	/**
+	 * Creates horizontal wall
+	 * @param loc starting location of the wall
+	 * @param length wall length
+	 */
 	private void horizontalWall(Point2I loc, int length)
 	{
 		for (int i = 0; i < length; i++)
@@ -249,6 +265,11 @@ public class Map extends Observable implements ILosBoard
 		}
 	}
 	
+	/**
+	 * Creates vertical wall
+	 * @param loc starting location of the wall
+	 * @param length wall length
+	 */
 	private void verticalWall(Point2I loc, int length)
 	{
 		for (int j = 0; j < length; j++)
@@ -258,11 +279,11 @@ public class Map extends Observable implements ILosBoard
 		}
 	}
 	
-	Point2I pLocation;
+	private Point2I pLocation;
 	private int width, height;
 	private boolean[][] visited;
 	private boolean[][] obstacles;
-	HashMap<Point2I, MapObject> objectsLocations;
-	ArrayList<MapObject> objectsList;
+	private HashMap<Point2I, MapObject> objectsLocations;
+	private ArrayList<MapObject> objectsList;
 	
 }
