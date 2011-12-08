@@ -20,7 +20,7 @@ public class Inventory extends Observable
     Potion[] listPotion;
     private Menu menu;
     private ArrayList<Item>  list;
-    Weapon sword1 = new Weapon("Rusty sword", "", 1, '/', 0, 0, 5, 5, 5);
+    Weapon sword1 = new Weapon("Rusty sword", "", 1, '/', 0, 0, 10, 0, 0);
     Weapon sword2 = new Weapon("Good sword", "", 1, '/', 0, 0, 50, 50, 50);
     Weapon sword3 = new Weapon("Excalabur", "", 1, '/', 0, 0, 100, 100, 100);
     Potion potion1 = new Potion("Hp potion", "Heal 50 Hp", 0, ',', 50, 0);
