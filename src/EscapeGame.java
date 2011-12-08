@@ -21,17 +21,17 @@ public class EscapeGame
 		Map map;
 		//Inventory inventory = new Inventory();
 		ArrayList<MapObject> mapObjects = new ArrayList<MapObject>();
-		for (int i = 0; i < 30; i++)
+		for (int i = 0; i < 10; i++)
 		{
 			Armor armor = new Armor("Breastplate", "Good protection.", 1, '[', 0, 0, 0, 0, 20);
-                        
+
 			Weapon weapon = new Weapon("Short Sword", "A simple weapon.", 1, '/', 0, 0, 30, 0, 0);
                         Weapon sword2 = new Weapon("Good sword", "A good weapon", 1, '/', 0, 0, 50, 0, 0);
 			Weapon staff = new Weapon("Mage Staff", "A mage's weapon.", 1, '/', 10, 10, 0, 100, 0);
                         Potion potion1 = new Potion("Hp potion", "Heal 50 Hp", 1, ',', 50, 0);
                         Potion potion3 = new Potion("High potion", "Heal 100 Hp", 1, ',', 100, 0);
                         Potion potion2 = new Potion("Mana potion", "Heal 50 Mana", 1,',', 0, 50);
-                        
+
 			
 			//Monster wraith = new Monster("Wraith", 'W', 500, 500, Color.BLUE, 8, 100, 120, 500);
 			
@@ -84,7 +84,7 @@ public class EscapeGame
                     
                 }
 		player = new Player();
-		map = new Map(FRAME_WIDTH / TILE_SIZE - 2, FRAME_HEIGHT / TILE_SIZE - 2, mapObjects);
+		map = new Map((FRAME_WIDTH - 50) / TILE_SIZE - 2, (FRAME_HEIGHT - 170) / TILE_SIZE- 2, mapObjects, player);
 		//player.setLocation(2, 2);
 		EscapeGameFrame frame = new EscapeGameFrame(FRAME_WIDTH, FRAME_HEIGHT, map, player);
 		frame.setVisible(true);
@@ -92,7 +92,7 @@ public class EscapeGame
 	}
 	
 	public static final int FRAME_WIDTH = 800;
-	public static final int FRAME_HEIGHT = 800;
+	public static final int FRAME_HEIGHT = 700;
 	public static final int TILE_SIZE = 10;
 
 }
