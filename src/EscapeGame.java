@@ -23,10 +23,11 @@ public class EscapeGame
 		ArrayList<MapObject> mapObjects = new ArrayList<MapObject>();
 		for (int i = 0; i < 30; i++)
 		{
-			Armor armor = new Armor("Breastplate", "Good protection.", 1, '[', 0, 0, 10, 10, 10);
+			Armor armor = new Armor("Breastplate", "Good protection.", 1, '[', 0, 0, 0, 0, 20);
                         
-			Weapon weapon = new Weapon("Short Sword", "A simple weapon.", 1, 'Z', 0, 0, 10, 10, 10);
-			Weapon staff = new Weapon("Mage Staff", "A mage's weapon.", 1, '/', 10, 10, 10, 100, 10);
+			Weapon weapon = new Weapon("Short Sword", "A simple weapon.", 1, '/', 0, 0, 30, 0, 0);
+                        Weapon sword2 = new Weapon("Good sword", "A good weapon", 1, '/', 0, 0, 50, 0, 0);
+			Weapon staff = new Weapon("Mage Staff", "A mage's weapon.", 1, '/', 10, 10, 0, 100, 0);
                         Potion potion1 = new Potion("Hp potion", "Heal 50 Hp", 1, ',', 50, 0);
                         Potion potion3 = new Potion("High potion", "Heal 100 Hp", 1, ',', 100, 0);
                         Potion potion2 = new Potion("Mana potion", "Heal 50 Mana", 1,',', 0, 50);
@@ -35,27 +36,38 @@ public class EscapeGame
 			//Monster wraith = new Monster("Wraith", 'W', 500, 500, Color.BLUE, 8, 100, 120, 500);
 			
 			//Monster dragon = new Monster("Red Dragon", 'D', 2000, 2000, Color.RED, 5, 200, 250, 10000);
-			Monster wraith = new Monster("Wraith", 'W', 500, 500, Color.BLUE, 8, 100, 120, 500);
-
+			
+                        Monster fairy = new Monster("Fairy", 'f', 10, 10, Color.GREEN, 3, 5, 5, 10);
 			Monster goblin = new Monster("Goblin", 'g', 10, 10, Color.GREEN, 3, 25, 5, 50);
+                        Monster orc = new Monster("Orc", 'o', 100, 100, Color.LIGHT_GRAY, 3, 50, 20, 100);
+                        
 			Scroll scroll = new Scroll("Skill scroll", "Read to clear a random skill.", 1, '?', SkillType.random());
 			//dragon.setItem(armor);
 			goblin.setItem(weapon);
+                        fairy.setItem(potion1);
+                        orc.setItem(potion3);
 			
 
 			//mapObjects.add(wraith)
                         mapObjects.add(potion1);
                         mapObjects.add(potion2);
                         mapObjects.add(potion3);
+                        mapObjects.add(sword2);
                         
-			mapObjects.add(wraith);
-                        
+			mapObjects.add(orc);
+                        mapObjects.add(fairy);
 			mapObjects.add(goblin);
 			mapObjects.add(armor);
 			mapObjects.add(weapon);
 			mapObjects.add(staff);
 			mapObjects.add(scroll);
 		}
+                for (int i = 0; i < 10; i++)
+                {
+                    Monster wraith = new Monster("Wraith", 'W', 500, 500, Color.BLUE, 8, 100, 120, 500);
+                    mapObjects.add(wraith);
+                    
+                }
                 for (int i = 0; i < 5; i++)
                 {
                     Monster dragon = new Monster("Red Dragon", 'D', 2000, 2000, Color.RED, 5, 200, 250, 10000);
@@ -65,7 +77,7 @@ public class EscapeGame
                 }
                 for(int i = 0; i < 1; i++)
                 {
-                    Armor armor1 = new Armor("Invincible Armor", "Ultima Armor", 1, '.', 0, 0, 0, 0, 1000);
+                    Armor armor1 = new Armor("Invincible Armor", "Ultima Armor", 1, '[', 0, 0, 0, 0, 1000);
                     Weapon sword3 = new Weapon("Excalabur", "", 1, '/', 0, 0, 1000, 100, 100);
                     mapObjects.add(armor1);
                     mapObjects.add(sword3);

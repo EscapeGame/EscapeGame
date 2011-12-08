@@ -20,13 +20,13 @@ public class Inventory extends Observable
     Potion[] listPotion;
     private Menu menu;
     private ArrayList<Item>  list;
-    Weapon sword1 = new Weapon("Rusty sword", "", 1, '/', 0, 0, 10, 0, 0);
-    Weapon sword2 = new Weapon("Good sword", "", 1, '/', 0, 0, 50, 50, 50);
+    Weapon sword1 = new Weapon("Rusty sword", "", 1, '/', 0, 0, 20, 5, 0);
     
-    Potion potion1 = new Potion("Hp potion", "Heal 50 Hp", 0, ',', 50, 0);
-    Potion potion2 = new Potion("Mana potion", "Heal 50 Mana", 0,',', 0, 50);
-    Armor armor1 = new Armor("Invincible Armor", "Ultima Armor", 1, '.', 0, 0, 0, 0,1000);
-	Scroll scroll = new Scroll("Skill scroll", "Read to lear a random skill.", 1, '?', SkillType.random());
+    
+    Potion potion1 = new Potion("Hp potion", "Heal 50 Hp", 1, ',', 50, 0);
+    Potion potion2 = new Potion("Mana potion", "Heal 50 Mana", 1,',', 0, 50);
+    Armor armor1 = new Armor("Rusty Armor", "Used Armor", 1, '.', 0, 0, 0, 0,10);
+    Scroll scroll = new Scroll("Skill scroll", "Read to lear a random skill.", 1, '?', SkillType.random());
     Food food1 = new Food("Apple of Intelligence", "Increase your intelligence", 0, ',', 0, 0, 0, 1, 0);
     Weapon currentWeapon;
     Armor currentArmor;
@@ -40,11 +40,13 @@ public class Inventory extends Observable
             listFood = new Food[max];
             listScroll = new Scroll[max];
             list.add(sword1);
-            list.add(sword2);
+            list.add(armor1);
+            //list.add(sword2);
             //list.add(sword3);
             list.add(potion1);
+            list.add(potion2);
             list.add(scroll);
-            list.add(armor1);
+            
             menu = getMenu();
             
 	}
@@ -76,7 +78,7 @@ public class Inventory extends Observable
         public boolean add(Item item)
         {
             boolean isAdd = false;
-            System.out.println("Size = " + list.size());
+            //System.out.println("Size = " + list.size());
             if (list.isEmpty())
             {
                 System.out.println("Empty");
@@ -161,10 +163,11 @@ public class Inventory extends Observable
 	}
 	
 	public boolean contains(Item item) {
-		for (Item i : list){
-			if (i == item)
-                            return true;
-		}
+		if(list.contains(item))
+                {
+                    return true;
+                }
+                    
 		return false;
 	}
         /*
