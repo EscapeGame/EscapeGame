@@ -33,7 +33,7 @@ public class EscapeGame
 		for (int i = 0; i < 20; i++)
 		{
             Potion potion2 = new Potion("Mana potion", "Heal 50 Mana", 1,';', 0, 50);
-			Monster fairy = new Monster("Fairy", 'f', 50, 50, Color.PINK, 6, 40, 20, 100);
+			Monster fairy = new Monster("Fairy", 'f', 50, 50, Color.PINK, 5, 40, 20, 100);
 			Scroll scroll = new Scroll("Skill scroll", "Read to learn a random skill.", 1, '?', SkillType.random());
 			Weapon weapon = new Weapon("Short sword", "A simple weapon.", 1, '/', 0, 0, 20, 0, 10);
 			Armor armor = new Armor ("Leather armor", "Not very protective.", 1, ']', 0, 0, 0, 0, 20);
@@ -50,7 +50,7 @@ public class EscapeGame
 			Weapon staff = new Weapon("Mage staff", "A mage's weapon.", 1, '|', 0, 0, 0, 60, 0);
 		    Weapon weapon2 = new Weapon("Magic sword", "", 1, '/', 0, 0, 40, 20, 20);
 		    Monster wraith = new Monster("Wraith", 'W', 400, 400, Color.BLUE, 7, 100, 120, 500);
-		    Monster fiend = new Monster("Pit Fiend", 'F', 200, 200, Color.ORANGE, 7, 75, 50, 250);
+		    Monster fiend = new Monster("Pit Fiend", 'F', 200, 200, Color.ORANGE, 6, 75, 50, 250);
 			Potion potion3 = new Potion("High potion", "Heal 100 Hp", 1, ':', 100, 0);
 			wraith.setItem(armor2);
 			fiend.setItem(potion3);
@@ -66,7 +66,7 @@ public class EscapeGame
         	{
     			Armor armor3 = new Armor("Magic armor", "Better protection with some magic power.", 1, '+', 0, 0, 40, 40, 80);
     			Weapon weapon3 = new Weapon("Quickblade", "Fast striking, defensive blade.", 1, '\\', 0, 0, 30, 0, 60);
-            		Monster dragon = new Monster("Red Dragon", 'D', 2000, 2000, Color.RED, 8, 200, 250, 10000);
+            		Monster dragon = new Monster("Red Dragon", 'D', 2000, 2000, Color.RED, 6, 200, 250, 10000);
             		Potion potion4 = new Potion("Elixir", "Heal 500 hp and mana",1, '^', 500, 500);
         			Food food1 = new Food("Apple of Intelligence", "Increase your intelligence", 0, '%', 0, 0, 0, 5, 0);
         			Food food2 = new Food("Meat of Power", "Increase your strength", 0, '%', 0, 0, 5, 0, 0);
