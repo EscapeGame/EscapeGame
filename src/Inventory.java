@@ -27,7 +27,6 @@ public class Inventory extends Observable
     Potion potion2 = new Potion("Mana potion", "Heal 50 Mana", 0,',', 0, 50);
 	Scroll scroll = new Scroll("Skill scroll", "Read to lear a random skill.", 1, '?', SkillType.random());
     Food food1 = new Food("Apple of Intelligence", "Increase your intelligence", 0, ',', 0, 0, 0, 1, 0);
->>>>>>> 1f86f834852888a05971a816cc39150de676404c
     Weapon currentWeapon;
     Armor currentArmor;
     
