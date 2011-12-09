@@ -36,7 +36,7 @@ public class EscapeGame
 			mapObjects.add(scroll);
 		}
 			
-		for (int i = 0; i < 12; i++)
+		for (int i = 0; i < 10; i++)
 		{
 			Monster sorceress = new Monster("Sorceress", 's', 60, 60, Color.PINK, 5, 60, 40, 100);
 			Monster knight = new Monster("Black Knight", 'k', 100, 100, Color.DARK_GRAY, 5, 100, 100, 150);
@@ -60,7 +60,7 @@ public class EscapeGame
 			Weapon staff2 = new Weapon("Magic staff", "A mage's weapon.", 1, '|', 0, 0, 0, 60, 0);
 			Weapon club = new Weapon("Ogre club", "Very strong but not much else.", 1, '(', 0, 0, 100, 0, -0);
 		    Monster wraith = new Monster("Wraith", 'W', 300, 300, Color.BLUE, 7, 100, 120, 300);
-		    Monster ogre = new Monster("Ogre", 'O', 500, 500, Color.ORANGE, 4, 200, 200, 500);
+		    Monster ogre = new Monster("Ogre", 'O', 500, 500, Color.ORANGE, 4, 180, 200, 500);
 		    Monster naga = new Monster("Naga", 'N', 200, 200, Color.LIGHT_GRAY, 6, 100, 50, 200);
 			Potion potion3 = new Potion("High potion", "Heal 100 Hp", 1, ':', 100, 0);
 			wraith.setItem(armor3);
@@ -76,7 +76,7 @@ public class EscapeGame
 		}
         	for (int i = 0; i < 5; i++)
         	{
-            		Monster dragon = new Monster("Red Dragon", 'D', 2000, 2000, Color.RED, 6, 200, 250, 10000);
+            		Monster dragon = new Monster("Red Dragon", 'D', 2000, 2000, Color.RED, 6, 300, 300, 10000);
             		Potion potion4 = new Potion("Elixir", "Heal 500 hp and mana",1, '^', 500, 500);
         			Food food1 = new Food("Apple of Intelligence", "Increase your intelligence", 1, '%', 0, 0, 0, 5, 0);
         			Food food2 = new Food("Meat of Power", "Increase your strength", 1, '%', 0, 0, 5, 0, 0);
