@@ -125,7 +125,8 @@ public class GameController implements KeyListener  {
 					else
 					{
 						if(map.contains(nextX, nextY) && !map.isObstacle(nextX, nextY)) {
-							nextMoves.put(new Point2I(nextX, nextY), map.removeObject(i, j));
+							if(!nextMoves.containsKey(new Point2I(nextX, nextY)))
+								nextMoves.put(new Point2I(nextX, nextY), map.removeObject(i, j));
 						}
 					}
 				}
@@ -457,11 +458,11 @@ public class GameController implements KeyListener  {
 		else {
 			AttackAction attack = (AttackAction) SkillType.MELEE.getAction(m);
 			message += " " + attack.execute(m, player);
-			player.checkStatus();
-			if(player.getHp() <= 0) {
-				message += " You die! Game over.";
-				frame.removeKeyListener(this);
-			}
+		}
+		player.checkStatus();
+		if(player.getHp() <= 0) {
+			message += " You die! Game over.";
+			frame.removeKeyListener(this);
 		}
 		moveVisibleMonsters(x, y, DISTANCE);
 		return message;
