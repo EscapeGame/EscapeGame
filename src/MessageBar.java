@@ -1,48 +1,27 @@
-import java.util.Observable;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 
-import rlforj.math.Point2I;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
-/**
- * 
- * @author Tatiana Braginets
- *
- */
-public abstract class MobileObject extends Observable implements MapObject
-{
-	
-	public MobileObject()
-	{
-		x = 0;
-		y = 0;
-		visible = false;
-	}
-	
-    public void setVisible(boolean on)
-    {
-    	visible = on;
-    }
-	
-	public boolean isVisible()
-	{
-		return visible;
-		
-	}
-	
-	public Point2I getLocation()
-	{
-		return new Point2I(x, y);
-	}
-	
-	public void setLocation(int x2, int y2) 
-	{
-		x = x2;
-		y = y2;	
-	}
-	
-	public abstract void checkStatus();
-	
-	private int x;
-	private int y;
-	private boolean visible;
+public class MessageBar extends JPanel {
 
+	public MessageBar(int w, int h, String message)
+	{
+		setPreferredSize(new Dimension(w, h));
+		setLayout(new FlowLayout(FlowLayout.LEFT));
+		setBackground(Color.BLACK);
+		label = new JLabel(message);
+		label.setForeground(Color.WHITE);
+		add(label);
+	}
+	
+	public void printMessage(String text)
+	{
+		label.setText(text);
+	}
+	
+	private JLabel label;
 }

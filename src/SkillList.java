@@ -1,30 +1,65 @@
-import java.awt.Color;
-import java.awt.FlowLayout;
+import java.util.ArrayList;
 import java.util.Observable;
-import java.util.Observer;
-
-import javax.swing.JPanel;
 
 
-public class SkillPanel extends JPanel implements Observer
-{
+public class SkillList extends Observable {
 
-	public SkillPanel(Player p)
+	public SkillList()
 	{
-		super(new FlowLayout());
-		this.setBackground(Color.BLACK);
-		player = p;
-		menu = player.getSkillMenu();
-		this.add(menu);
+		super();
+		this.skills = new ArrayList<SkillType>();
+		
+		add(SkillType.DEFENSIVE);
+		add(SkillType.DOUBLE_ATTACK);
+		add(SkillType.random());
+		
 	}
 	
-	public void update(Observable obj, Object o) 
-	{
-		this.remove(menu);
-		menu = player.getSkillMenu();
-		this.add(menu);
+	public Menu getMenu() {
+		menu = new Menu(skills, "Choose a skill", "1234567890");
+		return menu;
+	}
+
+	public void setMenu(Menu menu) {
+		this.menu = menu;
+		setChanged();
 	}
 	
-	private Player player;
+	public boolean add(SkillType skill) {
+		if(!skills.contains(skill) && skill != SkillType.MELEE) {
+			skills.add(skill);
+			setChanged();
+			return true;
+		}
+		return false;
+	}
+	
+	public void remove(SkillType skill) {
+		skills.remove(skill);
+		setChanged();
+	}
+	
+	public SkillType get(int index) {
+		return skills.get(index);
+	}
+		
+	public ArrayList<SkillType> getSkills() {
+		return skills;
+	}
+
+	public void setSkills(ArrayList<SkillType> skills) {
+		this.skills = skills;
+	}
+
+	public void checkStatus()
+	{
+		if(hasChanged()) 
+		{
+            notifyObservers();
+			clearChanged();
+		}
+	}
+	
 	private Menu menu;
+	private ArrayList<SkillType> skills;
 }

@@ -125,23 +125,6 @@ public class Weapon extends EquippableItem
     {
         this.mana = mana;
     }
-    public void display ()
-    {
-        System.out.println("Name = " + getName() + " number item = " + getNumberItem());
-    }
-    public void displayFullInformation()
-    {
-        System.out.println("Name = " + getName());
-        System.out.println("Decription" + getDescription());
-        System.out.println("Hp = " + getHP() + " Mana = " + getMana() + " Str = " 
-                + getStrength() + " Dex = " + getDexterity() + " Int = " + getIntelligence());
-    }/*
-    @Override
-    public String toString()
-    {
-        return "Name = " + getName() + " number item = " + getNumberItem();
-    }
-     * 
-     */
+    
             
 }
