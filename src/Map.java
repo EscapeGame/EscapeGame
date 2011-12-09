@@ -75,23 +75,23 @@ public class Map extends Observable implements ILosBoard
 			int x = rand.nextInt(width);
 			int y = rand.nextInt(height);
 			MapObject o = randomizedObjects.get(i);
-			if (obstacles[x][y] || (x < pLocation.x + width / 7  && y < pLocation.y + height / 7))
+			if (obstacles[x][y] || (x < pLocation.x + width / 6  && y < pLocation.y + height / 6))
 			{
 				i--;
 				
 			}
-			else if (!obstacles[x][y] && (x < width / 7 + width / 3 && y > height / 7)
+			else if (!obstacles[x][y] && (x < width / 6 + width / 3 && y > height / 6)
 					&& o instanceof Monster && ((Monster)o).getHp() > p.getHp())
 			{
 				i--;
 			}
                         //Test 
-                        else if(!obstacles[x][y] && (x < width / 7 + width / 3 && y > height / 7)
+                        else if(!obstacles[x][y] && (x < width / 6 + width / 3 && y > height / 6)
 					&& o instanceof Weapon && ((Weapon)o).getStrength() > p.getStrength() && ((Weapon)o).getIntelligence() > p.getIntelligence())
                         {
                                 i--;
                         }
-                        else if(!obstacles[x][y] && (x < width / 7 + width / 3 && y > height / 7)
+                        else if(!obstacles[x][y] && (x < width / 6 + width / 3 && y > height / 6)
 					&& o instanceof Armor && ((Armor)o).getDexterity() > p.getDexterity())
                         {
                                 i--;

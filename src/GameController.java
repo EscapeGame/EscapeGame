@@ -2,7 +2,9 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map.Entry;
 
 import rlforj.los.PrecisePermissive;
 import rlforj.math.Point2I;
@@ -93,6 +95,7 @@ public class GameController implements KeyListener  {
 
 	private void moveVisibleMonsters(int x, int y, int distance)
 	{
+		HashMap<Point2I, MapObject> nextMoves = new HashMap<Point2I, MapObject>();
 		for(int i = x - distance + 3; i < x + distance - 3; i++)
 			for (int j = y - distance + 3; j < y + distance - 3; j++)
 			{
@@ -122,14 +125,19 @@ public class GameController implements KeyListener  {
 					else
 					{
 						if(map.contains(nextX, nextY) && !map.isObstacle(nextX, nextY)) {
-							Monster m = (Monster) map.removeObject(i, j);
-							map.placeMapObject(nextX, nextY, m);
-							m.decrementSkillCounter();
+							nextMoves.put(new Point2I(nextX, nextY), map.removeObject(i, j));
 						}
 					}
-					
 				}
 			}
+		// Move all monsters in FOV
+		for(Entry<Point2I, MapObject> entry : nextMoves.entrySet()) {
+			Monster m = (Monster) entry.getValue();
+			int moveX = (int) entry.getKey().getX();
+			int moveY = (int) entry.getKey().getY();
+			map.placeMapObject(moveX, moveY, m);
+			m.decrementSkillCounter();
+		}
 	}
 	
 	@Override
@@ -455,7 +463,7 @@ public class GameController implements KeyListener  {
 				frame.removeKeyListener(this);
 			}
 		}
-		//moveVisibleMonsters(x, y, DISTANCE);
+		moveVisibleMonsters(x, y, DISTANCE);
 		return message;
 	}
 	
