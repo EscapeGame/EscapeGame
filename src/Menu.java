@@ -1,21 +1,24 @@
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
 
 import javax.swing.BorderFactory;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.Border;
 
+/**
+ * Class to create menus
+ * @author Sally Calpo
+ *
+ */
 public class Menu extends JPanel {
 	
+	/**
+	 * Constructs new menu
+	 * @param choices ArrayList of menu choices
+	 * @param title menu title
+	 * @param indices menu indices
+	 */
 	public Menu(ArrayList<?> choices, String title, String indices) 
 	{	
 		this.indices = indices;
@@ -36,17 +39,21 @@ public class Menu extends JPanel {
 	      }
 	}
 
+	/**
+	 * Gets indices
+	 * @return
+	 */
 	public String getIndices() {
 		return indices;
 	}
 
-
-
+	/**
+	 * Sets indices
+	 * @param indices menu indices
+	 */
 	public void setIndices(String indices) {
 		this.indices = indices;
 	}
-
-
 
 	private String indices;
 }

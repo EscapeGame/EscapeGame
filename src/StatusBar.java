@@ -6,8 +6,19 @@ import java.util.Observer;
 
 import javax.swing.JPanel;
 
+/**
+ * Class to create status bars
+ * @author Sally Calpo
+ *
+ */
 public class StatusBar extends JPanel implements Observer {
 
+	/**
+	 * Constructs new status bar
+	 * @param w bar width
+	 * @param h bar height
+	 * @param p player pbject
+	 */
 	public StatusBar(int w, int h, Player p) 
 	{
 		this.player = p;
@@ -23,6 +34,9 @@ public class StatusBar extends JPanel implements Observer {
 		printMonsterStatus(null);
 	}
 	
+	/**
+	 * Prints player status
+	 */
 	public void printPlayerStatus()
 	{
 		String currArmor = player.getCurrentArmor() == null ? "" : player.getCurrentArmor().getName();
@@ -43,6 +57,10 @@ public class StatusBar extends JPanel implements Observer {
 		);
 	}
 	
+	/**
+	 * Prints monster status
+	 * @param monster monster
+	 */
 	public void printMonsterStatus(Monster monster)
 	{
 		String status = "MONSTER\n\n";

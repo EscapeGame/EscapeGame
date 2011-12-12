@@ -125,11 +125,6 @@ public class Map extends Observable implements ILosBoard
 		if (contains(x, y))
 		{
 			visited[x][y] = true;
-			MapObject o = getMapObject(x, y);
-			if (o != null && o instanceof MobileObject)
-			{
-				((MobileObject) o).setVisible(true);
-			}
 			changed();
 		}
 	}
@@ -233,7 +228,6 @@ public class Map extends Observable implements ILosBoard
 	 */
 	private void changed()
 	{
-
 		setChanged();
 		notifyObservers();
 		clearChanged();

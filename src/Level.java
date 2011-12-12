@@ -1,6 +1,17 @@
-
+/**
+ * Class to manage player levels
+ * @author 
+ *
+ */
 public class Level {
 	
+	/**
+	 * Constructs new level
+	 * @param experience 
+	 * @param strength
+	 * @param intelligence
+	 * @param dexterity
+	 */
 	public Level(int experience, int strength, int intelligence, int dexterity) {
 		super();
 
@@ -9,11 +20,6 @@ public class Level {
 		this.intelligence = intelligence;
 		this.dexterity = dexterity;
 	}
-
-	private int strength;
-	private int intelligence;
-	private int dexterity;
-	private int experience;
 
 	public int getExperience() {
 		return experience;
@@ -39,5 +45,10 @@ public class Level {
 	public void setDexterity(int dexterity) {
 		this.dexterity = dexterity;
 	}
+	
+	private int strength;
+	private int intelligence;
+	private int dexterity;
+	private int experience;
 
 }

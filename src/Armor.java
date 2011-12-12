@@ -1,25 +1,28 @@
-import java.awt.Color;
-
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
 /**
- *
+ * Class to create armor objects
  * @author Thanh Au
  */
 public class Armor extends EquippableItem 
 {
-    private String name;
-    private String description;
-    private int numItem;
     private int hp;
     private int mana;
     private int strength;
     private int intelligence;
     private int dexterity;
 
+    /**
+     * Constructs new armor object
+     * @param name armor name
+     * @param description armor description
+     * @param numItem number of objects for this armor
+     * @param symbol character that will be displayed on map for this armor
+     * @param hp how much will be added to player hp
+     * @param mana how much will be added to player mana
+     * @param strength how much will be added to player strength
+     * @param intelligence how much will be added to player intelligence
+     * @param dexterity how much will be added to player dexterity
+     */
     public Armor(String name, String description, int numItem, char symbol, int hp, int mana, int strength, int intelligence, int dexterity) 
     {
         super(name, description, numItem, symbol);
@@ -30,8 +33,8 @@ public class Armor extends EquippableItem
         this.dexterity = dexterity;
     }
     
-    /*
-     * This method is get Strength
+    /**
+     * Method to get Strength
      * @return value of strength
      */
     public int getStrength()
@@ -39,8 +42,8 @@ public class Armor extends EquippableItem
         return strength;
     }
     
-    /*
-     * This method is set Strength
+    /**
+     * Method to set Strength
      * @param value of strength
      */
     public void setStrength(int strength)
@@ -48,17 +51,17 @@ public class Armor extends EquippableItem
         this.strength = strength;
     }
     
-    /*
-     * This method is get dexterity
-     * @return value of dextertiy
+    /**
+     * Method to get dexterity
+     * @return value of dexterity
      */
     public int getDexterity()
     {
         return dexterity;
     }
     
-    /*
-     * This method is set dexterity
+    /**
+     * Method to set dexterity
      * @param value of dexterity
      */
     public void setDexterity(int dexterity)
@@ -66,16 +69,17 @@ public class Armor extends EquippableItem
         this.dexterity = dexterity;
     }
     
-    /*
-     * This method is get intelligence
+    /**
+     * Method to get intelligence
      * @return value of intelligence
      */
     public int getIntelligence()
     {
         return intelligence;
     }
-    /*
-     * This method is set intelligence
+    
+    /**
+     * Method to set intelligence
      * @param value of intelligence
      */
     public void setIntelligence(int intelligence)
@@ -83,8 +87,8 @@ public class Armor extends EquippableItem
         this.intelligence = intelligence;
     }
     
-    /*
-     * This method is get hit point
+    /**
+     * Method to get hit point
      * @return value of hit point
      */
     public int getHP()
@@ -92,8 +96,8 @@ public class Armor extends EquippableItem
         return hp;
     }
     
-    /*
-     * This method is set hit point
+    /**
+     * Method to set hit point
      * @param value of hit point
      */
     public void setHp(int hp)
@@ -101,8 +105,8 @@ public class Armor extends EquippableItem
         this.hp = hp;
     }
     
-    /*
-     * This method is get mana
+    /**
+     * Method to get mana
      * @return value of mana
      */
     public int getMana()
@@ -110,8 +114,8 @@ public class Armor extends EquippableItem
         return mana;
     }
     
-    /*
-     * This method is set mana
+    /**
+     * Method to set mana
      * @param value of mana
      */
     public void setMana(int mana)
@@ -119,10 +123,17 @@ public class Armor extends EquippableItem
         this.mana = mana;
     }
 
+    /**
+     * Displays short information about armor
+     */
     public void display ()
     {
         System.out.println("Name = " + getName() + " number item = " + getNumberItem());
     }
+    
+    /**
+     * Displays full information about armor
+     */
     public void displayFullInformation()
     {
         System.out.println("Name = " + getName());

@@ -1,11 +1,6 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Container;
-import java.awt.FlowLayout;
-
 import javax.swing.JFrame;
-import javax.swing.JLayeredPane;
-import javax.swing.JPanel;
 
 /**
  * Class that creates a new game frame
@@ -14,11 +9,15 @@ import javax.swing.JPanel;
  */
 public class EscapeGameFrame extends JFrame
 {
-	
-
+	/**
+	 * Constructs a new game frame
+	 * @param w frame width
+	 * @param h frame height
+	 * @param map map object
+	 * @param p player object
+	 */
 	public EscapeGameFrame(int w, int h, Map map, Player p)
 	{
-		player = p;
 		
 		setSize(w + (2 * STATUS_WIDTH), h + MESSAGE_HEIGHT);
 	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -65,16 +64,28 @@ public class EscapeGameFrame extends JFrame
 	    this.addKeyListener(new GameController(map, p, this));
 	}
 	
+	/**
+	 * Prints message ins the message bar 
+	 * @param message message to print
+	 */
 	public void printMessage(String message)
 	{
 		messageBar.printMessage(message);
 	}
 	
+	/**
+	 * Prints monster status in the status bar
+	 * @param monster monster which status to print
+	 */
 	public void printMonsterStatus(Monster monster)
 	{
 		statusBar.printMonsterStatus(monster);
 	}
 	
+	/**
+	 * Gets status bar object
+	 * @return status bar
+	 */
 	public StatusBar getStatusBar()
 	{
 		return statusBar;
@@ -84,7 +95,6 @@ public class EscapeGameFrame extends JFrame
 	private StatusBar statusBar;
 	private InventoryPanel inventoryPanel;
 	private SkillPanel skillPanel;
-	private Player player;
 	private static final int STATUS_WIDTH = 120;
 	private static final int MESSAGE_HEIGHT = 30;
 	

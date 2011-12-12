@@ -4,10 +4,8 @@ import java.awt.Graphics2D;
 import java.awt.GridBagLayout;
 import java.util.Observable;
 import java.util.Observer;
-
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.event.ChangeEvent;
+import rlforj.ui.ascii.CharVisual;
 
 /**
  * Class that displays map
@@ -42,7 +40,7 @@ public class MapPanel extends JPanel implements Observer
       {
     	  for (int i = 0; i < EscapeGame.FRAME_WIDTH / EscapeGame.TILE_SIZE; i++)
     	  {
-    		  CharTile tile = new CharTile(' ', Color.BLACK);
+    		  CharVisual tile = new CharVisual(' ', Color.BLACK);
     		  if (!map.visited(i, j))
     		  {
     			  // do nothing
@@ -79,7 +77,7 @@ public class MapPanel extends JPanel implements Observer
 	
 	private Map map;
 	private Player player;
-	public static final CharTile floor = new CharTile('.', Color.WHITE);
-	public static final CharTile wall = new CharTile('#', Color.WHITE);
+	public static final CharVisual floor = new CharVisual('.', Color.WHITE);
+	public static final CharVisual wall = new CharVisual('#', Color.WHITE);
 
 }

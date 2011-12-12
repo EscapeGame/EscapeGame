@@ -5,10 +5,17 @@ import java.util.Observer;
 
 import javax.swing.JPanel;
 
-
+/**
+ * Class to create panel to display skills
+ * @author Sally Calpo
+ *
+ */
 public class SkillPanel extends JPanel implements Observer
 {
-
+	/**
+	 * Constructs new skill panel
+	 * @param p player object
+	 */
 	public SkillPanel(Player p)
 	{
 		super(new FlowLayout());

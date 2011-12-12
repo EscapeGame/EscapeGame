@@ -1,12 +1,10 @@
 import java.awt.Color;
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+import rlforj.ui.ascii.CharVisual;
+
 
 /**
- *
+ * Class to create equipable item
  * @author Thanh Au
  */
 public class EquippableItem implements Item, MapObject
@@ -16,6 +14,13 @@ public class EquippableItem implements Item, MapObject
     private int numItem;
     private char symbol;
 
+    /**
+     * Constructs a new equippable item
+     * @param name item name
+     * @param description item description
+     * @param numItem number of objects for this item
+     * @param symbol character that will be displayed on map for this armor
+     */
     public EquippableItem(String name, String description, int numItem, char symbol) {
         this.name = name;
         this.description = description;
@@ -23,97 +28,76 @@ public class EquippableItem implements Item, MapObject
         this.symbol = symbol;
     }
 
-   public EquippableItem()
-   {
-       name = "Equip Item";
-       description = "";
-       numItem = 1;
-       symbol = '!';
-   }
+    /**
+     * Constructs a new equippable item
+     */
+    public EquippableItem()
+    {
+    	name = "Equip Item";
+    	description = "";
+    	numItem = 1;
+    	symbol = '!';
+    }
    
+    @Override
     public char getSymbol()
     {
         return symbol;
     }
     
+    @Override
     public void setSymbol(char symbol)
     {
         this.symbol = symbol;
     }
-     /*
-     * This method is get name
-     * @return name
-     */
+
     @Override
     public String getName() 
     {
         return name;
     }
     
-      /*
-     * This method is set name
-     * @param name change name
-     */
     @Override
     public void setName(String name) 
     {
         this.name = name;
     }
     
-     /*
-     * This method is get description
-     * @return description of item
-     */
     @Override
     public String getDescription() 
     {
         return description;
     }
 
-    /*
-     * This method is set description
-     * @param description description of item
-     */
     @Override
     public void setDescription(String description) {
         this.description = description;
     }
 
-    /*
-     * This method is get number of item
-     * @return number of item
-     */
     @Override
     public int getNumberItem() {
         return numItem;
     }
 
-    /*
-     * This method is set number of item
-     * @return number of item
-     */
     @Override
-    public void setNumberItem(int numItem) {
+    public void setNumberItem(int numItem) 
+    {
         this.numItem = numItem;
         
     }
+    
+    @Override
     public void displayItem()
     {
         System.out.println("Name = " + name + " ,Number Item = " + numItem);
     }
     
-    /*
-     * This method get tite
-     * @return tite in the map
-     */
-    public CharTile getTile() {
-	return new CharTile(symbol, Color.YELLOW);
+    @Override
+    public CharVisual getTile() 
+    {
+    	return new CharVisual(symbol, Color.YELLOW);
     }
     
-    /*
-     * This method is display name and number of item
-     * @return string of infomation
-     */
     @Override
     public String toString()
     {

@@ -9,8 +9,19 @@ import java.util.Map.Entry;
 import rlforj.los.PrecisePermissive;
 import rlforj.math.Point2I;
 
+/**
+ * Class to read keyboard input and control player and monsters
+ * @author Sally Calpo
+ *
+ */
 public class GameController implements KeyListener  {
 	
+	/**
+	 * Constructs a new GameController
+	 * @param map map object
+	 * @param player player object
+	 * @param frame game frame
+	 */
 	public GameController(Map map, Player player, EscapeGameFrame frame)
 	{
 		this.map = map;
@@ -20,13 +31,6 @@ public class GameController implements KeyListener  {
 		view.visitFieldOfView(map, map.getPlayerLocation().x, 
 				map.getPlayerLocation().y, DISTANCE);
 	}
-	
-	/*@Override
-	public void visitFieldOfView(ILosBoard b, int x, int y, int distance) {
-		for(int i = (x - distance); i <= (x + distance); i++)
-			for(int j = (y - distance); j <= (y + distance); j++)
-				b.visit(i, j);
-	}*/
 	
 	@Override
 	public void keyPressed(KeyEvent e) {
@@ -100,6 +104,12 @@ public class GameController implements KeyListener  {
 		}
 	}
 
+	/**
+	 * Moves monsters in player's field of view
+	 * @param x x-coordinate
+	 * @param y y-coordinate
+	 * @param distance how far player can see
+	 */
 	private void moveVisibleMonsters(int x, int y, int distance)
 	{
 		HashMap<Point2I, MapObject> nextMoves = new HashMap<Point2I, MapObject>();
@@ -440,6 +450,11 @@ public class GameController implements KeyListener  {
 		}
 	}
 	
+	/**
+	 * Processes monster's attack on player
+	 * @param m monster
+	 * @return returns message to display in status bar
+	 */
 	public String processAttack(Monster m)
 	{
 		String message = "";

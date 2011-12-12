@@ -140,8 +140,6 @@ public abstract class SkillAction implements Action {
 		return name;
 	}
 
-
-
 	public MapObject getSource() {
 		return source;
 	}

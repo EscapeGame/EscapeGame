@@ -1,6 +1,10 @@
 import java.util.Random;
 
-
+/**
+ * Types of skills
+ * @author Sally Calpo
+ *
+ */
 public enum SkillType {
 	
 	MELEE {

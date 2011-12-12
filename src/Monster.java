@@ -1,14 +1,14 @@
 import java.awt.Color;
 
+import rlforj.ui.ascii.CharVisual;
 
+/**
+ * Class to create monsters
+ * @author Marvin Caragay
+ *
+ */
 public class Monster extends MobileObject
-{
-	//some kindah world e.g 3d dimentional world
-	
-	public int x; //coordinate
-	public int y;
-	public int z;
-	
+{	
 	//stats
 	private String name; //monster name
 	private char symbol; //monster symbol e.g Dragon = "D"
@@ -16,9 +16,6 @@ public class Monster extends MobileObject
 	private int maxHp;   //monster maxHp
 	private Color mcolor;//monster color
 	private int exp;
-	
-	//vision
-	private int visionRadius;
 	
 	//attack & Deffense
 	private int attackValue;
@@ -40,7 +37,6 @@ public class Monster extends MobileObject
 		this.hp = hp;
 		this.maxHp= maxHp;
 		this.mcolor = mcolor;
-		this.visionRadius = 6;   //radius = 6;
 		this.attackValue = attackValue;
 		this.deffenseValue = deffenseValue;
 		this.exp = exp;
@@ -58,13 +54,6 @@ public class Monster extends MobileObject
 	public void setHp(int hp) {
 		this.hp = hp;
 		setChanged();
-	}
-	
-	//vision
-	public int getVisionRadius(){return visionRadius;}
-	public void modifyVisionRadius(int value)
-	{
-		visionRadius += value;
 	}
 	
 	//attack
@@ -139,9 +128,9 @@ public class Monster extends MobileObject
 	}
 
 	@Override
-	public CharTile getTile() 
+	public CharVisual getTile() 
 	{
-		return new CharTile(symbol, mcolor);
+		return new CharVisual(symbol, mcolor);
 	}
 	
 	@Override

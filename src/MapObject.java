@@ -1,3 +1,5 @@
+import rlforj.ui.ascii.CharVisual;
+
 
 /**
  * Interface for creating a map object
@@ -6,7 +8,10 @@
  */
 public interface MapObject
 {
-	CharTile getTile();
-	
+	/**
+	 * Gets char representation of object to display on map
+	 * @return
+	 */
+	CharVisual getTile();
 	
 }
