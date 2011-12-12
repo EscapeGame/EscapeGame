@@ -93,6 +93,11 @@ public class GameController implements KeyListener  {
 		}
 		player.checkStatus();
 		player.decrementSkillCounter();
+		if (map.isExit(map.getPlayerLocation()))
+		{
+			frame.printMessage("You won!");
+			frame.removeKeyListener(this);
+		}
 	}
 
 	private void moveVisibleMonsters(int x, int y, int distance)

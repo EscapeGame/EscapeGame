@@ -32,7 +32,7 @@ public class MapPanel extends JPanel implements Observer
 	}
 	
 	/**
-	 * Paints panel
+	 * Paints the panel
 	 */
 	public void paintComponent(Graphics g)
 	{

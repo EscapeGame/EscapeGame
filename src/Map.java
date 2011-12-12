@@ -1,19 +1,7 @@
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Observable;
 import java.util.Random;
-
-import javax.swing.JComponent;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
-
-import rlforj.los.IFovAlgorithm;
 import rlforj.los.ILosBoard;
 import rlforj.math.Permutation;
 import rlforj.math.Point2I;
@@ -44,22 +32,19 @@ public class Map extends Observable implements ILosBoard
 		for (int i = 0; i < width; i++)
 			for (int j = 0; j < height; j++)
 			{
-				visited[i][j] = false;
+				visited[i][j] = true;
 				obstacles[i][j] = false;
 			}
 		
-		// set player's location
-		pLocation = new Point2I(2, 2);
-		/*for (int i = (int) pLocation.getX() - 5; i < 10; i++)
-			for (int j = (int) pLocation.getX() - 5; j < 10; j++)
-			{
-				visit(i, j);
-			}*/
-		
-		
 		// create walls
-		createWalls();
+		walls();
 		
+		// set player's location
+		player = p;
+		obstacles[2][2] = false;
+		pLocation = new Point2I(2, 2);
+		player.setLocation(2, 2);
+
 		// place MapObjects on map
 		ArrayList<MapObject> randomizedObjects = new ArrayList();
 		int[] permutation = Permutation.randomPermutation(mapObjects.size());
@@ -67,35 +52,30 @@ public class Map extends Observable implements ILosBoard
 		{
 			randomizedObjects.add(mapObjects.get(permutation[i]));
 		}
-		//int[] permutationX = Permutation.randomPermutation(width);
-		//int[] permutationY = Permutation.randomPermutation(height);
+
 		Random rand = new Random();
 		for (int i = 0; i < permutation.length; i++)
 		{
 			int x = rand.nextInt(width);
 			int y = rand.nextInt(height);
 			MapObject o = randomizedObjects.get(i);
-			if (obstacles[x][y] || (x < pLocation.x + width / 7  && y < pLocation.y + height / 7))
+			if (obstacles[x][y] 
+					|| (x < pLocation.x + width / 7  
+						&& y < pLocation.y + height / 7)
+					|| !obstacles[x][y] && (x < width / 7 + width / 3 
+						&& y > height / 7) && o instanceof Monster 
+						&& ((Monster)o).getHp() > p.getHp()
+					|| !obstacles[x][y] && (x < width / 7 + width / 3 
+						&& y > height / 7) && o instanceof Weapon 
+						&& ((Weapon)o).getStrength() > p.getStrength() 
+						&& ((Weapon)o).getIntelligence() > p.getIntelligence()
+		            ||	!obstacles[x][y] && (x < width / 7 + width / 3
+		            	&& y > height / 7) && o instanceof Armor 
+		            	&& ((Armor)o).getDexterity() > p.getDexterity())
 			{
 				i--;
 				
 			}
-			else if (!obstacles[x][y] && (x < width / 7 + width / 3 && y > height / 7)
-					&& o instanceof Monster && ((Monster)o).getHp() > p.getHp())
-			{
-				i--;
-			}
-                        //Test 
-                        else if(!obstacles[x][y] && (x < width / 7 + width / 3 && y > height / 7)
-					&& o instanceof Weapon && ((Weapon)o).getStrength() > p.getStrength() && ((Weapon)o).getIntelligence() > p.getIntelligence())
-                        {
-                                i--;
-                        }
-                        else if(!obstacles[x][y] && (x < width / 7 + width / 3 && y > height / 7)
-					&& o instanceof Armor && ((Armor)o).getDexterity() > p.getDexterity())
-                        {
-                                i--;
-                        }
 			else
 			{
 				objectsLocations.put(new Point2I(x, y), o);
@@ -106,6 +86,16 @@ public class Map extends Observable implements ILosBoard
 				
 		}
 		
+		// create exit
+		exit = new ArrayList<Point2I>();
+		for (int i = width - 2; i > width - 6; i--)
+		{
+			obstacles[i][height - 1] = false;
+			exit.add(new Point2I(i, height - 1));
+			visit(i, height - 1);
+		}
+		visit(width - 1, height - 1);
+		visit(width - 6, height - 1);
 	}
 	
 	/**
@@ -170,7 +160,7 @@ public class Map extends Observable implements ILosBoard
 	
 	/**
 	 * Method to place a MapObject that is at requested location
-	 * @param x x cordinate
+	 * @param x x coordinate
 	 * @param y y coordinate
 	 */
 	public void placeMapObject(int x, int y, MapObject o)
@@ -226,8 +216,16 @@ public class Map extends Observable implements ILosBoard
 		if (contains(p.x, p.y) && !obstacles[p.x][p.y])
 		{
 			pLocation = p;
+			player.setLocation(p.x, p.y);
 			changed();
 		}
+	}
+	
+	public boolean isExit(Point2I p)
+	{
+		if (exit.contains(p))
+			return true;
+		return false;		
 	}
 	
 	/**
@@ -239,37 +237,6 @@ public class Map extends Observable implements ILosBoard
 		setChanged();
 		notifyObservers();
 		clearChanged();
-	}
-	
-	/**
-	 * Creates walls
-	 */
-	private void createWalls()
-	{
-		// frame
-		verticalWall(new Point2I(0, 0), height - 1); // left
-		horizontalWall(new Point2I(0, 1), width - 1); // top
-		verticalWall(new Point2I(width - 1, 0), height); // right
-		horizontalWall(new Point2I(0, height - 1), width - 5); // bottom
-		//verticalWall();
-		for (int i = width - 1; i > width - 10; i--)
-			for (int j = height - 1; j > height - 10; j--)
-			{
-				visit(i, j);
-			}
-		//System.out.print();
-		verticalWall(new Point2I(width / 7, 0), height / 5);
-		horizontalWall(new Point2I(width / 7, height / 5), width / 3);
-		verticalWall(new Point2I(width / 7 + width / 3, height / 5), 2 * height / 3);
-		horizontalWall(new Point2I(width / 7, height / 5 +  2 * height / 3), width / 3);
-		
-		horizontalWall(new Point2I(0, height / 2), width / 3);
-		//horizontalWall(new Point2I(5, 40), 30);
-		horizontalWall(new Point2I(width / 5, height / 8), 2 * width / 3);
-		
-		verticalWall(new Point2I(2 * width / 3, height / 8), height - height / 8);
-		
-		horizontalWall(new Point2I(2 * width / 3, height / 2), width / 4);
 	}
 	
 	/**
@@ -299,11 +266,50 @@ public class Map extends Observable implements ILosBoard
 				obstacles[(int) loc.getX()][(int) (loc.getY() + j)] = true;
 		}
 	}
+
+	/**
+	 * Creates random walls
+	 */
+	private void walls()
+	{
+		verticalWall(new Point2I(0, 0), height - 1); // left
+		horizontalWall(new Point2I(0, 1), width - 1); // top
+		verticalWall(new Point2I(width - 1, 0), height); // right
+		horizontalWall(new Point2I(0, height - 1), width - 1); // bottom
+		
+		Random rand = new Random();
+		for (int i = 0; i < height * width / 6; i++)
+		{
+			int x = rand.nextInt(width - 1);
+			int y = rand.nextInt(height - 1);
+			if (x != 0 && y != 0 
+					&& ((!obstacles[x-1][y] && !obstacles[x-1][y-1] 
+							&& !obstacles[x][y-1] && !obstacles[x-1][y+1] 
+							&& !obstacles[x][y+1]) 
+					|| (!obstacles[x][y-1] && !obstacles[x+1][y-1] 
+							&& !obstacles[x+1][y] && !obstacles[x+1][y+1] 
+							&& !obstacles[x][y+1]) 
+					|| (!obstacles[x-1][y] && !obstacles[x-1][y-1] 
+							&& !obstacles[x][y-1] && !obstacles[x+1][y-1] 
+							&& !obstacles[x+1][y]) 
+					|| (!obstacles[x+1][y] && !obstacles[x+1][y+1] 
+							&& !obstacles[x][y+1] && !obstacles[x-1][y+1] 
+							&& !obstacles[x-1][y])))
+			{
+				obstacles[x][y] = true;
+			}
+			else
+				i--;
+		}
+	}
 	
+
 	private Point2I pLocation;
 	private int width, height;
 	private boolean[][] visited;
 	private boolean[][] obstacles;
+	private Player player;
+	private ArrayList<Point2I> exit;
 	private HashMap<Point2I, MapObject> objectsLocations;
 	private ArrayList<MapObject> objectsList;
 	
