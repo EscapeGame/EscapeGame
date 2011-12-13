@@ -192,7 +192,7 @@ public enum SkillType {
 		public SkillAction getAction(MobileObject mobile) {
 			if(mobile instanceof Player) {
 				Player player = (Player) mobile;
-				amount = -player.getIntelligence() * 10;
+				amount = -player.getIntelligence() * 12;
 			}
 			return new AttackAction(name, amount, cost, duration, minReq, minStat, targetStat, range, message);
 		}
@@ -218,9 +218,8 @@ public enum SkillType {
 		public SkillAction getAction(MobileObject mobile) {
 			if(mobile instanceof Player) {
 				Player player = (Player) mobile;
-				amount = -player.getIntelligence() * 5;
+				amount = -player.getIntelligence() * 6;
 			}
-			else amount = 100;
 			return new AttackAction(name, amount, cost, duration, minReq, minStat, targetStat, range, message);
 		}
 
@@ -297,9 +296,8 @@ public enum SkillType {
 		public SkillAction getAction(MobileObject mobile) {
 			if(mobile instanceof Player) {
 				Player player = (Player) mobile;
-				amount = -player.getIntelligence() * 12;
+				amount = -player.getIntelligence() * 15;
 			}
-			else amount = 200;
 			return new AttackAction(name, amount, cost, duration, minReq, minStat, targetStat, range, message);
 		}
 
@@ -324,9 +322,8 @@ public enum SkillType {
 		public SkillAction getAction(MobileObject mobile) {
 			if(mobile instanceof Player) {
 				Player player = (Player) mobile;
-				amount = -player.getIntelligence() * 6;
+				amount = -player.getIntelligence() * 8;
 			}
-			else amount = 200;
 			return new AttackAction(name, amount, cost, duration, minReq, minStat, targetStat, range, message);
 		}
 
@@ -448,7 +445,7 @@ public enum SkillType {
 		private String name = "Defensive Stance";
 		private int amount;
 		private int cost = 5;
-		private int duration = 10;
+		private int duration = 5;
 		private int minReq = 10;
 		private String minStat = "dexterity";
 		private String targetStat = "defenseBonus";
@@ -460,9 +457,6 @@ public enum SkillType {
 			if(mobile instanceof Player) {
 				Player player = (Player) mobile;
 				amount = player.getDexterity() * player.getLevel();
-			}
-			else {
-				amount = 30;
 			}
 			return new SelfAction(name, amount, cost, duration, minReq, minStat, targetStat, range, message);
 		}
@@ -477,7 +471,7 @@ public enum SkillType {
 		private String name = "Offensive Stance";
 		private int amount;
 		private int cost = 5;
-		private int duration = 10;
+		private int duration = 5;
 		private int minReq = 10;
 		private String minStat = "strength";
 		private String targetStat = "attackBonus";
@@ -489,9 +483,6 @@ public enum SkillType {
 			if(mobile instanceof Player) {
 				Player player = (Player) mobile;
 				amount = player.getStrength() * player.getLevel();
-			}
-			else {
-				amount = 30;
 			}
 			return new SelfAction(name, amount, cost, duration, minReq, minStat, targetStat, range, message);
 		}

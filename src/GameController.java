@@ -59,7 +59,7 @@ public class GameController implements KeyListener  {
 				//visitFieldOfView(map, x, y, 9);
 				view.visitFieldOfView(map, x, y, DISTANCE);
 				map.setPlayerLocation(new Point2I(x, y));
-				moveVisibleMonsters(x, y, DISTANCE);
+				frame.printMessage(moveVisibleMonsters(x, y, DISTANCE));
 			}
 			else if(map.getMapObject(x, y) instanceof Monster) {
 				String message = "";
@@ -89,7 +89,7 @@ public class GameController implements KeyListener  {
                                 
 				map.removeObject(x, y);
 				map.setPlayerLocation(new Point2I(x,y));
-				moveVisibleMonsters(x, y, DISTANCE);
+				frame.printMessage(moveVisibleMonsters(x, y, DISTANCE));
 			}
 		}
 		else {
@@ -109,9 +109,11 @@ public class GameController implements KeyListener  {
 	 * @param x x-coordinate
 	 * @param y y-coordinate
 	 * @param distance how far player can see
+	 * @return returns message to display in status bar
 	 */
-	private void moveVisibleMonsters(int x, int y, int distance)
+	private String moveVisibleMonsters(int x, int y, int distance)
 	{
+		String message = "";
 		HashMap<Point2I, MapObject> nextMoves = new HashMap<Point2I, MapObject>();
 		for(int i = x - distance + 3; i < x + distance - 3; i++)
 			for (int j = y - distance + 3; j < y + distance - 3; j++)
@@ -126,7 +128,6 @@ public class GameController implements KeyListener  {
 					int nextY = path.get(path.size() - 1).y;
 					if (nextX == map.getPlayerLocation().x && nextY == map.getPlayerLocation().y) 
 					{
-						String message = "";
 						Monster monster = (Monster) map.getMapObject(i, j);
 						AttackAction attack = (AttackAction) SkillType.MELEE.getAction(monster);
 						message += attack.execute(monster, player);
@@ -156,6 +157,7 @@ public class GameController implements KeyListener  {
 			map.placeMapObject(moveX, moveY, m);
 			m.decrementSkillCounter();
 		}
+		return message;
 	}
 	
 	@Override
@@ -174,7 +176,7 @@ public class GameController implements KeyListener  {
                 {
                     frame.printMessage("Cheat");
                     Armor armor1 = new Armor("Invincible Armor", "Ultima Armor", 1, '+', 0, 0, 0, 0, 1000);
-                    Weapon sword3 = new Weapon("Excalabur", "Ultima Weapon", 1, '+', 0, 0, 1000, 100, 100);
+                    Weapon sword3 = new Weapon("Excalibur", "Ultima Weapon", 1, '+', 0, 0, 1000, 100, 100);
                     player.getInventory().add(armor1);
                     player.getInventory().add(sword3);
                 }
@@ -283,12 +285,7 @@ public class GameController implements KeyListener  {
             else if (player.getInventory().getItem(num) instanceof Scroll)
             {
             	Scroll scroll = (Scroll) player.getInventory().getItem(num);
-            	if(player.usedScroll(scroll)) {
-            		frame.printMessage("You learned " + scroll.getSkillType().toString() + ".");
-            	}
-            	else {
-            		frame.printMessage("You already know the skill on this scroll.");
-            	}
+            	frame.printMessage(player.usedScroll(scroll));
             	player.getSkillList().checkStatus();
             	player.getInventory().remove(scroll);
             }
@@ -319,7 +316,7 @@ public class GameController implements KeyListener  {
 									monster.addObserver(frame.getStatusBar());
 									targets.add(monster);
 								}
-						message = attack.execute(player, targets);
+						message += attack.execute(player, targets);
 						for(MapObject obj : targets) {
 							Monster m = (Monster) obj;
 							message += processAttack(m);
@@ -390,7 +387,7 @@ public class GameController implements KeyListener  {
 										break;
 								}
 	
-								message = attack.execute(player, targets);
+								message += attack.execute(player, targets);
 								for(MapObject obj : targets) {
 									Monster m = (Monster) obj;
 									message += processAttack(m);
@@ -486,7 +483,7 @@ public class GameController implements KeyListener  {
 			message += " You die! Game over.";
 			frame.removeKeyListener(this);
 		}
-		moveVisibleMonsters(x, y, DISTANCE);
+		message += moveVisibleMonsters(x, y, DISTANCE);
 		return message;
 	}
 	

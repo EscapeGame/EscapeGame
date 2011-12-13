@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Observable;
+import java.util.Random;
 
 
 public class SkillList extends Observable {
@@ -25,13 +26,16 @@ public class SkillList extends Observable {
 		setChanged();
 	}
 	
-	public boolean add(SkillType skill) {
-		if(!skills.contains(skill) && skill != SkillType.MELEE) {
+	public String add(SkillType skill) {
+		if(!skills.contains(skill) && skill != SkillType.MELEE && skills.size() <= 10) {
 			skills.add(skill);
 			setChanged();
-			return true;
+			return "You learned " + skill.toString() + ".";
 		}
-		return false;
+		else if(skills.size() > 10)
+			return "You cannot learn any more skills.";
+		else
+			return "You already know the skill on this scroll."; 
 	}
 	
 	public void remove(SkillType skill) {

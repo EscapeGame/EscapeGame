@@ -297,7 +297,7 @@ public class Player extends MobileObject {
 		}
 	}
         
-    public boolean usedScroll(Scroll scroll) {
+    public String usedScroll(Scroll scroll) {
     	return skillList.add(scroll.getSkillType());
     }
 
