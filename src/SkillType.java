@@ -180,9 +180,9 @@ public enum SkillType {
 	CYCLONE {
 		private String name = "Cyclone";
 		private int amount;
-		private int cost = 30;
+		private int cost = 40;
 		private int duration = 0;
-		private int minReq = 60;
+		private int minReq = 80;
 		private String minStat = "intelligence";
 		private String targetStat = "hp";
 		private RangeType range = RangeType.CLOSE_ALL;
@@ -206,9 +206,9 @@ public enum SkillType {
 	FIREBALL {
 		private String name = "Fireball";
 		private int amount;
-		private int cost = 10;
+		private int cost = 20;
 		private int duration = 0;
-		private int minReq = 20;
+		private int minReq = 40;
 		private String minStat = "intelligence";
 		private String targetStat = "hp";
 		private RangeType range = RangeType.CLOSE_ALL;
@@ -232,9 +232,9 @@ public enum SkillType {
 	BANSHEE_WAIL {
 		private String name = "Banshee Wail";
 		private int amount;
-		private int cost = 55;
+		private int cost = 80;
 		private int duration = 10;
-		private int minReq = 7;
+		private int minReq = 8;
 		private String minStat = "level";
 		private String targetStat = "deffenseValue";
 		private RangeType range = RangeType.CLOSE_ALL;
@@ -258,7 +258,7 @@ public enum SkillType {
 	FEAR_EFFECT {
 		private String name = "Fear Effect";
 		private int amount;
-		private int cost = 25;
+		private int cost = 40;
 		private int duration = 5;
 		private int minReq = 60;
 		private String minStat = "strength";
@@ -284,9 +284,9 @@ public enum SkillType {
 	LIGHTNING_BOLT {
 		private String name = "Lightning Bolt";
 		private int amount;
-		private int cost = 20;
+		private int cost = 30;
 		private int duration = 0;
-		private int minReq = 40;
+		private int minReq = 60;
 		private String minStat = "intelligence";
 		private String targetStat = "hp";
 		private RangeType range = RangeType.LINE;
