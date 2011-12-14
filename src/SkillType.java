@@ -166,7 +166,7 @@ public enum SkillType {
 		public SkillAction getAction(MobileObject mobile) {
 			if(mobile instanceof Player) {
 				Player player = (Player) mobile;
-				amount = -player.getIntelligence() * (player.getLevel() * 2);
+				amount = -(player.getIntelligence() * player.getLevel()) - player.getMana();
 			}
 			return new AttackAction(name, amount, cost, duration, minReq, minStat, targetStat, range, message);
 		}
@@ -348,7 +348,7 @@ public enum SkillType {
 		public SkillAction getAction(MobileObject mobile) {
 			if(mobile instanceof Player) {
 				Player player = (Player) mobile;
-				amount = -player.getIntelligence() * (player.getLevel() * 2);
+				amount = -(player.getIntelligence() * player.getLevel()) - player.getMana();
 			}
 			else amount = 200;
 			return new AttackAction(name, amount, cost, duration, minReq, minStat, targetStat, range, message);
@@ -498,8 +498,8 @@ public enum SkillType {
 		private int amount;
 		private int cost = 30;
 		private int duration = 3;
-		private int minReq = 30;
-		private String minStat = "strength";
+		private int minReq = 3;
+		private String minStat = "level";
 		private String targetStat = "strength";
 		private RangeType range = RangeType.SELF;
 		private String message = "Adrenaline burns through your veins! For " + duration + " turns you gain ";
@@ -508,7 +508,7 @@ public enum SkillType {
 		public SkillAction getAction(MobileObject mobile) {
 			if(mobile instanceof Player) {
 				Player player = (Player) mobile;
-				amount = player.getStrength() * player.getLevel();
+				amount = player.getStrength() * (player.getLevel() / 2);
 			}
 			return new SelfAction(name, amount, cost, duration, minReq, minStat, targetStat, range, message);
 		}
@@ -524,8 +524,8 @@ public enum SkillType {
 		private int amount;
 		private int cost = 30;
 		private int duration = 3;
-		private int minReq = 30;
-		private String minStat = "dexterity";
+		private int minReq = 3;
+		private String minStat = "level";
 		private String targetStat = "dexterity";
 		private RangeType range = RangeType.SELF;
 		private String message = "Your reflexes are supernaturally heightened! For " + duration + " turns you gain ";
@@ -534,7 +534,7 @@ public enum SkillType {
 		public SkillAction getAction(MobileObject mobile) {
 			if(mobile instanceof Player) {
 				Player player = (Player) mobile;
-				amount = player.getDexterity() * player.getLevel();
+				amount = player.getDexterity() * (player.getLevel() / 2);
 			}
 			return new SelfAction(name, amount, cost, duration, minReq, minStat, targetStat, range, message);
 		}
@@ -550,8 +550,8 @@ public enum SkillType {
 		private int amount;
 		private int cost = 30;
 		private int duration = 3;
-		private int minReq = 30;
-		private String minStat = "intelligence";
+		private int minReq = 3;
+		private String minStat = "level";
 		private String targetStat = "intelligence";
 		private RangeType range = RangeType.SELF;
 		private String message = "The secrets of the arcane are revealed to you! For " + duration + " turns you gain ";
@@ -560,7 +560,7 @@ public enum SkillType {
 		public SkillAction getAction(MobileObject mobile) {
 			if(mobile instanceof Player) {
 				Player player = (Player) mobile;
-				amount = player.getIntelligence() * player.getLevel();
+				amount = player.getIntelligence() * (player.getLevel() / 2);
 			}
 			return new SelfAction(name, amount, cost, duration, minReq, minStat, targetStat, range, message);
 		}

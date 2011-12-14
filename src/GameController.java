@@ -36,7 +36,7 @@ public class GameController implements KeyListener  {
 	public void keyPressed(KeyEvent e) {
 		String message = "";
 		if(choosingDirection == false) {
-			frame.printMessage("");
+			frame.printMessage(message);
 			int key = e.getKeyCode();
 			int x = (int) map.getPlayerLocation().getX();
 			int y = (int) map.getPlayerLocation().getY();
@@ -131,14 +131,13 @@ public class GameController implements KeyListener  {
 					{
 						Monster monster = (Monster) map.getMapObject(i, j);
 						AttackAction attack = (AttackAction) SkillType.MELEE.getAction(monster);
-						message += attack.execute(monster, player);
+						message += " " + attack.execute(monster, player);
 						frame.printMonsterStatus(monster);
 						player.checkStatus();
 		    			if(player.getHp() <= 0) {
 		    				message += " You die! Game over.";
 		    				frame.removeKeyListener(this);
 		    			}
-		    			frame.printMessage(message);
 						monster.decrementSkillCounter();
 					}
 					else
