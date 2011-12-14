@@ -33,15 +33,15 @@ public class Player extends MobileObject {
         private Armor currentArmor;
 	private Level[] levels = {new Level(0, 10, 10, 10), 
 			new Level(200, 10, 10, 10),
-			new Level(400, 10, 10, 10),
 			new Level(800, 10, 10, 10),
 			new Level(1600, 10, 10, 10),
-			new Level(3200, 15, 15, 15),
+			new Level(3200, 10, 10, 10),
 			new Level(6400, 15, 15, 15),
 			new Level(12800, 15, 15, 15),
 			new Level(25600, 15, 15, 15),
 			new Level(51200, 15, 15, 15),
-			new Level(102400, 20, 20, 20)};
+			new Level(102400, 15, 15, 15),
+			new Level(204800, 20, 20, 20)};
         
 	/**
 	 * Constructs a new player object

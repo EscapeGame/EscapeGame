@@ -192,7 +192,7 @@ public enum SkillType {
 		public SkillAction getAction(MobileObject mobile) {
 			if(mobile instanceof Player) {
 				Player player = (Player) mobile;
-				amount = -player.getIntelligence() * 12;
+				amount = -player.getIntelligence() * 10;
 			}
 			return new AttackAction(name, amount, cost, duration, minReq, minStat, targetStat, range, message);
 		}
@@ -218,7 +218,7 @@ public enum SkillType {
 		public SkillAction getAction(MobileObject mobile) {
 			if(mobile instanceof Player) {
 				Player player = (Player) mobile;
-				amount = -player.getIntelligence() * 6;
+				amount = -player.getIntelligence() * 5;
 			}
 			return new AttackAction(name, amount, cost, duration, minReq, minStat, targetStat, range, message);
 		}
@@ -244,7 +244,7 @@ public enum SkillType {
 		public SkillAction getAction(MobileObject mobile) {
 			if(mobile instanceof Player) {
 				Player player = (Player) mobile;
-				amount = -player.getIntelligence() * player.getLevel();
+				amount = -player.getIntelligence() * (player.getLevel() * 2);
 			}
 			return new AttackAction(name, amount, cost, duration, minReq, minStat, targetStat, range, message);
 		}
@@ -296,7 +296,7 @@ public enum SkillType {
 		public SkillAction getAction(MobileObject mobile) {
 			if(mobile instanceof Player) {
 				Player player = (Player) mobile;
-				amount = -player.getIntelligence() * 15;
+				amount = -player.getIntelligence() * 10;
 			}
 			return new AttackAction(name, amount, cost, duration, minReq, minStat, targetStat, range, message);
 		}
@@ -322,7 +322,7 @@ public enum SkillType {
 		public SkillAction getAction(MobileObject mobile) {
 			if(mobile instanceof Player) {
 				Player player = (Player) mobile;
-				amount = -player.getIntelligence() * 8;
+				amount = -player.getIntelligence() * 5;
 			}
 			return new AttackAction(name, amount, cost, duration, minReq, minStat, targetStat, range, message);
 		}
@@ -456,7 +456,7 @@ public enum SkillType {
 		public SkillAction getAction(MobileObject mobile) {
 			if(mobile instanceof Player) {
 				Player player = (Player) mobile;
-				amount = player.getDexterity() * player.getLevel();
+				amount = player.getDexterity();
 			}
 			return new SelfAction(name, amount, cost, duration, minReq, minStat, targetStat, range, message);
 		}
@@ -482,7 +482,7 @@ public enum SkillType {
 		public SkillAction getAction(MobileObject mobile) {
 			if(mobile instanceof Player) {
 				Player player = (Player) mobile;
-				amount = player.getStrength() * player.getLevel();
+				amount = player.getStrength();
 			}
 			return new SelfAction(name, amount, cost, duration, minReq, minStat, targetStat, range, message);
 		}
@@ -574,9 +574,9 @@ public enum SkillType {
 	WEAKEN {
 		private String name = "Weaken Monster";
 		private int amount;
-		private int cost = 10;
+		private int cost = 25;
 		private int duration = 5;
-		private int minReq = 1;
+		private int minReq = 2;
 		private String minStat = "level";
 		private String targetStat = "attackValue";
 		private RangeType range = RangeType.CLOSE_SINGLE;
@@ -586,7 +586,7 @@ public enum SkillType {
 		public SkillAction getAction(MobileObject mobile) {
 			if(mobile instanceof Player) {
 				Player player = (Player) mobile;
-				amount = -player.getIntelligence() * player.getLevel();
+				amount = -player.getIntelligence();
 			}
 			return new AttackAction(name, amount, cost, duration, minReq, minStat, targetStat, range, message);
 		}
@@ -602,7 +602,7 @@ public enum SkillType {
 		private int amount;
 		private int cost = 25;
 		private int duration = 5;
-		private int minReq = 1;
+		private int minReq = 2;
 		private String minStat = "level";
 		private String targetStat = "deffenseValue";
 		private RangeType range = RangeType.CLOSE_SINGLE;
@@ -612,7 +612,7 @@ public enum SkillType {
 		public SkillAction getAction(MobileObject mobile) {
 			if(mobile instanceof Player) {
 				Player player = (Player) mobile;
-				amount = -player.getIntelligence() * player.getLevel() * 2;
+				amount = -player.getIntelligence();
 			}
 			return new AttackAction(name, amount, cost, duration, minReq, minStat, targetStat, range, message);
 		}

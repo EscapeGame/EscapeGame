@@ -12,7 +12,8 @@ public class SkillList extends Observable {
 		
 		add(SkillType.DEFENSIVE);
 		add(SkillType.DOUBLE_ATTACK);
-		add(SkillType.random());
+		add(SkillType.ENERGY_BOLT);
+		//add(SkillType.random());
 		
 	}
 	

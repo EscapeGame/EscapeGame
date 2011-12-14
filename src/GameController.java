@@ -34,6 +34,7 @@ public class GameController implements KeyListener  {
 	
 	@Override
 	public void keyPressed(KeyEvent e) {
+		String message = "";
 		if(choosingDirection == false) {
 			frame.printMessage("");
 			int key = e.getKeyCode();
@@ -62,7 +63,6 @@ public class GameController implements KeyListener  {
 				frame.printMessage(moveVisibleMonsters(x, y, DISTANCE));
 			}
 			else if(map.getMapObject(x, y) instanceof Monster) {
-				String message = "";
 				AttackAction attack;
 				Monster monster = (Monster) map.getMapObject(x, y);
 				attack = (AttackAction) SkillType.MELEE.getAction(player);
@@ -76,20 +76,21 @@ public class GameController implements KeyListener  {
                                 Inventory inventory = player.getInventory();
                                     if (inventory.contains(item) && !(item instanceof ConsumableItem))
                                     {
-                                        frame.printMessage("Already has item");
+                                        message += "Already has item";
                                     }
                                     else {
                                     	boolean addSuc = inventory.add(item);
 	                                    if (addSuc == true)
 		                                    {
-		                                    frame.printMessage("You pick " + item.getName());
+		                                    message += "You pick " + item.getName();
 		                                    inventory.checkStatus();
 	                                    }
                                     }
                                 
 				map.removeObject(x, y);
 				map.setPlayerLocation(new Point2I(x,y));
-				frame.printMessage(moveVisibleMonsters(x, y, DISTANCE));
+				message += moveVisibleMonsters(x, y, DISTANCE);
+				frame.printMessage(message);
 			}
 		}
 		else {
@@ -113,7 +114,7 @@ public class GameController implements KeyListener  {
 	 */
 	private String moveVisibleMonsters(int x, int y, int distance)
 	{
-		String message = "";
+		String message = " ";
 		HashMap<Point2I, MapObject> nextMoves = new HashMap<Point2I, MapObject>();
 		for(int i = x - distance + 3; i < x + distance - 3; i++)
 			for (int j = y - distance + 3; j < y + distance - 3; j++)
@@ -454,7 +455,7 @@ public class GameController implements KeyListener  {
 	 */
 	public String processAttack(Monster m)
 	{
-		String message = "";
+		String message = " ";
 		int x = (int) m.getLocation().getX();
 		int y = (int) m.getLocation().getY();
 		m.checkStatus();
@@ -474,16 +475,17 @@ public class GameController implements KeyListener  {
 			MapObject item = (MapObject) m.getItem();
 			map.placeMapObject(x, y, item);
 		}
-		else {
+		/*else if(player.getLocation().getX() == x + 1 || player.getLocation().getX() == x - 1 ||
+				player.getLocation().getY() == y + 1 || player.getLocation().getY() == y - 1){
 			AttackAction attack = (AttackAction) SkillType.MELEE.getAction(m);
-			message += " " + attack.execute(m, player);
-		}
+			message += attack.execute(m, player);
+		}*/
 		player.checkStatus();
 		if(player.getHp() <= 0) {
 			message += " You die! Game over.";
 			frame.removeKeyListener(this);
 		}
-		message += moveVisibleMonsters(x, y, DISTANCE);
+		message += moveVisibleMonsters((int) player.getLocation().getX(), (int) player.getLocation().getY(), DISTANCE);
 		return message;
 	}
 	
