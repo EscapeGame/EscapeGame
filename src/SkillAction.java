@@ -6,8 +6,26 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 
 
+/**
+ * Class to create skill action
+ * @author Sally Calpo
+ * 
+ */
 public abstract class SkillAction implements Action {
 
+	
+	/**
+	 * Constructor - creates new skill action
+	 * @param name name of skill
+	 * @param amount amount skill adds to targetStat
+	 * @param cost mana cost 
+	 * @param duration # of turns skill effect will last
+	 * @param minReq amount of minStat needed to use skill
+	 * @param minStat stat required to use skill
+	 * @param targetStat stat affected by skill
+	 * @param range range type (enum)
+	 * @param message status message
+	 */
 	public SkillAction(String name, int amount, int cost, int duration, int minReq, String minStat, String targetStat, RangeType range, String message)
 	{
 		this.name = name;
@@ -140,90 +158,178 @@ public abstract class SkillAction implements Action {
 		return name;
 	}
 
+	/**
+	 * Getter for source
+	 * @return map object initiating skill
+	 */
 	public MapObject getSource() {
 		return source;
 	}
 
+	/**
+	 * Setter for source
+	 * @param source map object initiating skill
+	 */
 	public void setSource(MapObject source) {
 		this.source = source;
 	}
 
+	/**
+	 * Getter for target list
+	 * @return array list of target map objects
+	 */
 	public ArrayList<MapObject> getTargets() {
 		return targets;
 	}
 
+	/**
+	 * Setter for target list
+	 * @param targets list of target map objects
+	 */
 	public void setTargets(ArrayList<MapObject> targets) {
 		this.targets = targets;
 	}
 
+	/**
+	 * Getter for skill name
+	 * @return skill name
+	 */
 	public String getName() {
 		return name;
 	}
 
+	/**
+	 * Setter for skill name
+	 * @param name skill name
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 
+	/**
+	 * Getter for amount skill adds to targetStat
+	 * @return amount skill adds to targetStat
+	 */
 	public int getAmount() {
 		return amount;
 	}
 
+	/**
+	 * Setter for amount skill adds to targetStat
+	 * @param amount amount skill adds to targetStat
+	 */
 	public void setAmount(int amount) {
 		this.amount = amount;
 	}
 
+	/**
+	 * Getter for mana cost
+	 * @return mana cost
+	 */
 	public int getCost() {
 		return cost;
 	}
 
+	/**
+	 * Setter for mana cost
+	 * @param cost mana cost
+	 */
 	public void setCost(int cost) {
 		this.cost = cost;
 	}
 	
+	/**
+	 * Getter for # of turns
+	 * @return # of turns skill effect will last
+	 */
 	public int getDuration() {
 		return duration;
 	}
 
+	/**
+	 * Setter for # of turns
+	 * @param duration # of turns skill effect will last
+	 */
 	public void setDuration(int duration) {
 		this.duration = duration;
 	}
 
+	/**
+	 * Getter for amount of minStat needed
+	 * @return amount of minStat needed to use skill
+	 */
 	public int getMinReq() {
 		return minReq;
 	}
 
+	/**
+	 * Setter for amount of minStat needed
+	 * @param minReq amount of minStat needed to use skill
+	 */
 	public void setMinReq(int minReq) {
 		this.minReq = minReq;
 	}
 
+	/**
+	 * Getter for required stat
+	 * @return stat required to use skill
+	 */
 	public String getMinStat() {
 		return minStat;
 	}
 
+	/**
+	 * Setter for required stat
+	 * @param minStat stat required to use skill
+	 */
 	public void setMinStat(String minStat) {
 		this.minStat = minStat;
 	}
 
+	/**
+	 * Getter for stat affected by skill
+	 * @return stat affected by skill
+	 */
 	public String getTargetStat() {
 		return targetStat;
 	}
 
+	/**
+	 * Setter for stat affected by skill
+	 * @param targetStat stat affected by skill
+	 */
 	public void setTargetStat(String targetStat) {
 		this.targetStat = targetStat;
 	}
 
+	/**
+	 * Getter for status message 
+	 * @return status message
+	 */
 	public String getMessage() {
 		return message;
 	}
 
+	/**
+	 * Setter for status message
+	 * @param message status message
+	 */
 	public void setMessage(String message) {
 		this.message = message;
 	}
 
+	/**
+	 * Getter for range type
+	 * @return range type
+	 */
 	public RangeType getRange() {
 		return range;
 	}
 
+	/**
+	 * Setter for range type
+	 * @param range range type
+	 */
 	public void setRange(RangeType range) {
 		this.range = range;
 	}

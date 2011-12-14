@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 /**
- * Class to create attack
+ * Class to create attack skill
  * @author Sally Calpo
  *
  */

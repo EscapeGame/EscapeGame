@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 /**
- * Class to create self-action
+ * Class to create reflexive skill (affects player only)
  * @author Sally Calpo
  *
  */
