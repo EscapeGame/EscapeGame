@@ -301,11 +301,19 @@ public class Player extends MobileObject {
     	return skillList.add(scroll.getSkillType());
     }
 
-    public int getHp() {
+    /**
+     * Method to get hit point
+     * @return value of hit point
+     */
+	public int getHp() {
 		return hp;
 	}
 
 
+    /**
+     * Method to set hit point
+     * @param value of hit point
+     */
 	public void setHp(int hp) {
 		this.hp = hp;
 		setChanged();
@@ -328,11 +336,19 @@ public class Player extends MobileObject {
 	}
 
 
+	/**
+     * Method to get value of action to strength
+     * @return value of strength
+     */
 	public int getStrength() {
 		return strength;
 	}
 
 
+	/**
+     * Method to set strength
+     * @param value of strength
+     */
 	public void setStrength(int strength) {
 		this.strength = strength;
 		setChanged();
@@ -344,6 +360,10 @@ public class Player extends MobileObject {
 	}
 
 
+	/**
+     * Method to set level
+     * @param value of level
+     */
 	public void setLevel(int level) {
 		this.level = level;
 		setChanged();
@@ -355,6 +375,10 @@ public class Player extends MobileObject {
 	}
 
 
+	/**
+     * Method to set intelligence
+     * @param value of intelligence
+     */
 	public void setIntelligence(int intelligence) {
 		this.intelligence = intelligence;
 		//System.out.println("This happened");
@@ -378,6 +402,10 @@ public class Player extends MobileObject {
 	}
 
 
+	/**
+     * Method to set experience
+     * @param value of experience
+     */
 	public void setExperience(int experience) {
 		this.experience = experience;
 		setChanged();
@@ -389,12 +417,20 @@ public class Player extends MobileObject {
 	}
 
 	// Derived stat has no mutator
+	/**
+     * Method to set mana
+     * @param value of mana
+     */
 	public void setMana(int mana) {
 		this.mana = mana;
 		setChanged();
 	}
 	
-        public void setMaxMana(int maxMana)
+	/**
+     * Method to set maxMana
+     * @param value of maxMana
+     */
+	public void setMaxMana(int maxMana)
         {
         	this.maxMana = maxMana;
             setChanged();
@@ -414,6 +450,10 @@ public class Player extends MobileObject {
 		return attackBonus;
 	}
 
+	/**
+     * Method to set attackBonus
+     * @param value of attackBonus
+     */
 	public void setAttackBonus(int attackBonus) {
 		this.attackBonus = attackBonus;
 		setChanged();
@@ -423,6 +463,10 @@ public class Player extends MobileObject {
 		return defenseBonus;
 	}
 
+	/**
+     * Method to set defenseBonus
+     * @param value of defenseBonus
+     */
 	public void setDefenseBonus(int defenseBonus) {
 		this.defenseBonus = defenseBonus;
 		setChanged();
@@ -432,6 +476,10 @@ public class Player extends MobileObject {
 		return tile;
 	}
 	
+	/**
+     * Method to set tile
+     * @param value of tile
+     */
 	public void setTile(CharVisual tile) {
 		this.tile = tile;
 	}
@@ -443,6 +491,10 @@ public class Player extends MobileObject {
 	}
 
 
+	/**
+     * Method to set inventory
+     * @param value of inventory
+     */
 	public void setInventory(Inventory inventory) {
 		this.inventory = inventory;
 	}
@@ -453,6 +505,10 @@ public class Player extends MobileObject {
 	}
 
 
+	/**
+     * Method to set skillList
+     * @param value of skillList
+     */
 	public void setSkillList(SkillList skillList) {
 		this.skillList = skillList;
 	}
@@ -482,10 +538,18 @@ public class Player extends MobileObject {
 		return inventory.getMenu();
 	}
 	
+	/**
+     * Method to get counter of skill
+     * @return value of skill counter
+     */
 	public int getSkillCounter() {
 		return skillCounter;
 	}
 
+	/**
+     * Method to set counter of skill
+     * @param value of skill counter
+     */
 	public void setSkillCounter(int skillCounter) {
 		this.skillCounter = skillCounter;
 	}
@@ -503,10 +567,18 @@ public class Player extends MobileObject {
 		}
 	}
 
+	/**
+     * Method to get value of action to revert self-cast skill
+     * @return value of revert skill
+     */
 	public SelfAction getRevertSkill() {
 		return revertSkill;
 	}
 
+	/**
+     * Method to set value of action to revert self-cast skill
+     * @param value of revert skill
+     */
 	public void setRevertSkill(SelfAction revertSkill) {
 		this.revertSkill = revertSkill;
 	}
