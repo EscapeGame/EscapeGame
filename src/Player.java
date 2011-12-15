@@ -320,17 +320,29 @@ public class Player extends MobileObject {
 	}
 	
 	// Derived stat has no mutator
+	/**
+     * Method to get maximum hit point
+     * @return value of maximum hit point
+     */
 	public int getMaxHp() {
 		return maxHp;
 	}
 
 
 	// Derived stat has no mutator
+	/**
+     * Method to get attack
+     * @return value of attack
+     */
 	public int getAttack() {
 		return attack;
 	}
 
 	// Derived stat has no mutator
+	/**
+     * Method to get defense
+     * @return value of defense
+     */
 	public int getDefense() {
 		return defense;
 	}
@@ -370,6 +382,10 @@ public class Player extends MobileObject {
 	}
 
 
+	/**
+     * Method to get intelligence
+     * @return value of intelligence
+     */
 	public int getIntelligence() {
 		return intelligence;
 	}
@@ -386,17 +402,29 @@ public class Player extends MobileObject {
 	}
 
 
+	/**
+     * Method to get dexterity
+     * @return value of dexterity
+     */
 	public int getDexterity() {
 		return dexterity;
 	}
 
 
+	/**
+     * Method to set dexterity
+     * @param value of dexterity
+     */
 	public void setDexterity(int dexterity) {
 		this.dexterity = dexterity;
 		setChanged();
 	}
 
 
+	/**
+     * Method to get experience
+     * @return value of experience
+     */
 	public int getExperience() {
 		return experience;
 	}
@@ -412,6 +440,10 @@ public class Player extends MobileObject {
 	}
 
 
+	/**
+     * Method to get mana
+     * @return value of mana
+     */
 	public int getMana() {
 		return mana;
 	}
