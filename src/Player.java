@@ -44,7 +44,7 @@ public class Player extends MobileObject {
 			new Level(204800, 20, 20, 20)};
         
 	/**
-	 * Constructs a new player object
+	 * Constructs a new player
 	 */
 	public Player(){
 		gainLevel();
@@ -367,6 +367,10 @@ public class Player extends MobileObject {
 	}
 
 
+	/**
+     * Method to get level
+     * @return value of level
+     */
 	public int getLevel() {
 		return level;
 	}
@@ -459,25 +463,37 @@ public class Player extends MobileObject {
 	}
 	
 	/**
-     * Method to set maxMana
-     * @param value of maxMana
+     * Method to set maximum mana
+     * @param value of maximum mana
      */
 	public void setMaxMana(int maxMana)
-        {
-        	this.maxMana = maxMana;
-            setChanged();
-        }
-        public void setMaxHp(int maxHp)
-        {
-        	this.maxHp = maxHp;
-            setChanged();
-        }
+    {
+    	this.maxMana = maxMana;
+        setChanged();
+    }
+	/**
+     * Method to set maximum hit point
+     * @param value of maximum hit point
+     */
+	public void setMaxHp(int maxHp)
+    {
+    	this.maxHp = maxHp;
+        setChanged();
+    }
 
+	/**
+     * Method to get maximum mana
+     * @return value of maximum mana
+     */
 	public int getMaxMana() {
 		return maxMana;
 	}
 
 
+	/**
+     * Method to get attackBonus
+     * @return value of attackBonus
+     */
 	public int getAttackBonus() {
 		return attackBonus;
 	}
@@ -491,6 +507,10 @@ public class Player extends MobileObject {
 		setChanged();
 	}
 
+	/**
+     * Method to get defenseBonus
+     * @return value of defenseBonus
+     */
 	public int getDefenseBonus() {
 		return defenseBonus;
 	}
@@ -504,6 +524,10 @@ public class Player extends MobileObject {
 		setChanged();
 	}
 
+	/**
+     * Method to get tile
+     * @return value of tile
+     */
 	public CharVisual getTile() {
 		return tile;
 	}
@@ -518,6 +542,10 @@ public class Player extends MobileObject {
 	
 
 
+	/**
+     * Method to get inventory
+     * @return value of inventory
+     */
 	public Inventory getInventory() {
 		return inventory;
 	}
@@ -532,6 +560,10 @@ public class Player extends MobileObject {
 	}
 
 
+	/**
+     * Method to get skillList
+     * @return value of skillList
+     */
 	public SkillList getSkillList() {
 		return skillList;
 	}
