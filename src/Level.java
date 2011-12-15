@@ -1,6 +1,6 @@
 /**
  * Class to manage player levels
- * @Carlos Castro 
+ * @author Carlos Castro 
  *
  */
 public class Level {

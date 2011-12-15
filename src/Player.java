@@ -54,6 +54,9 @@ public class Player extends MobileObject {
 		//inventory = new Inventory(5);
 	}
 	
+	/**
+	 * Takes player to the next player by setting stats values
+	 */
 	public void gainLevel(){
 		if(this.experience >= levels[level].getExperience()) {
 			// Set base stats
@@ -105,18 +108,34 @@ public class Player extends MobileObject {
 		return false;
 	}
 
+	/**
+     * Method to get the current weapon
+     * @return the current weapon
+     */
 	public Weapon getCurrentWeapon()
 	{
 		return currentWeapon;
 	}
+	/**
+     * Method to get the current armor
+     * @return the current armor
+     */
 	public Armor getCurrentArmor()
 	{
 		return currentArmor;
 	}
+	/**
+     * Method to set the current weapon
+     * @param the current weapon
+     */
 	public void setCurrentWeapon(Weapon weapon)
 	{
 		currentWeapon = weapon;
 	}
+	/**
+     * Method to set the current armor
+     * @param the current armor
+     */
 	public void setCurrentArmor(Armor armor)
 	{
 		currentArmor = armor;
@@ -618,10 +637,16 @@ public class Player extends MobileObject {
 		this.skillCounter = skillCounter;
 	}
 
+	/**
+     * Method to increment counter of skill by 1 unit
+     */
 	public void incrementSkillCounter() {
 		skillCounter++;
 	}
 
+	/**
+     * Method to decrement counter of skill by 1 unit
+     */
 	public void decrementSkillCounter() {
 		if(skillCounter > 0)
 			skillCounter--;
@@ -647,7 +672,9 @@ public class Player extends MobileObject {
 		this.revertSkill = revertSkill;
 	}
 	
-	@Override
+	/**
+     * Checks if status has changed
+     */
 	public void checkStatus()
 	{
 		if(hasChanged()) 
