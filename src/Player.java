@@ -141,6 +141,10 @@ public class Player extends MobileObject {
 		currentArmor = armor;
 	}
 	
+	
+	/**
+     * Method to take off current armor from Player
+     */
 	public void unequipedArmor()
 	{
 		if(currentArmor != null)
@@ -169,6 +173,9 @@ public class Player extends MobileObject {
 		}
             
 	}
+	/**
+     * Method to take off current weapon from Player
+     */
 	public void unequipedWeapon()
 	{
 		if(currentWeapon != null)
@@ -198,6 +205,9 @@ public class Player extends MobileObject {
             
             
 	}
+	/**
+     * Method to equip Player with current weapon
+     */
 	public void equipWeapon()
 	{
 		if(currentWeapon != null)
@@ -225,6 +235,9 @@ public class Player extends MobileObject {
 		}
             
 	}
+	/**
+     * Method to equip Player with current armor
+     */
 	public void equipArmor()
 	{
 		if(currentArmor != null)
@@ -252,6 +265,10 @@ public class Player extends MobileObject {
 		}
             
 	}
+	/**
+     * Method to determine if Player has weapon equipped
+     * @return boolean
+     */
 	public boolean isWeaponEquiped()
 	{
 		if (currentWeapon == null)
@@ -261,6 +278,10 @@ public class Player extends MobileObject {
 		return true;
             
 	}
+	/**
+     * Method to determine if Player has armor equipped
+     * @return boolean
+     */
 	public boolean isArmorEquiped()
 	{
 		if (currentArmor == null)
@@ -271,6 +292,10 @@ public class Player extends MobileObject {
             
 	}
 	
+	/**
+     * Method to apply food in Player
+     * @param food
+     */
 	public void usedFood(Food food)
 	{
 		setMaxHp(food.getHP() + getMaxHp());
@@ -281,6 +306,10 @@ public class Player extends MobileObject {
             
 	}
 	
+	/**
+     * Method to apply potion in Player without going beyond the maximum hit point
+     * @param potion
+     */
 	public void usedPotion(Potion potion)
 	{
 		if (potion.getHP() >0)
@@ -316,7 +345,11 @@ public class Player extends MobileObject {
 		}
 	}
         
-    public String usedScroll(Scroll scroll) {
+	/**
+    * Method to add the skill provided by the Scroll
+    * @param scroll
+    */
+	public String usedScroll(Scroll scroll) {
     	return skillList.add(scroll.getSkillType());
     }
 
@@ -596,27 +629,52 @@ public class Player extends MobileObject {
 		this.skillList = skillList;
 	}
 	
+	/**
+     * Method to add a skillType
+     * @param the skillType to be added
+     */
 	public void addSkillType(SkillType skill) {
 		skillList.add(skill);
 	}
 	
+	/**
+     * Method to remove a skillType
+     * @param the skillType to be removed
+     */
 	public void removeSkillType(SkillType s) {
 		skillList.remove(s);
 	}
 	
+	/**
+     * Method to get a skill by index
+     * @param index
+     * @return the skill
+     */
 	public SkillAction getSkill(int index) {
 		return skillList.get(index).getAction(this);
 	}
 	
-        public Menu getEquipMenu()
-        {
-            return inventory.getMenu();
-        }
-	
+	/**
+     * Method to get the equipment menu
+     * @return the equipment menu
+     */
+	public Menu getEquipMenu()
+    {
+        return inventory.getMenu();
+    }
+
+    /**
+     * Method to get the skill menu
+     * @return the skill menu
+     */
 	public Menu getSkillMenu() {
-		return skillList.getMenu();
+	return skillList.getMenu();
 	}
 
+	/**
+     * Method to get the inventory menu
+     * @return the inventory menu
+     */
 	public Menu getInventoryMenu() {
 		return inventory.getMenu();
 	}
