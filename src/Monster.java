@@ -59,83 +59,177 @@ public class Monster extends MobileObject
 		setChanged();
 	}
 	
-	//attack
+	/**
+	 * Value to get monsetr attack
+	 * @return int
+	 * 
+	 * /
 	public int getAttackValue(){return attackValue;}
+	
+	
+	/**
+	 * method to increase or decrease monster damage
+	 * @param int 
+	 * /
 	public void modifyAttackValue(int addDamage)
 		{
 			attackValue += addDamage;
 			setChanged();
 		}
 	
-	//deffense
+	
+	/**
+	 * Value to get monsetr deffense
+	 * @return int
+	 * 
+	 * /
 	public int getDeffenseValue(){return deffenseValue;}
+	
+	/**
+	 * method to increase or deffense monster deffense
+	 * @param int 
+	 * /
 	public void modifyDeffenseValue(int addDeffense)
 	{
 		deffenseValue += addDeffense;
 		setChanged();
 	}
 	
+	
+	 /**
+	 * Value to get monsetr experience
+	 * @return int
+	 * 
+	 * /
 	public int getExp(){return exp;}
+	
+	/**
+	 * method to assign monster experience
+	 * @param int 
+	 * /
 	public void modifyExp(int addExp)
 	{
 		exp += addExp;
 	}
 
+	/**
+	 * method to assign monster item drop
+	 * @param item
+	 * /
 	public void setItem(Item i)
 	{
 		item = i;
 	}
 	
+	 /**
+	 * Value to get monsetr item
+	 * @return item
+	 * 
+	 * /
 	public Item getItem()
 	{
 		return item;
 	}
 	
-	public int getSkillCounter() {
+	/**
+	 * Value to get monsetr number of item
+	 * @return int
+	 * 
+	 * /
+	public int getSkillCounter()
+	{
 		return skillCounter;
 	}
 
-	public void setSkillCounter(int skillCounter) {
+
+	/**
+	 * method to assign monster skill counter
+	 * @param int
+	 * /
+	public void setSkillCounter(int skillCounter)
+	{
 		this.skillCounter = skillCounter;
 	}
 
-	public void incrementSkillCounter() {
+	/**
+	 * method to increment monster skill counter
+	 * 
+	 * /
+	public void incrementSkillCounter()
+	{
 		skillCounter++;
 	}
 
-	public void decrementSkillCounter() {
+
+	/**
+	 * method to decrement monster skill counter
+	 * 
+	 * /
+	public void decrementSkillCounter() 
+	{
 		if(skillCounter > 0)
 			skillCounter--;
-		if(skillCounter == 0 && revertSkill != null) {
+		if(skillCounter == 0 && revertSkill != null) 
+		{
 			revertSkill.execute(this);
 			revertSkill = null;
 		}
 	}
 
-	public SelfAction getRevertSkill() {
+	/**
+	 * method an action for monster
+	 * @return skill
+	 * /
+	public SelfAction getRevertSkill()
+	{
 		return revertSkill;
 	}
 
-	public void setRevertSkill(SelfAction revertSkill) {
+	/**
+	 * method to set monster action
+	 * @param SelfAction
+	 * 
+	 * /
+	public void setRevertSkill(SelfAction revertSkill) 
+	{
 		this.revertSkill = revertSkill;
 	}
 	
-	public void setAttackValue(int attackValue) {
+	/**
+	 * method to assign monster attack value
+	 * @param int 
+	 * /
+	public void setAttackValue(int attackValue) 
+	{
 		this.attackValue = attackValue;
 		setChanged();
 	}
-
-	public void setDeffenseValue(int deffenseValue) {
+	
+	/**
+	 * method to assign monster deffense value
+	 * @param int 
+	 * /
+	public void setDeffenseValue(int deffenseValue) 
+	{
 		this.deffenseValue = deffenseValue;
 		setChanged();
 	}
 
+	/**
+	 * method to get monster location on the map
+	 * @return new location
+	 * /
 	@Override
 	public CharVisual getTile() 
 	{
 		return new CharVisual(symbol, mcolor);
 	}
 	
+		
+	/**
+	 * method to check status monster
+	 * 
+	 * /
 	@Override
 	public void checkStatus()
 	{
