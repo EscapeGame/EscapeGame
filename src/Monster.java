@@ -31,8 +31,7 @@ public class Monster extends MobileObject
 	
 	/**
 	 * Constructor
-	 * 
-	 * /
+	 */
 	public Monster(String name, char symbol, int hp, int maxHp, Color mcolor, int visionRadius, int attackValue, int deffenseValue, int exp)
 	{
 		this.name = name;
@@ -63,14 +62,14 @@ public class Monster extends MobileObject
 	 * Value to get monsetr attack
 	 * @return int
 	 * 
-	 * /
+	 */
 	public int getAttackValue(){return attackValue;}
 	
 	
 	/**
 	 * method to increase or decrease monster damage
 	 * @param int 
-	 * /
+	 */
 	public void modifyAttackValue(int addDamage)
 		{
 			attackValue += addDamage;
@@ -82,13 +81,13 @@ public class Monster extends MobileObject
 	 * Value to get monsetr deffense
 	 * @return int
 	 * 
-	 * /
+	 */
 	public int getDeffenseValue(){return deffenseValue;}
 	
 	/**
 	 * method to increase or deffense monster deffense
 	 * @param int 
-	 * /
+	 */
 	public void modifyDeffenseValue(int addDeffense)
 	{
 		deffenseValue += addDeffense;
@@ -100,13 +99,13 @@ public class Monster extends MobileObject
 	 * Value to get monsetr experience
 	 * @return int
 	 * 
-	 * /
+	 */
 	public int getExp(){return exp;}
 	
 	/**
 	 * method to assign monster experience
 	 * @param int 
-	 * /
+	 */
 	public void modifyExp(int addExp)
 	{
 		exp += addExp;
@@ -115,7 +114,7 @@ public class Monster extends MobileObject
 	/**
 	 * method to assign monster item drop
 	 * @param item
-	 * /
+	 */
 	public void setItem(Item i)
 	{
 		item = i;
@@ -125,7 +124,7 @@ public class Monster extends MobileObject
 	 * Value to get monsetr item
 	 * @return item
 	 * 
-	 * /
+	 */
 	public Item getItem()
 	{
 		return item;
@@ -135,7 +134,7 @@ public class Monster extends MobileObject
 	 * Value to get monsetr number of item
 	 * @return int
 	 * 
-	 * /
+	 */
 	public int getSkillCounter()
 	{
 		return skillCounter;
@@ -145,7 +144,7 @@ public class Monster extends MobileObject
 	/**
 	 * method to assign monster skill counter
 	 * @param int
-	 * /
+	 */
 	public void setSkillCounter(int skillCounter)
 	{
 		this.skillCounter = skillCounter;
@@ -154,7 +153,7 @@ public class Monster extends MobileObject
 	/**
 	 * method to increment monster skill counter
 	 * 
-	 * /
+	 */
 	public void incrementSkillCounter()
 	{
 		skillCounter++;
@@ -164,7 +163,7 @@ public class Monster extends MobileObject
 	/**
 	 * method to decrement monster skill counter
 	 * 
-	 * /
+	 */
 	public void decrementSkillCounter() 
 	{
 		if(skillCounter > 0)
@@ -179,7 +178,7 @@ public class Monster extends MobileObject
 	/**
 	 * method an action for monster
 	 * @return skill
-	 * /
+	 */
 	public SelfAction getRevertSkill()
 	{
 		return revertSkill;
@@ -189,7 +188,7 @@ public class Monster extends MobileObject
 	 * method to set monster action
 	 * @param SelfAction
 	 * 
-	 * /
+	 */
 	public void setRevertSkill(SelfAction revertSkill) 
 	{
 		this.revertSkill = revertSkill;
@@ -198,7 +197,7 @@ public class Monster extends MobileObject
 	/**
 	 * method to assign monster attack value
 	 * @param int 
-	 * /
+	 */
 	public void setAttackValue(int attackValue) 
 	{
 		this.attackValue = attackValue;
@@ -208,7 +207,7 @@ public class Monster extends MobileObject
 	/**
 	 * method to assign monster deffense value
 	 * @param int 
-	 * /
+	 */
 	public void setDeffenseValue(int deffenseValue) 
 	{
 		this.deffenseValue = deffenseValue;
@@ -218,7 +217,7 @@ public class Monster extends MobileObject
 	/**
 	 * method to get monster location on the map
 	 * @return new location
-	 * /
+	 */
 	@Override
 	public CharVisual getTile() 
 	{
@@ -229,7 +228,7 @@ public class Monster extends MobileObject
 	/**
 	 * method to check status monster
 	 * 
-	 * /
+	 */
 	@Override
 	public void checkStatus()
 	{
